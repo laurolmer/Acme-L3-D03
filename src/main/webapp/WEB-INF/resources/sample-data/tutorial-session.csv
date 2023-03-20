@@ -1,0 +1,22 @@
+key,title,abstract-session,session-type,start-period,finish-period,link,key:tutorial
+tutorial-session-01,Session 1: How to create an entity class.,Abstract 1,HANDS_ON,2023/08/21 19:30,2023/08/21 20:45,null,tutorial-01
+tutorial-session-02,This session is going to reach 75 characs in order to prove the restriction,Abstract 2,HANDS_ON,2024/03/13 05:13,2024/03/13 07:24,null,tutorial-02
+tutorial-session-03,This session is going to reach 74 chars in order to prove the restriction.,Abstract 3,HANDS_ON,2023/12/08 17:41,2023/12/08 18:58,null,tutorial-03
+tutorial-session-04,S,Abstract 4,HANDS_ON,2023/11/14 13:06,2023/11/14 15:10,null,tutorial-04
+tutorial-session-05,S5,Abstract 5,HANDS_ON,2024/02/23 18:59,2024/02/23 21:23,null,tutorial-05
+tutorial-session-06,<title>ExampleHTML</title>,Abstract 6,HANDS_ON,2023/11/04 11:01,2023/11/04 12:43,null,tutorial-06
+tutorial-session-07,<script>alert('exampleJS');</script>,Abstract 7,HANDS_ON,2024/01/24 20:51,2024/01/24 22:56,null,tutorial-07
+tutorial-session-08,નમૂના ટેક્સ્ટ.,Abstract 8,HANDS_ON,2024/04/22 02:33,2024/04/22 04:41,null,tutorial-08
+tutorial-session-09,Session 9,This abstract is going to reach exactly 100 characters so it can be proven the specific restriction.,HANDS_ON,2023/09/19 09:15,2023/09/19 10:39,null,tutorial-09
+tutorial-session-10,Session 10,This abstract is going to reach exactly 99 characters so it can be proven the specific restriction.,HANDS_ON,2023/10/23 11:02,2023/10/23 13:08,null,tutorial-10
+tutorial-session-11,Session 11,A,HANDS_ON,2023/07/30 15:47,2023/07/30 18:28,null,tutorial-11
+tutorial-session-12,Session 12,A1,HANDS_ON,2023/12/25 02:19,2023/12/25 03:33,null,tutorial-12
+tutorial-session-13,Session 13,<title>ExampleHTML</title>,HANDS_ON,2024/05/01 12:30,2024/05/01 14:50,null,tutorial-13
+tutorial-session-14,Session 14,<script>alert('exampleJS');</script>,HANDS_ON,2024/06/14 16:57,2024/06/14 19:08,null,tutorial-14
+tutorial-session-15,Session 15,نص بسيط.,HANDS_ON,2023/07/09 16:59,2024/07/09 18:14,null,tutorial-15
+tutorial-session-16,Session 16,Abstract 16,THEORY,2023/07/04 04:47,2024/07/04 07:32,null,tutorial-16
+tutorial-session-17,Session 17,Abstract 17,THEORY,2024/12/31 00:00,2024/12/31 05:00,null,tutorial-17
+tutorial-session-18,Session 18,Abstract 18,THEORY,2024/03/31 00:00,2024/03/31 04:59,null,tutorial-18
+tutorial-session-19,Session 19,Abstract 19,THEORY,2024/06/25 00:00,2024/06/25 01:00,null,tutorial-19
+tutorial-session-20,Session 20,Abstract 20,THEORY,2024/10/31 00:00,2024/10/31 01:01,null,tutorial-20
+tutorial-session-21,Session 21,Abstract 21,THEORY,2024/12/31 23:59,2025/01/01 01:45,https://www.google.es/,tutorial-21

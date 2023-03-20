@@ -1,0 +1,18 @@
+key,upgrade,start-display,end-display,img-link,slogan,doc-link
+banner-01,2022/01/01 00:00,2022/01/01 01:00,2022/01/09 01:00,https:\\www.example.com,slogan-banner,https:\\www.example.com
+banner-02,2022/07/30 00:00,2022/07/30 01:00,2022/08/08 01:00,https:\\www.example.com,slogan-banner,https:\\www.example.com
+banner-03,2022/07/29 23:00,2022/07/29 00:00,2022/08/07 00:00,https:\\www.example.com,slogan-banner,https:\\www.example.com
+banner-04,2022/01/01 00:00,2022/01/01 01:00,2022/01/09 01:00,https:\\www.example.banner.com,slogan-banner,https:\\www.example.com
+banner-05,2022/01/01 00:00,2022/01/01 01:00,2022/01/09 01:00,http:\\www.example.banner.com,slogan-banner,https:\\www.example.com
+banner-06,2022/01/01 00:00,2022/01/01 01:00,2022/01/09 01:00,https:\\www.example.banner.es,slogan-banner,https:\\www.example.com
+banner-07,2022/01/01 00:00,2022/01/01 01:00,2022/01/09 01:00,https:\\www.example.com,S,https:\\www.example.com
+banner-08,2022/01/01 00:00,2022/01/01 01:00,2022/01/09 01:00,https:\\www.example.com,Sl,https:\\www.example.com
+banner-09,2022/01/01 00:00,2022/01/01 01:00,2022/01/09 01:00,https:\\www.example.com,This title has aprox. 75 characters so dont try to add any more or app die.,https:\\www.example.com
+banner-10,2022/01/01 00:00,2022/01/01 01:00,2022/01/09 01:00,https:\\www.example.com,This title has aprox. 74 characters so dont try to add any more or app die,https:\\www.example.com
+banner-11,2022/01/01 00:00,2022/01/01 01:00,2022/01/09 01:00,https:\\www.example.com,<h1>slogan-banner</h1>,https:\\www.example.com
+banner-12,2022/01/01 00:00,2022/01/01 01:00,2022/01/09 01:00,https:\\www.example.com,"<script>alert(""Slogan-banner"");</script>",https:\\www.example.com
+banner-13,2022/01/01 00:00,2022/01/01 01:00,2022/01/09 01:00,https:\\www.example.com,見出しオファー,https:\\www.example.com
+banner-14,2022/01/01 00:00,2022/01/01 01:00,2022/01/09 01:00,https:\\www.example.com,привет,https:\\www.example.com
+banner-15,2022/01/01 00:00,2022/01/01 01:00,2022/01/09 01:00,https:\\www.example.com,slogan-banner,https:\\www.example.banner.com
+banner-16,2022/01/01 00:00,2022/01/01 01:00,2022/01/09 01:00,https:\\www.example.com,slogan-banner,http:\\www.example.banner.com
+banner-17,2022/01/01 00:00,2022/01/01 01:00,2022/01/09 01:00,https:\\www.example.com,slogan-banner,https:\\www.example.banner.es
