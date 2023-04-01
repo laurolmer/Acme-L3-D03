@@ -20,5 +20,6 @@
 	<acme:input-textbox code="authenticated.tutorial.form.label.title" path="title"/>
 	<acme:input-textarea code="authenticated.tutorial.form.label.abstractTutorial" path="abstractTutorial"/>
 	<acme:input-textarea code="authenticated.tutorial.form.label.goals" path="goals"/>
-	<acme:input-select code="authenticated.tutorial.form.label.course" path="course" choices="${courses}"/>
+	<acme:input-select code="authenticated.tutorial.form.label.course" path="course" choices="${course}"/>
+	<acme:input-select code="authenticated.tutorial.form.label.assistant" path="assistant" choices="${assistant}"/>
 </acme:form>

@@ -13,8 +13,11 @@ authenticated.tutorial.form.label.title = Title:
 authenticated.tutorial.form.label.abstractTutorial = Abstract:
 authenticated.tutorial.form.label.goals = Goals:
 authenticated.tutorial.form.label.course = Course:
+authenticated.tutorial.form.label.assistant = Assistant:
 
 authenticated.tutorial.list.label.code = Code:
 authenticated.tutorial.list.label.title = Title:
 authenticated.tutorial.list.label.abstractTutorial = Abstract:
 authenticated.tutorial.list.label.goals = Goals:
+authenticated.tutorial.list.label.course = Course:
+authenticated.tutorial.list.label.assistant = Assistant:

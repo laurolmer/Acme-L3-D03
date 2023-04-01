@@ -18,6 +18,8 @@
 <acme:list>
 	<acme:list-column code="authenticated.tutorial.list.label.code" path="code" width="10%"/>
 	<acme:list-column code="authenticated.tutorial.list.label.title" path="title" width="10%"/>
-	<acme:list-column code="authenticated.tutorial.list.label.abstractTutorial" path="abstractTutorial" width="80%"/>		
-	<acme:list-column code="authenticated.tutorial.list.label.goals" path="goals" width="80%"/>
+	<acme:list-column code="authenticated.tutorial.list.label.abstractTutorial" path="abstractTutorial" width="30%"/>		
+	<acme:list-column code="authenticated.tutorial.list.label.goals" path="goals" width="10%"/>
+	<acme:list-column code="authenticated.tutorial.list.label.course" path="course" width="10%"/>
+	<acme:list-column code="authenticated.tutorial.list.label.assistant" path="assistant" width="10%"/>
 </acme:list>
