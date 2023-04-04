@@ -16,9 +16,11 @@
 <%@taglib prefix="acme" uri="http://www.the-acme-framework.org/"%>
 
 <acme:form>
-	<acme:input-textbox code="authenticated.provider.form.label.company" path="company"/>
-	<acme:input-textbox code="authenticated.provider.form.label.sector" path="sector"/>
+	<acme:input-textbox code="authenticated.company.form.label.name" path="name"/>
+	<acme:input-textbox code="authenticated.company.form.label.VAT" path="VAT"/>
+ 	<acme:input-textbox code="authenticated.company.form.label.summary" path="summary"/>
+ 	<acme:input-textbox code="authenticated.company.form.label.link" path="link"/>	
 	
-	<acme:submit test="${_command == 'create'}" code="authenticated.provider.form.button.create" action="/authenticated/provider/create"/>
-	<acme:submit test="${_command == 'update'}" code="authenticated.provider.form.button.update" action="/authenticated/provider/update"/>
+	<acme:submit test="${_command == 'create'}" code="authenticated.company.form.button.create" action="/authenticated/company/create"/>
+	<acme:submit test="${_command == 'update'}" code="authenticated.company.form.button.update" action="/authenticated/company/update"/>
 </acme:form>
