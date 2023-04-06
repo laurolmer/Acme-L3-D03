@@ -27,7 +27,8 @@ public class AuthenticatedCompanyController extends AbstractController<Authentic
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected AuthenticatedCompanyCreateService	createService;
+	protected AuthenticatedCompanyCreateService createService;
+
 
 	@Autowired
 	protected AuthenticatedCompanyUpdateService	updateService;
