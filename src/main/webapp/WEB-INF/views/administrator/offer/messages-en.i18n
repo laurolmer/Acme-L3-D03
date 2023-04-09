@@ -18,6 +18,8 @@ authenticated.offer.form.label.link = Link
 
 authenticated.offer.form.button.confirmation = Confirmation
 authenticated.offer.form.button.create = Create
+authenticated.offer.form.button.update = Update
+authenticated.offer.form.button.delete = Delete
 
 authenticated.offer.list.label.headding = Heading
 authenticated.offer.list.label.summary = Summary

@@ -18,6 +18,8 @@ authenticated.offer.form.label.link = Enlace
 
 authenticated.offer.form.button.confirmation = Confirmación
 authenticated.offer.form.button.create = Crear
+authenticated.offer.form.button.update = Actualizar
+authenticated.offer.form.button.delete = Eliminar
 
 authenticated.offer.list.label.headding = Encabezado
 authenticated.offer.list.label.summary = Resumen
