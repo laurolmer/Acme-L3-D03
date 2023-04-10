@@ -15,7 +15,10 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="http://www.the-acme-framework.org/"%>
 
-<acme:form readonly="true">
+<acme:form>
 	<acme:input-textbox code="administrator.configuration.form.label.defaultCurrency" path="defaultCurrency"/>	
 	<acme:input-textbox code="administrator.configuration.form.label.aceptedCurrencies" path="acceptedCurrencies"/>
+	<jstl:if test="${acme:anyOf(_command, 'show|update')}">
+		<acme:submit code="administrator.configuration.form.button.update" action="/administrator/configuration/update"/>
+	</jstl:if>
 </acme:form>

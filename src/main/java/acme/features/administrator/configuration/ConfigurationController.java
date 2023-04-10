@@ -27,7 +27,10 @@ public class ConfigurationController extends AbstractController<Administrator, C
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected ConfigurationShowService showService;
+	protected ConfigurationShowService		showService;
+
+	@Autowired
+	protected ConfigurationUpdateService	updateService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -35,6 +38,7 @@ public class ConfigurationController extends AbstractController<Administrator, C
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("show", this.showService);
+		super.addBasicCommand("update", this.updateService);
 	}
 
 }

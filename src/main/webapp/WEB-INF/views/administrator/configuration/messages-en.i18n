@@ -10,3 +10,4 @@
 
 administrator.configuration.form.label.defaultCurrency = Default currency:
 administrator.configuration.form.label.aceptedCurrencies = Accepted currencies:
+administrator.configuration.form.button.update = Update

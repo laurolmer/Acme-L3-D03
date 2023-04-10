@@ -11,6 +11,6 @@ import acme.framework.repositories.AbstractRepository;
 public interface ConfigurationRepository extends AbstractRepository {
 
 	@Query("select c from Configuration c")
-	Configuration findSystemConfiguration();
+	Configuration findConfiguration();
 
 }
