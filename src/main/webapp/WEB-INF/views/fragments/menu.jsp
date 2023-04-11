@@ -47,6 +47,8 @@
 			<acme:menu-suboption code="master.menu.administrator.offer.list" action="/administrator/offer/list"/>		
 		</acme:menu-option>
 		
+	<acme:menu-option code="authenticated.practicum.form.button.list" action="/authenticated/practicum/list" access="hasRole('Company')"/>
+
 	</acme:menu-left>
 
 	<acme:menu-right>
