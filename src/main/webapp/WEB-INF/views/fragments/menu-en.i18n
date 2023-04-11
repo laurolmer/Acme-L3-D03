@@ -33,6 +33,13 @@ master.menu.administrator.populate-initial = Populate DB (initial)
 master.menu.administrator.populate-sample = Populate DB (samples)
 master.menu.administrator.shut-down = Shut down
 
+# master.menu.assistant ###################################################
+
+master.menu.assistant = Assistant
+master.menu.assistant.tutorial.list-mine = List my tutorials
+master.menu.assistant.tutorial.list-all = List all tutorials
+
+
 # master.menu.provider ########################################################
 
 master.menu.provider = Provider

@@ -48,6 +48,7 @@ public class AssistantTutorialUpdateService extends AbstractService<Assistant, T
 		int id;
 		id = super.getRequest().getData("id", int.class);
 		object = this.repository.findTutorialById(id);
+
 		super.getBuffer().setData(object);
 	}
 
@@ -70,11 +71,13 @@ public class AssistantTutorialUpdateService extends AbstractService<Assistant, T
 	@Override
 	public void validate(final Tutorial object) {
 		assert object != null;
+		int id;
+		final Tutorial otherTutorial;
 		// El código de un tutorial debe ser único.
 		if (!super.getBuffer().getErrors().hasErrors("code")) {
-			Tutorial isCodeUnique;
-			isCodeUnique = this.repository.findATutorialByCode(object.getCode());
-			super.state(isCodeUnique == null, "code", "assistant.tutorial.form.error.code-uniqueness");
+			id = super.getRequest().getData("id", int.class);
+			otherTutorial = this.repository.findATutorialByCode(object.getCode());
+			super.state(otherTutorial == null || otherTutorial.getCode().equals(object.getCode()) && otherTutorial.getId() == object.getId(), "code", "assistant.tutorial.form.error.code-uniqueness");
 		}
 	}
 
