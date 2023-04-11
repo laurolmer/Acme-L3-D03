@@ -43,6 +43,9 @@ master.menu.provider.favourite-link = Favourite Link
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 
+# master.menu.practicum ####################################################
+authenticated.practicum.form.button.list= Practicum
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account
@@ -54,6 +57,7 @@ master.menu.user-account.become-consumer = Become a consumer
 
 master.menu.user-account.become-company = Become a company
 master.menu.user-account.company= Company data
+master.menu.practicum= Practicum
 
 master.menu.user-account.assistant = Assistant data
 master.menu.user-account.become-assistant = Become an assistant

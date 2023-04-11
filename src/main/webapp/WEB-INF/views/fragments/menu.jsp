@@ -42,6 +42,12 @@
 		<acme:menu-option code="master.menu.consumer" access="hasRole('Consumer')">
 			<acme:menu-suboption code="master.menu.consumer.favourite-link" action="http://www.example.com/"/>
 		</acme:menu-option>
+		
+
+	<acme:menu-option code="authenticated.practicum.form.button.list" action="/authenticated/practicum/list" access="hasRole('Company')"/>
+ 
+
+  		
 	</acme:menu-left>
 
 	<acme:menu-right>
