@@ -1,5 +1,5 @@
 /*
- * AuthenticatedConsumerController.java
+ * AnyDutyController.java
  *
  * Copyright (C) 2012-2023 Rafael Corchuelo.
  *
@@ -10,36 +10,35 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.company;
+package acme.features.authenticated.tutorial;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import acme.entities.tutorial.Tutorial;
 import acme.framework.components.accounts.Authenticated;
 import acme.framework.controllers.AbstractController;
-import acme.roles.Company;
 
 @Controller
-public class AuthenticatedCompanyController extends AbstractController<Authenticated, Company> {
+public class AuthenticatedTutorialController extends AbstractController<Authenticated, Tutorial> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected AuthenticatedCompanyCreateService createService;
-
+	protected AuthenticatedTutorialShowService	showService;
 
 	@Autowired
-	protected AuthenticatedCompanyUpdateService	updateService;
+	protected AuthenticatedTutorialListService	listService;
 
 	// Constructors -----------------------------------------------------------
 
 
 	@PostConstruct
 	protected void initialise() {
-		super.addBasicCommand("create", this.createService);
-		super.addBasicCommand("update", this.updateService);
+		super.addBasicCommand("show", this.showService);
+		super.addBasicCommand("list", this.listService);
 	}
 
 }
