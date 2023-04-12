@@ -13,14 +13,14 @@ import acme.framework.services.AbstractService;
 import acme.roles.Assistant;
 
 @Service
-public class AssistantTutorialListService extends AbstractService<Assistant, Tutorial> {
+public class AssistantTutorialListMineService extends AbstractService<Assistant, Tutorial> {
 
+	// Internal state ---------------------------------------------------------
 	@Autowired
 	protected AssistantTutorialRepository repository;
 
+
 	// AbstractService interface ----------------------------------------------
-
-
 	@Override
 	public void check() {
 		super.getResponse().setChecked(true);
@@ -34,9 +34,9 @@ public class AssistantTutorialListService extends AbstractService<Assistant, Tut
 	@Override
 	public void load() {
 		Collection<Tutorial> objects;
-		final Principal principal = super.getRequest().getPrincipal();
-		final int userAccountId = principal.getActiveRoleId();
-		objects = this.repository.findTutorialsByAssistantId(userAccountId);
+		Principal principal;
+		principal = super.getRequest().getPrincipal();
+		objects = this.repository.findTutorialsByAssistantId(principal.getActiveRoleId());
 		super.getBuffer().setData(objects);
 	}
 
@@ -47,4 +47,5 @@ public class AssistantTutorialListService extends AbstractService<Assistant, Tut
 		tuple = super.unbind(object, "code", "title", "abstractTutorial", "goals");
 		super.getResponse().setData(tuple);
 	}
+
 }

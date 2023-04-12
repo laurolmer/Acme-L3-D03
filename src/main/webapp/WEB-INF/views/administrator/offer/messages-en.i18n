@@ -8,27 +8,27 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-authenticated.offer.form.label.instantationMoment = Instantiation Moment
-authenticated.offer.form.label.headding = Heading
-authenticated.offer.form.label.summary = Summary
-authenticated.offer.form.label.price = Price
-authenticated.offer.form.label.availabilityPeriodStart = Start Period
-authenticated.offer.form.label.availabilityPeriodEnd = End Period
-authenticated.offer.form.label.link = Link
+administrator.offer.form.label.instantationMoment = Instantiation Moment
+administrator.offer.form.label.headding = Heading
+administrator.offer.form.label.summary = Summary
+administrator.offer.form.label.price = Price
+administrator.offer.form.label.availabilityPeriodStart = Start Period
+administrator.offer.form.label.availabilityPeriodEnd = End Period
+administrator.offer.form.label.link = Link
 
-authenticated.offer.form.button.confirmation = Confirmation
-authenticated.offer.form.button.create = Create
-authenticated.offer.form.button.update = Update
-authenticated.offer.form.button.delete = Delete
+administrator.offer.form.button.confirmation = Confirmation
+administrator.offer.form.button.create = Create
+administrator.offer.form.button.update = Update
+administrator.offer.form.button.delete = Delete
 
-authenticated.offer.list.label.headding = Heading
-authenticated.offer.list.label.summary = Summary
-authenticated.offer.list.label.price = Price
-authenticated.offer.list.label.availabilityPeriodStart = Start
-authenticated.offer.list.label.availabilityPeriodEnd = End 
-authenticated.offer.list.label.link = Link
+administrator.offer.list.label.headding = Heading
+administrator.offer.list.label.summary = Summary
+administrator.offer.list.label.price = Price
+administrator.offer.list.label.availabilityPeriodStart = Start
+administrator.offer.list.label.availabilityPeriodEnd = End 
+administrator.offer.list.label.link = Link
 
-authenticated.offer.list.button.create = Create
+administrator.offer.list.button.create = Create
 
 administrator.offer.start-close-to-instantiation = Start period must be at least one day after the current date
 administrator.offer.positive-naught-price = Price must be a positive amount or naught

@@ -14,7 +14,7 @@ import acme.framework.services.AbstractService;
 import acme.roles.Assistant;
 
 @Service
-public class AssistantTutorialUpdateService extends AbstractService<Assistant, Tutorial> {
+public class AssistantTutorialPublishService extends AbstractService<Assistant, Tutorial> {
 
 	// Internal state ---------------------------------------------------------
 	@Autowired
@@ -48,7 +48,6 @@ public class AssistantTutorialUpdateService extends AbstractService<Assistant, T
 		int id;
 		id = super.getRequest().getData("id", int.class);
 		object = this.repository.findTutorialById(id);
-
 		super.getBuffer().setData(object);
 	}
 
@@ -73,14 +72,10 @@ public class AssistantTutorialUpdateService extends AbstractService<Assistant, T
 		assert object != null;
 		int id;
 		final Tutorial otherTutorial;
-		final Tutorial oldTutorial;
-		final boolean areCodesEqual;
 		// El código de un tutorial debe ser único.
 		if (!super.getBuffer().getErrors().hasErrors("code")) {
 			id = super.getRequest().getData("id", int.class);
-			//oldTutorial = this.repository.findAllTutorials().stream().filter(t -> t.getId() == id).findFirst().orElse(null);
 			otherTutorial = this.repository.findATutorialByCode(object.getCode());
-			//areCodesEqual = oldTutorial.getCode().equals(object.getCode());
 			super.state(otherTutorial == null || otherTutorial.getCode().equals(object.getCode()) && otherTutorial.getId() == object.getId(), "code", "assistant.tutorial.form.error.code-uniqueness");
 		}
 	}
@@ -88,6 +83,7 @@ public class AssistantTutorialUpdateService extends AbstractService<Assistant, T
 	@Override
 	public void perform(final Tutorial object) {
 		assert object != null;
+		object.setDraftMode(false);
 		this.repository.save(object);
 	}
 

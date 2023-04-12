@@ -20,9 +20,8 @@ public class AssistantTutorialShowService extends AbstractService<Assistant, Tut
 	@Autowired
 	protected AssistantTutorialRepository repository;
 
+
 	// AbstractService interface ----------------------------------------------
-
-
 	@Override
 	public void check() {
 		boolean status;
@@ -32,15 +31,17 @@ public class AssistantTutorialShowService extends AbstractService<Assistant, Tut
 
 	@Override
 	public void authorise() {
-		Tutorial object;
-		int id;
-		final boolean status;
-		id = super.getRequest().getData("id", int.class);
-		object = this.repository.findTutorialById(id);
-		final Principal principal = super.getRequest().getPrincipal();
-		final int userAccountId = principal.getActiveRoleId();
-		status = object != null && !object.isDraftMode();
-		super.getResponse().setAuthorised(object.getAssistant().getUserAccount().getId() == userAccountId && status);
+		boolean status;
+		final Assistant assistant;
+		final Tutorial tutorial;
+		int tutorialId;
+		Principal principal;
+		tutorialId = super.getRequest().getData("id", int.class);
+		tutorial = this.repository.findTutorialById(tutorialId);
+		principal = super.getRequest().getPrincipal();
+		assistant = tutorial == null ? null : tutorial.getAssistant();
+		status = tutorial != null && !tutorial.isDraftMode() || principal.hasRole(assistant);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -56,10 +57,9 @@ public class AssistantTutorialShowService extends AbstractService<Assistant, Tut
 	public void unbind(final Tutorial object) {
 		assert object != null;
 		Tuple tuple;
-		final int assistantId;
 		Collection<Course> courses;
 		SelectChoices choices;
-		courses = this.repository.findNotInDraftCourses();
+		courses = this.repository.findAllCourses();
 		choices = SelectChoices.from(courses, "title", object.getCourse());
 		tuple = super.unbind(object, "code", "title", "abstractTutorial", "goals");
 		tuple.put("course", choices.getSelected().getKey());

@@ -27,10 +27,10 @@ public class AuthenticatedConsumerController extends AbstractController<Authenti
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected AuthenticatedConsumerCreateService createService;
+	protected AuthenticatedConsumerCreateService	createService;
 
 	@Autowired
-	protected AuthenticatedConsumerUpdateService updateService;
+	protected AuthenticatedConsumerUpdateService	updateService;
 
 	// Constructors -----------------------------------------------------------
 

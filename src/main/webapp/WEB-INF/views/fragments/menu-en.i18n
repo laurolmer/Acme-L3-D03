@@ -33,6 +33,17 @@ master.menu.administrator.populate-initial = Populate DB (initial)
 master.menu.administrator.populate-sample = Populate DB (samples)
 master.menu.administrator.shut-down = Shut down
 
+# master.menu.assistant ###################################################
+
+master.menu.assistant = Assistant
+master.menu.assistant.tutorial.list-mine = List my tutorials
+master.menu.assistant.tutorial.list-all = List all tutorials
+
+# master.menu.administrator.offer ###################################################
+
+master.menu.administrator.offer = Offers Administrator
+master.menu.administrator.offer.list = Offers list
+
 # master.menu.provider ########################################################
 
 master.menu.provider = Provider
@@ -43,10 +54,16 @@ master.menu.provider.favourite-link = Favourite Link
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 
+
 # master.menu.studentCourse ##########################################################
 
 master.menu.student = Student
 master.menu.student.studentCourseList = Course List
+
+# master.menu.practicum ####################################################
+
+authenticated.practicum.form.button.list= Practicum
+
 
 # master.menu.user-account ####################################################
 
@@ -59,6 +76,7 @@ master.menu.user-account.become-consumer = Become a consumer
 
 master.menu.user-account.become-company = Become a company
 master.menu.user-account.company= Company data
+master.menu.practicum= Practicum
 
 master.menu.user-account.assistant = Assistant data
 master.menu.user-account.become-assistant = Become an assistant
