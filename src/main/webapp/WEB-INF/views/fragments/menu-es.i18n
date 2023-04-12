@@ -26,7 +26,7 @@ master.menu.anonymous.favourite-link.danguepre = 20538880H: Guedes Preciados, Da
 
 # master.menu.administrator ###################################################
 
-master.menu.administrator = Administrador
+master.menu.administrator = Ofertas Administrador
 master.menu.administrator.dashboard = Panel de indicadores
 master.menu.administrator.user-accounts = Cuentas de usuario
 master.menu.administrator.populate-initial = Poblar BD (inicial)
@@ -39,6 +39,10 @@ master.menu.assistant = Asistente
 master.menu.assistant.tutorial.list-mine = Listar mis tutoriales
 master.menu.assistant.tutorial.list-all = Listar todos los tutoriales
 
+# master.menu.administrator.offer ###################################################
+
+master.menu.administrator.offer = Administrador
+master.menu.administrator.offer.list = Lista de ofertas
 
 # master.menu.provider ########################################################
 
@@ -50,6 +54,9 @@ master.menu.provider.favourite-link = Enlace favorito
 master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
 
+# master.menu.practicum ####################################################
+authenticated.practicum.form.button.list= Practicas
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Cuenta
@@ -58,7 +65,15 @@ master.menu.user-account.provider = Datos de proveedor
 master.menu.user-account.become-provider = Hazte proveedor
 master.menu.user-account.consumer = Datos de consumidor
 master.menu.user-account.become-consumer = Hazte consumidor
+
+master.menu.user-account.become-company = Hazte una compañía
+master.menu.user-account.company= Datos de la compañía
+
+master.menu.practicum= Practicas
+
+
 master.menu.user-account.assistant = Datos de asistente
 master.menu.user-account.become-assistant = Hazte asistente
 master.menu.user-account.student = Datos de estudiante
 master.menu.user-account.become-student = Hazte estudiante
+
