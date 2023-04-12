@@ -30,35 +30,35 @@ public class Course extends AbstractEntity {
 	@Column(unique = true)
 	@NotBlank
 	@Pattern(regexp = "^[A-Z]{1,3}[0-9]{3}$")
-	protected String code;
+	protected String			code;
 
 	@NotBlank
 	@Length(max = 75)
-	protected String title;
-	
+	protected String			title;
+
 	@NotBlank
 	@Length(max = 100)
-	protected String courseAbstract;
-	
-	@NotNull
-	protected CourseType courseType;
-	
-	@NotNull
-	protected Money retailPrice;
-	
-	@URL
-	protected String link;
-	
-	protected boolean draftMode;
-	
-//	Derived attributes ------------------------------------
+	protected String			courseAbstract;
 
-//	estimatedTotalTime;
-	
-//	Relationships -----------------------------------------
+	@NotNull
+	protected CourseType		courseType;
+
+	@NotNull
+	protected Money				retailPrice;
+
+	@URL
+	protected String			link;
+
+	protected boolean			draftMode;
+
+	//	Derived attributes ------------------------------------
+
+	//	estimatedTotalTime;
+
+	//	Relationships -----------------------------------------
 	@Valid
 	@NotNull
 	@ManyToOne(optional = false)
-	protected Lecturer lecturer;
-	
+	protected Lecturer			lecturer;
+
 }

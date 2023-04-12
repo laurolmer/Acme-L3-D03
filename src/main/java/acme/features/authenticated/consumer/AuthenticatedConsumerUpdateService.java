@@ -47,9 +47,9 @@ public class AuthenticatedConsumerUpdateService extends AbstractService<Authenti
 
 	@Override
 	public void load() {
-		Consumer	object;
-		Principal	principal;
-		int			userAccountId;
+		Consumer object;
+		Principal principal;
+		int userAccountId;
 
 		principal = super.getRequest().getPrincipal();
 		userAccountId = principal.getAccountId();

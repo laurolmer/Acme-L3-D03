@@ -58,7 +58,7 @@ public class AdministratorOfferUpdateService extends AbstractService<Administrat
 			minStartPeriod = MomentHelper.deltaFromCurrentMoment(1, ChronoUnit.DAYS);
 			super.state(MomentHelper.isAfter(object.getAvailabilityPeriodStart(), minStartPeriod), "availabilityPeriodStart", "administrator.offer.start-close-to-instantiation");
 		}
-		// EndPeriod -> Must last for at least one week (7 days) 
+		// EndPeriod -> Must last for at least one week (7 days)
 		if (!super.getBuffer().getErrors().hasErrors("availabilityPeriodEnd"))
 			super.state(MomentHelper.isLongEnough(object.getAvailabilityPeriodStart(), object.getAvailabilityPeriodEnd(), 7, ChronoUnit.DAYS), "availabilityPeriodEnd", "administrator.offer.end-duration-insufficient");
 		// EndPeriod must be after StartPeriod.

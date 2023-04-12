@@ -26,15 +26,15 @@ public class Provider extends AbstractRole {
 
 	// Serialisation identifier -----------------------------------------------
 
-	protected static final long serialVersionUID = 1L;
+	protected static final long	serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
 
 	@NotBlank
-	protected String company;
+	protected String			company;
 
 	@NotBlank
-	protected String sector;
+	protected String			sector;
 
 	// Derived attributes -----------------------------------------------------
 
