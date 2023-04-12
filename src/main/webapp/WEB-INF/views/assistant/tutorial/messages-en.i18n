@@ -8,13 +8,23 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-assistant.tutorial.form.label.code = Code:
-assistant.tutorial.form.label.title = Title:
-assistant.tutorial.form.label.abstractTutorial = Abstract:
-assistant.tutorial.form.label.goals = Goals:
-assistant.tutorial.form.label.course = Course:
+assistant.tutorial.form.label.code = Code
+assistant.tutorial.form.label.title = Title
+assistant.tutorial.form.label.abstractTutorial = Abstract
+assistant.tutorial.form.label.goals = Goals
+assistant.tutorial.form.label.course = Course
 
-assistant.tutorial.list.label.code = Code:
-assistant.tutorial.list.label.title = Title:
-assistant.tutorial.list.label.abstractTutorial = Abstract:
-assistant.tutorial.list.label.goals = Goals:
+assistant.tutorial.form.button.create = Create
+assistant.tutorial.form.button.update = Update
+assistant.tutorial.form.button.delete = Delete
+assistant.tutorial.form.button.publish = Publish
+
+assistant.tutorial.list.label.code = Code
+assistant.tutorial.list.label.title = Title
+assistant.tutorial.list.label.abstractTutorial = Abstract
+assistant.tutorial.list.label.goals = Goals
+
+assistant.tutorial.list.button.create = Create
+assistant.tutorial.list.button.publish = Publish
+
+assistant.tutorial.form.error.code-uniqueness = The code is repeated and it must be unique

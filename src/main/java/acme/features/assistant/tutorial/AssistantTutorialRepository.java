@@ -17,7 +17,7 @@ public interface AssistantTutorialRepository extends AbstractRepository {
 	@Query("select t from Tutorial t where t.course.id = :id")
 	Collection<Tutorial> findTutorialsByCourse(int id);
 
-	@Query("select t from Tutorial t where t.assistant.userAccount.id = :id")
+	@Query("select t from Tutorial t where t.assistant.id = :id")
 	Collection<Tutorial> findTutorialsByAssistantId(int id);
 
 	@Query("select t from Tutorial t where t.id = :id")
@@ -29,12 +29,21 @@ public interface AssistantTutorialRepository extends AbstractRepository {
 	@Query("select c from Course c where c.draftMode = false")
 	Collection<Course> findNotInDraftCourses();
 
+	@Query("select t from Tutorial t where t.draftMode = false")
+	Collection<Tutorial> findNotInDraftTutorials();
+
 	@Query("select a from Assistant a where a.id = :id")
 	Assistant findAssistantById(int id);
 
 	@Query("select c from Course c where c.id = :id")
 	Course findCourseById(int id);
 
-	@Query("select t.code from Tutorial t")
-	Collection<String> findAllCodesFromTutorials();
+	@Query("select t from Tutorial t where t.code = :code")
+	Collection<Tutorial> findAllTutorialsByCode(String code);
+
+	@Query("select t from Tutorial t")
+	Collection<Tutorial> findAllTutorials();
+
+	@Query("select t from Tutorial t where t.code = :code")
+	Tutorial findATutorialByCode(String code);
 }

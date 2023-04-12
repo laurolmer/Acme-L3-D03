@@ -38,7 +38,7 @@ public class AssistantTutorialUpdateService extends AbstractService<Assistant, T
 		tutorialId = super.getRequest().getData("id", int.class);
 		tutorial = this.repository.findTutorialById(tutorialId);
 		assistant = tutorial == null ? null : tutorial.getAssistant();
-		status = tutorial != null && tutorial.isDraftMode() && super.getRequest().getPrincipal().hasRole(assistant);
+		status = tutorial != null && tutorial.isDraftMode() == false || super.getRequest().getPrincipal().hasRole(assistant);
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -48,6 +48,7 @@ public class AssistantTutorialUpdateService extends AbstractService<Assistant, T
 		int id;
 		id = super.getRequest().getData("id", int.class);
 		object = this.repository.findTutorialById(id);
+
 		super.getBuffer().setData(object);
 	}
 
@@ -70,10 +71,17 @@ public class AssistantTutorialUpdateService extends AbstractService<Assistant, T
 	@Override
 	public void validate(final Tutorial object) {
 		assert object != null;
-		Collection<String> codes;
+		int id;
+		final Tutorial otherTutorial;
+		final Tutorial oldTutorial;
+		final boolean areCodesEqual;
+		// El código de un tutorial debe ser único.
 		if (!super.getBuffer().getErrors().hasErrors("code")) {
-			codes = this.repository.findAllCodesFromTutorials();
-			super.state(!codes.contains(object.getCode()), "code", "assistant.tutorial.form.error.code");
+			id = super.getRequest().getData("id", int.class);
+			//oldTutorial = this.repository.findAllTutorials().stream().filter(t -> t.getId() == id).findFirst().orElse(null);
+			otherTutorial = this.repository.findATutorialByCode(object.getCode());
+			//areCodesEqual = oldTutorial.getCode().equals(object.getCode());
+			super.state(otherTutorial == null || otherTutorial.getCode().equals(object.getCode()) && otherTutorial.getId() == object.getId(), "code", "assistant.tutorial.form.error.code-uniqueness");
 		}
 	}
 
@@ -91,7 +99,7 @@ public class AssistantTutorialUpdateService extends AbstractService<Assistant, T
 		Tuple tuple;
 		courses = this.repository.findNotInDraftCourses();
 		choices = SelectChoices.from(courses, "title", object.getCourse());
-		tuple = super.unbind(object, "code", "title", "abstractTutorial", "goals", "course");
+		tuple = super.unbind(object, "code", "title", "abstractTutorial", "goals");
 		tuple.put("course", choices.getSelected().getKey());
 		tuple.put("courses", choices);
 		super.getResponse().setData(tuple);

@@ -10,11 +10,11 @@ course-08,ZA010,title-course,abstract-course,THEORY_COURSE,EUR 10.00,null,true,l
 course-09,GV547,title-course,abstract-course,THEORY_COURSE,EUR 10.00,null,true,lecturer-01
 course-10,MHI863,title-course,abstract-course,THEORY_COURSE,EUR 10.00,null,true,lecturer-01
 course-11,OPK209,title-course,abstract-course,THEORY_COURSE,EUR 10.00,null,true,lecturer-01
-course-12,A003,T,abstract-course,THEORY_COURSE,EUR 10.00,null,true,lecturer-01
-course-13,A004,Ti,abstract-course,THEORY_COURSE,EUR 10.00,null,true,lecturer-01
-course-14,A005,This title has aprox. 75 characters so dont try to add any more or app die.,abstract-course,THEORY_COURSE,EUR 10.00,null,true,lecturer-01
-course-15,A006,This title has aprox. 74 characters so dont try to add any more or app die,abstract-course,THEORY_COURSE,EUR 10.00,null,true,lecturer-01
-course-16,A007,<h1>Title-course</h1>,abstract-course,THEORY_COURSE,EUR 10.00,null,true,lecturer-01
+course-12,A003,T,abstract-course,THEORY_COURSE,EUR 10.00,null,false,lecturer-01
+course-13,A004,Ti,abstract-course,THEORY_COURSE,EUR 10.00,null,false,lecturer-01
+course-14,A005,This title has aprox. 75 characters so dont try to add any more or app die.,abstract-course,THEORY_COURSE,EUR 10.00,null,false,lecturer-01
+course-15,A006,This title has aprox. 74 characters so dont try to add any more or app die,abstract-course,THEORY_COURSE,EUR 10.00,null,false,lecturer-01
+course-16,A007,<h1>Title-course</h1>,abstract-course,THEORY_COURSE,EUR 10.00,null,false,lecturer-01
 course-17,A008,"<script>alert(""Title-course"");</script>",abstract-course,THEORY_COURSE,EUR 10.00,null,true,lecturer-01
 course-18,A009,見出しオファー,abstract-course,THEORY_COURSE,EUR 10.00,null,true,lecturer-01
 course-19,A010,привет,abstract-course,THEORY_COURSE,EUR 10.00,null,true,lecturer-01

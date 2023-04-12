@@ -14,9 +14,9 @@ import acme.framework.services.AbstractService;
 import acme.roles.Assistant;
 
 @Service
-public class AssistantTutorialDeleteService extends AbstractService<Assistant, Tutorial> {
-	// Internal state ---------------------------------------------------------
+public class AssistantTutorialPublishService extends AbstractService<Assistant, Tutorial> {
 
+	// Internal state ---------------------------------------------------------
 	@Autowired
 	protected AssistantTutorialRepository repository;
 
@@ -38,7 +38,7 @@ public class AssistantTutorialDeleteService extends AbstractService<Assistant, T
 		tutorialId = super.getRequest().getData("id", int.class);
 		tutorial = this.repository.findTutorialById(tutorialId);
 		assistant = tutorial == null ? null : tutorial.getAssistant();
-		status = tutorial != null && tutorial.isDraftMode() || super.getRequest().getPrincipal().hasRole(assistant);
+		status = tutorial != null && tutorial.isDraftMode() == false || super.getRequest().getPrincipal().hasRole(assistant);
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -70,12 +70,21 @@ public class AssistantTutorialDeleteService extends AbstractService<Assistant, T
 	@Override
 	public void validate(final Tutorial object) {
 		assert object != null;
+		int id;
+		final Tutorial otherTutorial;
+		// El código de un tutorial debe ser único.
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			id = super.getRequest().getData("id", int.class);
+			otherTutorial = this.repository.findATutorialByCode(object.getCode());
+			super.state(otherTutorial == null || otherTutorial.getCode().equals(object.getCode()) && otherTutorial.getId() == object.getId(), "code", "assistant.tutorial.form.error.code-uniqueness");
+		}
 	}
 
 	@Override
 	public void perform(final Tutorial object) {
 		assert object != null;
-		this.repository.delete(object);
+		object.setDraftMode(false);
+		this.repository.save(object);
 	}
 
 	@Override
@@ -86,7 +95,7 @@ public class AssistantTutorialDeleteService extends AbstractService<Assistant, T
 		Tuple tuple;
 		courses = this.repository.findNotInDraftCourses();
 		choices = SelectChoices.from(courses, "title", object.getCourse());
-		tuple = super.unbind(object, "code", "title", "abstractTutorial", "goals", "course");
+		tuple = super.unbind(object, "code", "title", "abstractTutorial", "goals");
 		tuple.put("course", choices.getSelected().getKey());
 		tuple.put("courses", choices);
 		super.getResponse().setData(tuple);
