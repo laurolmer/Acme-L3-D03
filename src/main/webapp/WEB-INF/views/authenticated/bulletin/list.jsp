@@ -1,6 +1,4 @@
 <%--
-- form.jsp
--
 - Copyright (C) 2012-2023 Rafael Corchuelo.
 -
 - In keeping with the traditional purpose of furthering education and research, it is
@@ -15,12 +13,7 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="http://www.the-acme-framework.org/"%>
 
-<acme:form>
-		<acme:input-textbook code"authenticated.bulletin.form.label.title" path="title"/>
-		<acme:input-textbook code"authenticated.bulletin.form.label.message" path="message"/>
-		<acme:input-textbook code"authenticated.bulletin.form.label.critical" path="critical"/>
-		<acme:input-url code"authenticated.bulletin.form.label.link" path="link"/>
-		
-		<acme:submit test="${_command == 'list'}" code="authenticated.principal.form.button.list" action="/authenticated/principal/list"/>
-		
-		</acme:form>
+<acme:list>
+    <acme:list-column code="authenticated.bulletin.list.label.moment" path="moment" width="20%"/>
+    <acme:list-column code="authenticated.bulletin.list.label.title" path="title" width="70%"/>
+</acme:list>

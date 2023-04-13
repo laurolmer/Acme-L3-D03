@@ -14,10 +14,13 @@ import acme.framework.controllers.AbstractController;
 public class AuthenticatedBulletinController extends AbstractController<Authenticated, Bulletin> {
 
 	@Autowired
-	protected AuthenticatedBulletinListService	listService;
+	protected AuthenticatedBulletinListService		listService;
 
 	@Autowired
-	protected AuthenticatedBulletinShowService	showService;
+	protected AuthenticatedBulletinShowService		showService;
+
+	@Autowired
+	protected AuthenticatedBulletinCreateService	createService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -26,5 +29,6 @@ public class AuthenticatedBulletinController extends AbstractController<Authenti
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
+		super.addBasicCommand("create", this.createService);
 	}
 }

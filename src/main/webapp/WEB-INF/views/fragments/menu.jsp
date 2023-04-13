@@ -36,7 +36,7 @@
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.bulletin" access="isAuthenticated()">
-			<acme:menu-suboption code="master.menu.bulletin.list" action="authenticated/principal/list"/>
+			<acme:menu-suboption code="master.menu.bulletin.list" action="/authenticated/bulletin/list"/>
 			</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.provider" access="hasRole('Provider')">
