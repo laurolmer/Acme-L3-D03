@@ -54,8 +54,14 @@ master.menu.provider.favourite-link = Enlace favorito
 master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
 
+# master.menu.studentCourse ##########################################################
+
+master.menu.student = Estudiante
+master.menu.student.studentCourseList = Listado de Cursos
+
 # master.menu.practicum ####################################################
 authenticated.practicum.form.button.list= Practicas
+
 
 # master.menu.user-account ####################################################
 
