@@ -1,4 +1,6 @@
 <%--
+- list.jsp
+-
 - Copyright (C) 2012-2023 Rafael Corchuelo.
 -
 - In keeping with the traditional purpose of furthering education and research, it is
@@ -14,10 +16,13 @@
 <%@taglib prefix="acme" uri="http://www.the-acme-framework.org/"%>
 
 <acme:list>
-    <acme:list-column code="authenticated.practicum.list.label.code" path="code" width="10%"/>
-	<acme:list-column code="authenticated.practicum.list.label.title" path="title" width="10%"/>
-	<acme:list-column code="authenticated.practicum.list.label.abstractPracticum" path="abstractPracticum" width="30%"/>		
-	<acme:list-column code="authenticated.practicum.list.label.goals" path="goals" width="10%"/>
-	<acme:list-column code="authenticated.practicum.list.label.course" path="course" width="10%"/>
-
+	<acme:list-column code="company.practicum.list.label.code" path="code" width="10%"/>
+	<acme:list-column code="company.practicum.list.label.title" path="title" width="10%"/>
+	<acme:list-column code="company.practicum.list.label.abstractPracticum" path="abstractPracticum" width="30%"/>
+	<acme:list-column code="company.practicum.list.label.goals" path="goals" width="20%"/>
 </acme:list>
+
+<jstl:if test="${_command == 'list-mine'}">
+	<acme:button code="company.practicum.list.button.create" action="/company/practicum/create"/>
+</jstl:if>		
+	

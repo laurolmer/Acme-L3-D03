@@ -54,8 +54,11 @@ master.menu.provider.favourite-link = Enlace favorito
 master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
 
-# master.menu.practicum ####################################################
-authenticated.practicum.form.button.list= Practicas
+# master.menu.company ###################################################
+
+master.menu.company= Prácticas
+master.menu.company.practicum.list-mine = Mis prácticas
+master.menu.company.practicum.list-all = Todas las prácticas
 
 # master.menu.user-account ####################################################
 
@@ -65,13 +68,8 @@ master.menu.user-account.provider = Datos de proveedor
 master.menu.user-account.become-provider = Hazte proveedor
 master.menu.user-account.consumer = Datos de consumidor
 master.menu.user-account.become-consumer = Hazte consumidor
-
 master.menu.user-account.become-company = Hazte una compañía
 master.menu.user-account.company= Datos de la compañía
-
-master.menu.practicum= Practicas
-
-
 master.menu.user-account.assistant = Datos de asistente
 master.menu.user-account.become-assistant = Hazte asistente
 master.menu.user-account.student = Datos de estudiante
