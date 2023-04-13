@@ -13,7 +13,7 @@ import acme.framework.services.AbstractService;
 public class AuthenticatedBulletinShowService extends AbstractService<Authenticated, Bulletin> {
 
 	@Autowired
-	protected AuthenticatedBulletinlRepository repository;
+	protected AuthenticatedBulletinRepository repository;
 
 
 	@Override

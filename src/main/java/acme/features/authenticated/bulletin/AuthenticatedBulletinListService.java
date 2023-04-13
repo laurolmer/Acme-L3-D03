@@ -15,7 +15,7 @@ import acme.framework.services.AbstractService;
 public class AuthenticatedBulletinListService extends AbstractService<Authenticated, Bulletin> {
 
 	@Autowired
-	protected AuthenticatedBulletinlRepository repository;
+	protected AuthenticatedBulletinRepository repository;
 
 	// AbstractService interface ----------------------------------------------
 
