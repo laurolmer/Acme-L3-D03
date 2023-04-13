@@ -5,7 +5,7 @@
 
 <acme:list>
 	<acme:list-column code="lecturer.course.list.label.title" path="title"  width="40%"/>
-	<acme:list-column code="lecturer.course.list.label.abstractCourse" path="abstractCourse" width="40%" />
-	<acme:list-column code="lecturer.course.list.label.retailPrice" path="retailPrice" width="20%" />
+	<acme:list-column code="lecturer.course.list.label.abstract" path="courseAbstract" width="40%" />
+	<acme:list-column code="lecturer.course.list.label.price" path="retailPrice" width="20%" />
 </acme:list>
 <acme:button code="lecturer.course.create" action="/lecturer/course/create"/>

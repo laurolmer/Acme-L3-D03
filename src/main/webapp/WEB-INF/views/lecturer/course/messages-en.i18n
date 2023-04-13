@@ -1,5 +1,16 @@
-lecturer.course.list.label.title = Title
-lecturer.course.list.label.abstractCourse = Abstract
-lecturer.course.list.label.retailPrice = Price
+lecturer.course.form.label.code = Code
+lecturer.course.form.label.title = Title
+lecturer.course.form.label.abstract = Abstract
+lecturer.course.form.label.type = Type
+lecturer.course.form.label.price = Price
+lecturer.course.form.label.link = Link
+lecturer.course.form.label.draft = Draft
+
+lecturer.course.lectures = Lectures
 
 lecturer.course.create = Create
+
+lecturer.course.form.button.create = Create
+lecturer.course.form.button.update = Update
+lecturer.course.form.button.delete = Delete
+lecturer.course.form.button.publish = Publish
