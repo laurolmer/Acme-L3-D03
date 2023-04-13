@@ -43,6 +43,11 @@ master.menu.provider.favourite-link = Favourite Link
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 
+# master.menu.lecturer ##########################################################
+
+master.menu.lecturer = Lecturer
+master.menu.lecturer.course.list = List courses
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account
