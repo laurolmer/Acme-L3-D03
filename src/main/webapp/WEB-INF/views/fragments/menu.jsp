@@ -18,6 +18,7 @@
 
 <acme:menu-bar code="master.menu.home">
 	<acme:menu-left>
+		<acme:menu-option code="master.menu.courses" action="/any/course/list"/>
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link.laurolmer" action="https://www.pinterest.es/"/>
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link.alvhidrod" action="https://www.games-workshop.com/es-ES/Warhammer-40-000"/>
