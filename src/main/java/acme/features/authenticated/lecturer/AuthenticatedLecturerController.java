@@ -1,6 +1,8 @@
 
 package acme.features.authenticated.lecturer;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -22,7 +24,7 @@ public class AuthenticatedLecturerController extends AbstractController<Authenti
 	// Contructors -----------------------------------------------
 
 
-	@PostContruct
+	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("create", this.createService);
 		super.addBasicCommand("update", this.updateService);
