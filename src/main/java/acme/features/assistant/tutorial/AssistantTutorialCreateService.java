@@ -17,13 +17,11 @@ import acme.roles.Assistant;
 public class AssistantTutorialCreateService extends AbstractService<Assistant, Tutorial> {
 
 	// Internal state ---------------------------------------------------------
-
 	@Autowired
 	protected AssistantTutorialRepository repository;
 
+
 	// AbstractService interface ----------------------------------------------
-
-
 	@Override
 	public void check() {
 		super.getResponse().setChecked(true);
