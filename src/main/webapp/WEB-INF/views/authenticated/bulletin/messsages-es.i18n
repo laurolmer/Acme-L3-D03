@@ -13,6 +13,7 @@ authenticated.bulletin.list.label.moment = Momento
 authenticated.bulletin.list.label.title = Título
 
 # Messages for label in form
+authenticated.bulletin.form.label.moment = Momento
 authenticated.bulletin.form.label.title = Título
 authenticated.bulletin.form.label.message = Mensaje
 authenticated.bulletin.form.label.critical = Crítico

@@ -36,6 +36,7 @@ master.menu.administrator.shut-down = Parar el sistema
 # master.menu.bulletin ###################################################
 master.menu.bulletin = Boletines
 master.menu.bulletin.list = Listar todos los boletines
+master.menu.administrator.bulletin.form = Crear un Bulletin
 
 # master.menu.assistant ###################################################
 
