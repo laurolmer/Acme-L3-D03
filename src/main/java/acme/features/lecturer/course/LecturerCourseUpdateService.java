@@ -11,35 +11,39 @@ import acme.framework.services.AbstractService;
 import acme.roles.Lecturer;
 
 @Service
-public class LecturerCourseShowService extends AbstractService<Lecturer, Course> {
+public class LecturerCourseUpdateService extends AbstractService<Lecturer, Course> {
+
+	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	protected LecturerCourseRepository repository;
 
-	// AbstractService interface -----------------------------------------
+	// AbstractService --------------------------------------------------------
 
 
 	@Override
 	public void check() {
 		boolean status;
+
 		status = super.getRequest().hasData("id", int.class);
+
 		super.getResponse().setChecked(status);
 	}
 
 	@Override
 	public void authorise() {
-		final boolean status;
+		boolean status;
+		Course object;
 		int id;
-		final Course object;
 		final Principal principal;
 		final int userAccountId;
 
-		principal = super.getRequest().getPrincipal();
-		userAccountId = principal.getAccountId();
 		id = super.getRequest().getData("id", int.class);
 		object = this.repository.findOneCourseById(id);
+		principal = super.getRequest().getPrincipal();
+		userAccountId = principal.getAccountId();
 
-		status = object.getLecturer().getUserAccount().getId() == userAccountId && principal.hasRole(Lecturer.class);
+		status = object.getLecturer().getUserAccount().getId() == userAccountId && object.isDraftMode();
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -56,13 +60,32 @@ public class LecturerCourseShowService extends AbstractService<Lecturer, Course>
 	}
 
 	@Override
-	public void unbind(final Course object) {
+	public void bind(final Course object) {
 		assert object != null;
-		Tuple tuple;
-
-		tuple = super.unbind(object, "id", "code", "title", "courseAbstract", "retailPrice", "link", "draftMode");
-		tuple.put("courseType", this.repository.calculateCourseTypeById(object.getId()));
-		super.getResponse().setData(tuple);
+		super.bind(object, "code", "title", "courseAbstract", "courseType", "retailPrice", "link");
 	}
 
+	@Override
+	public void validate(final Course object) {
+		assert object != null;
+		//		TODO - SPAM DETECTOR
+	}
+
+	@Override
+	public void perform(final Course object) {
+		assert object != null;
+
+		this.repository.save(object);
+	}
+
+	@Override
+	public void unbind(final Course object) {
+		assert object != null;
+
+		Tuple tuple;
+
+		tuple = super.unbind(object, "code", "title", "courseAbstract", "courseType", "retailPrice", "link");
+
+		super.getResponse().setData(tuple);
+	}
 }

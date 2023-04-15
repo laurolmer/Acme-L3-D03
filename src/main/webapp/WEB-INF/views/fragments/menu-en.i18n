@@ -46,6 +46,7 @@ master.menu.consumer.favourite-link = Favourite link
 # master.menu.lecturer ##########################################################
 
 master.menu.lecturer = Lecturer
+master.menu.lecturer.course.create = Create course
 master.menu.lecturer.course.list = List courses
 
 # master.menu.user-account ####################################################

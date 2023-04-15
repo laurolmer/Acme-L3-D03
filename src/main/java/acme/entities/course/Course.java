@@ -40,10 +40,10 @@ public class Course extends AbstractEntity {
 	@Length(max = 100)
 	protected String courseAbstract;
 	
-	@NotNull
+//	@NotNull
 	protected CourseType courseType;
 	
-	@NotNull
+//	@NotNull
 	protected Money retailPrice;
 	
 	@URL
