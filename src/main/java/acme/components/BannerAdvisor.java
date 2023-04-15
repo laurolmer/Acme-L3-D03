@@ -17,11 +17,8 @@ public class BannerAdvisor {
 	@ModelAttribute("banner")
 	public Banner getBanner() {
 		Banner result;
-		try {
-			result = this.repository.randomiseBanners();
-		} catch (final Throwable oops) {
-			result = null;
-		}
+		result = this.repository.randomiseBanner();
+		System.out.println(result.getImgLink());
 		return result;
 	}
 }

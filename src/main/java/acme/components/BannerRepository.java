@@ -9,33 +9,36 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.entities.banner.Banner;
+import acme.framework.helpers.MessageHelper;
 import acme.framework.repositories.AbstractRepository;
 
 @Repository
 public interface BannerRepository extends AbstractRepository {
 
-	@Query("select count(b) from Banner b")
+	@Query("select count(b) from Banner b where b.startDisplay < CURRENT_TIMESTAMP and b.endDisplay > CURRENT_TIMESTAMP")
 	int countBanners();
 
-	@Query("select b from Banner b")
-	List<Banner> findAllBanners(PageRequest pageRequest);
-
-	default Banner randomiseBanners() {
+	default Banner randomiseBanner() {
+		int bannerCount;
+		int bannerIndex;
+		Banner defaultBanner;
+		PageRequest pageRequest;
+		String defaultSlogan;
 		Banner result;
-		int bannerCount, bannerIndex;
-		ThreadLocalRandom random;
-		PageRequest page;
-		List<Banner> list;
+		defaultBanner = new Banner();
+		defaultSlogan = MessageHelper.getMessage("master.banner.alt");
+		defaultBanner.setSlogan(defaultSlogan);
+		defaultBanner.setImgLink("images/banner.png");
 		bannerCount = this.countBanners();
 		if (bannerCount == 0)
-			result = null;
-		else {
-			random = ThreadLocalRandom.current();
-			bannerIndex = random.nextInt(0, bannerCount);
-			page = PageRequest.of(bannerIndex, 1);
-			list = this.findAllBanners(page);
-			result = list.isEmpty() ? null : list.get(0);
-		}
+			return defaultBanner;
+		bannerIndex = ThreadLocalRandom.current().nextInt(bannerCount);
+		pageRequest = PageRequest.of(bannerIndex, 1);
+		result = this.findAllBanners(pageRequest).stream().findFirst().orElse(defaultBanner);
 		return result;
 	}
+
+	@Query("select b from Banner b where b.startDisplay < CURRENT_TIMESTAMP and b.endDisplay > CURRENT_TIMESTAMP")
+	List<Banner> findAllBanners(PageRequest pageRequest);
+
 }
