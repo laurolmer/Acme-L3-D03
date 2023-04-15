@@ -14,7 +14,6 @@
 	<acme:input-url code="lecturer.course.label.link" path="link"/>
 	<jstl:if test="${_command != 'create'}">
 		<acme:input-textbox code="lecturer.course.label.courseType" path="courseType" readonly="true"/>
-		<acme:input-textbox code="lecturer.course.label.draftMode" path="draftMode" readonly="true"/>
 		<acme:button code="lecturer.course.button.lectureList" action="/lecturer/lecture/list?courseId=${id}"/>
 	</jstl:if>
 

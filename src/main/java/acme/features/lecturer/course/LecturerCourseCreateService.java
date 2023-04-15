@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.course.Course;
-import acme.framework.components.accounts.Principal;
 import acme.framework.components.models.Tuple;
 import acme.framework.controllers.HttpMethod;
 import acme.framework.helpers.PrincipalHelper;
@@ -18,8 +17,6 @@ public class LecturerCourseCreateService extends AbstractService<Lecturer, Cours
 	@Autowired
 	protected LecturerCourseRepository repository;
 
-	// AbstractService interface -----------------------------------------
-
 
 	@Override
 	public void check() {
@@ -29,26 +26,22 @@ public class LecturerCourseCreateService extends AbstractService<Lecturer, Cours
 	@Override
 	public void authorise() {
 		boolean status;
-
 		status = super.getRequest().getPrincipal().hasRole(Lecturer.class);
-
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
 		Course object;
-		Principal principal;
-		int userAccountId;
 		Lecturer lecturer;
+		int userAccountId;
 
-		principal = super.getRequest().getPrincipal();
-		userAccountId = principal.getAccountId();
+		userAccountId = super.getRequest().getPrincipal().getAccountId();
 		lecturer = this.repository.findOneLecturerById(userAccountId);
 
 		object = new Course();
-		object.setLecturer(lecturer);
 		object.setDraftMode(true);
+		object.setLecturer(lecturer);
 		super.getBuffer().setData(object);
 	}
 
@@ -56,7 +49,14 @@ public class LecturerCourseCreateService extends AbstractService<Lecturer, Cours
 	public void bind(final Course object) {
 		assert object != null;
 
-		super.bind(object, "code", "title", "courseAbstract", "retailPrice", "link", "draftMode");
+		int activeRoleId;
+		Lecturer lecturer;
+
+		activeRoleId = super.getRequest().getPrincipal().getActiveRoleId();
+		lecturer = this.repository.findOneLecturerById(activeRoleId);
+
+		super.bind(object, "code", "title", "courseAbstract", "retailPrice", "link");
+		object.setLecturer(lecturer);
 	}
 
 	@Override
@@ -77,18 +77,14 @@ public class LecturerCourseCreateService extends AbstractService<Lecturer, Cours
 	@Override
 	public void perform(final Course object) {
 		assert object != null;
-
 		this.repository.save(object);
 	}
 
 	@Override
 	public void unbind(final Course object) {
 		assert object != null;
-
 		Tuple tuple;
-
-		tuple = super.unbind(object, "code", "title", "courseAbstract", "retailPrice", "link", "draftMode");
-
+		tuple = super.unbind(object, "code", "title", "courseAbstract", "retailPrice", "link");
 		super.getResponse().setData(tuple);
 	}
 
@@ -97,5 +93,4 @@ public class LecturerCourseCreateService extends AbstractService<Lecturer, Cours
 		if (super.getRequest().getMethod().equals(HttpMethod.POST))
 			PrincipalHelper.handleUpdate();
 	}
-
 }
