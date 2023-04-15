@@ -1,8 +1,8 @@
 lecturer.course.label.code = Código
 lecturer.course.label.title = Título
-lecturer.course.label.courseAbstract = Resumen
+lecturer.course.label.abstract = Resumen
 lecturer.course.label.courseType = Tipo
-lecturer.course.label.retailPrice = Precio
+lecturer.course.label.price = Precio
 lecturer.course.label.link = Enlace
 lecturer.course.label.draftMode = Borrador
 

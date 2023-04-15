@@ -13,7 +13,7 @@ import acme.framework.services.AbstractService;
 import acme.roles.Lecturer;
 
 @Service
-public class LecturerCourseListService extends AbstractService<Lecturer, Course> {
+public class LecturerCourseListMineService extends AbstractService<Lecturer, Course> {
 
 	@Autowired
 	protected LecturerCourseRepository repository;

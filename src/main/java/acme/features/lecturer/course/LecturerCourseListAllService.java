@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.course.Course;
-import acme.framework.components.accounts.Principal;
 import acme.framework.components.models.Tuple;
 import acme.framework.services.AbstractService;
 import acme.roles.Lecturer;
@@ -34,12 +33,8 @@ public class LecturerCourseListAllService extends AbstractService<Lecturer, Cour
 	@Override
 	public void load() {
 		final Collection<Course> objects;
-		final Principal principal;
-		final int userAccountId;
 
-		principal = super.getRequest().getPrincipal();
-		userAccountId = principal.getAccountId();
-		objects = this.repository.findCoursesByLecturerId(userAccountId);
+		objects = this.repository.findAllCourses();
 		super.getBuffer().setData(objects);
 	}
 
