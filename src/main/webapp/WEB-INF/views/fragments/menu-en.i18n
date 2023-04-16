@@ -32,6 +32,12 @@ master.menu.administrator.user-accounts = User accounts
 master.menu.administrator.populate-initial = Populate DB (initial)
 master.menu.administrator.populate-sample = Populate DB (samples)
 master.menu.administrator.shut-down = Shut down
+master.menu.administrator.configuration = Show system configuration
+
+# master.menu.authenticated #######################################################
+
+master.menu.authenticated = Authenticated
+master.menu.authenticated.note.list = List all notes
 
 # master.menu.assistant ###################################################
 
@@ -54,8 +60,16 @@ master.menu.provider.favourite-link = Favourite Link
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 
+
+# master.menu.studentCourse ##########################################################
+
+master.menu.student = Student
+master.menu.student.studentCourseList = Course List
+
 # master.menu.practicum ####################################################
+
 authenticated.practicum.form.button.list= Practicum
+
 
 # master.menu.user-account ####################################################
 

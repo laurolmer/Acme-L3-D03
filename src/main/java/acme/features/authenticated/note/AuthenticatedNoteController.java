@@ -1,5 +1,5 @@
 /*
- * AuthenticatedProviderController.java
+ * AnyDutyController.java
  *
  * Copyright (C) 2012-2023 Rafael Corchuelo.
  *
@@ -10,35 +10,39 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.provider;
+package acme.features.authenticated.note;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import acme.entities.note.Note;
 import acme.framework.components.accounts.Authenticated;
 import acme.framework.controllers.AbstractController;
-import acme.roles.Provider;
 
 @Controller
-public class AuthenticatedProviderController extends AbstractController<Authenticated, Provider> {
+public class AuthenticatedNoteController extends AbstractController<Authenticated, Note> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected AuthenticatedProviderCreateService	createService;
+	protected AuthenticatedNoteShowService		showService;
 
 	@Autowired
-	protected AuthenticatedProviderUpdateService	updateService;
+	protected AuthenticatedNoteListService		listService;
+
+	@Autowired
+	protected AuthenticatedNoteCreateService	createService;
 
 	// Constructors -----------------------------------------------------------
 
 
 	@PostConstruct
 	protected void initialise() {
+		super.addBasicCommand("show", this.showService);
+		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("create", this.createService);
-		super.addBasicCommand("update", this.updateService);
 	}
 
 }

@@ -26,12 +26,18 @@ master.menu.anonymous.favourite-link.danguepre = 20538880H: Guedes Preciados, Da
 
 # master.menu.administrator ###################################################
 
-master.menu.administrator = Ofertas Administrador
+master.menu.administrator = Administrador
 master.menu.administrator.dashboard = Panel de indicadores
 master.menu.administrator.user-accounts = Cuentas de usuario
 master.menu.administrator.populate-initial = Poblar BD (inicial)
 master.menu.administrator.populate-sample = Poblar BD (ejemplos)
 master.menu.administrator.shut-down = Parar el sistema
+master.menu.administrator.configuration = Mostrar configuración del sistema
+
+# master.menu.authenticated #######################################################
+
+master.menu.authenticated = Autenticado
+master.menu.authenticated.note.list = Listar todas las notas
 
 # master.menu.assistant ###################################################
 
@@ -41,7 +47,7 @@ master.menu.assistant.tutorial.list-all = Listar todos los tutoriales
 
 # master.menu.administrator.offer ###################################################
 
-master.menu.administrator.offer = Administrador
+master.menu.administrator.offer = Ofertas Administrador
 master.menu.administrator.offer.list = Lista de ofertas
 
 # master.menu.provider ########################################################
@@ -54,8 +60,14 @@ master.menu.provider.favourite-link = Enlace favorito
 master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
 
+# master.menu.studentCourse ##########################################################
+
+master.menu.student = Estudiante
+master.menu.student.studentCourseList = Listado de Cursos
+
 # master.menu.practicum ####################################################
 authenticated.practicum.form.button.list= Practicas
+
 
 # master.menu.user-account ####################################################
 
