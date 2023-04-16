@@ -18,6 +18,7 @@ assistant.tutorial.form.button.create = Crear
 assistant.tutorial.form.button.update = Actualizar
 assistant.tutorial.form.button.delete = Borrar
 assistant.tutorial.form.button.publish = Publicar
+assistant.tutorial.form.button.list-all = Listar todos
 
 assistant.tutorial.list.label.code = Código
 assistant.tutorial.list.label.title = Título
