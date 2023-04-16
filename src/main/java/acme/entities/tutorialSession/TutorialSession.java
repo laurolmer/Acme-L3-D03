@@ -50,6 +50,8 @@ public class TutorialSession extends AbstractEntity {
 	@URL
 	protected String			link;
 
+	protected boolean			draftMode;
+
 	// Relationships ----------------------------------------------------------
 	@NotNull
 	@Valid
