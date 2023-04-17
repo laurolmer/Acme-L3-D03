@@ -18,7 +18,6 @@ public class BannerAdvisor {
 	public Banner getBanner() {
 		Banner result;
 		result = this.repository.randomiseBanner();
-		System.out.println(result.getImgLink());
 		return result;
 	}
 }

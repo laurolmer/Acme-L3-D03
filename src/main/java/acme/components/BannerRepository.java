@@ -29,6 +29,7 @@ public interface BannerRepository extends AbstractRepository {
 		defaultSlogan = MessageHelper.getMessage("master.banner.alt");
 		defaultBanner.setSlogan(defaultSlogan);
 		defaultBanner.setImgLink("images/banner.png");
+		defaultBanner.setDocLink("https://www.us.es/");
 		bannerCount = this.countBanners();
 		if (bannerCount == 0)
 			return defaultBanner;
