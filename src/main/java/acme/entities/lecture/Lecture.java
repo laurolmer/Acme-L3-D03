@@ -1,3 +1,4 @@
+
 package acme.entities.lecture;
 
 import java.util.Date;
@@ -19,35 +20,35 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Lecture extends AbstractEntity {
-	
-//	Serialisation identifier ---------------------------
+
+	//	Serialisation identifier ---------------------------
 	protected static final long	serialVersionUID	= 1L;
 
-//	Attributes -----------------------------------------
+	//	Attributes -----------------------------------------
 	@NotBlank
 	@Length(max = 75)
-	protected String title;
-	
+	protected String			title;
+
 	@NotBlank
 	@Length(max = 100)
-	protected String lectureAbstract;
-	
+	protected String			lectureAbstract;
+
 	//estimated learning time
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	protected Date startPeriod;
-	
+	protected Date				startPeriod;
+
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	protected Date endPeriod;
-	
+	protected Date				endPeriod;
+
 	@NotBlank
 	@Length(max = 100)
-	protected String body;
-	
+	protected String			body;
+
 	@NotNull
-	protected LectureType lectureType;
-	
+	protected LectureType		lectureType;
+
 	@URL
-	protected String link;
+	protected String			link;
 }
