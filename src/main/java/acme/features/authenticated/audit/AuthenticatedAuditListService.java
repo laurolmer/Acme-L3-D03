@@ -1,28 +1,29 @@
 
-package acme.features.authenticated.bulletin;
+package acme.features.authenticated.audit;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.bulletin.Bulletin;
+import acme.entities.audit.Audit;
 import acme.framework.components.accounts.Authenticated;
 import acme.framework.components.models.Tuple;
 import acme.framework.services.AbstractService;
 
 @Service
-public class AuthenticatedBulletinListService extends AbstractService<Authenticated, Bulletin> {
+public class AuthenticatedAuditListService extends AbstractService<Authenticated, Audit> {
 
 	@Autowired
-	protected AuthenticatedBulletinRepository repository;
+	protected AuthenticatedAuditRepository repository;
 
 	// AbstractService interface ----------------------------------------------
 
 
 	@Override
 	public void check() {
-		super.getResponse().setChecked(true);
+		final boolean status = super.getRequest().hasData("courseId", int.class);
+		super.getResponse().setChecked(status);
 	}
 
 	@Override
@@ -33,21 +34,23 @@ public class AuthenticatedBulletinListService extends AbstractService<Authentica
 
 	@Override
 	public void load() {
-		Collection<Bulletin> objects;
-		objects = this.repository.findAllBulletins();
+		Collection<Audit> objects;
+		final int id = super.getRequest().getData("courseId", int.class);
+
+		objects = this.repository.findAllAuditsByCourseId(id);
 
 		super.getBuffer().setData(objects);
 	}
 
 	@Override
-	public void unbind(final Bulletin object) {
+	public void unbind(final Audit object) {
 		assert object != null;
 
 		Tuple tuple;
 
-		tuple = super.unbind(object, "moment", "title");
+		tuple = super.unbind(object, "code", "conclusion");
+		tuple.put("auditor", object.getAuditor().getIdentity().getFullName());
 
 		super.getResponse().setData(tuple);
 	}
-
 }

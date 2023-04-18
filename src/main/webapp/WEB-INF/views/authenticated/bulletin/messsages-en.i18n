@@ -8,6 +8,7 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
+
 # Messages for label in list
 authenticated.bulletin.list.label.moment = Moment
 authenticated.bulletin.list.label.title = Title

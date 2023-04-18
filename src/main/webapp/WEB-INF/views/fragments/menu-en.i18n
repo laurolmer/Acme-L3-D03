@@ -49,6 +49,11 @@ master.menu.assistant.tutorial.list-all = List all tutorials
 master.menu.administrator.offer = Offers Administrator
 master.menu.administrator.offer.list = Offers list
 
+# master.menu.auditor ########################################################
+
+master.menu.auditor = Auditor
+master.menu.auditor.audit.list = My audits
+
 # master.menu.provider ########################################################
 
 master.menu.provider = Provider
