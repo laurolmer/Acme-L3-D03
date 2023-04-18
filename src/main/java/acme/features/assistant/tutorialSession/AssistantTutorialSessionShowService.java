@@ -59,7 +59,7 @@ public class AssistantTutorialSessionShowService extends AbstractService<Assista
 		Tuple tuple;
 		tuple = super.unbind(tutorialSession, "title", "abstractSession", "sessionType", "startPeriod", "finishPeriod", "link", "draftMode");
 		tuple.put("masterId", super.getRequest().getData("id", int.class));
-		tuple.put("draftMode", tutorialSession.getTutorial().isDraftMode());
+		tuple.put("draftMode", !tutorialSession.getTutorial().isDraftMode() && tutorialSession.isDraftMode());
 		super.getResponse().setData(tuple);
 	}
 }

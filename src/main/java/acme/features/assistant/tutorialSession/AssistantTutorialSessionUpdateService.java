@@ -45,7 +45,7 @@ public class AssistantTutorialSessionUpdateService extends AbstractService<Assis
 		session = this.repository.findTutorialSessionById(sessionId);
 		assistant = session == null ? null : session.getTutorial().getAssistant();
 		tutorial = this.repository.findTutorialByTutorialSessionId(sessionId);
-		status = tutorial != null && session != null && (!tutorial.isDraftMode() || principal.hasRole(assistant));
+		status = tutorial != null && session != null && (tutorial.isDraftMode() || principal.hasRole(assistant));
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -61,7 +61,7 @@ public class AssistantTutorialSessionUpdateService extends AbstractService<Assis
 	@Override
 	public void bind(final TutorialSession tutorialSession) {
 		assert tutorialSession != null;
-		super.bind(tutorialSession, "title", "abstractSession", "sessionType", "startPeriod", "finishPeriod", "link", "draftMode");
+		super.bind(tutorialSession, "title", "abstractSession", "sessionType", "startPeriod", "finishPeriod", "link");
 	}
 
 	@Override
@@ -96,12 +96,10 @@ public class AssistantTutorialSessionUpdateService extends AbstractService<Assis
 	@Override
 	public void unbind(final TutorialSession tutorialSession) {
 		assert tutorialSession != null;
-		Tutorial tutorial;
 		Tuple tuple;
-		tutorial = tutorialSession.getTutorial();
-		tuple = super.unbind(tutorialSession, "title", "abstractSession", "sessionType", "startPeriod", "finishPeriod", "link", "draftMode");
+		tuple = super.unbind(tutorialSession, "title", "abstractSession", "sessionType", "startPeriod", "finishPeriod", "link");
 		tuple.put("masterId", super.getRequest().getData("id", int.class));
-		tuple.put("draftMode", tutorial.isDraftMode());
+		tuple.put("draftMode", !tutorialSession.getTutorial().isDraftMode() && tutorialSession.isDraftMode());
 		super.getResponse().setData(tuple);
 	}
 }

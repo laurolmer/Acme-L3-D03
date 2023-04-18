@@ -43,8 +43,8 @@ public class Practicum extends AbstractEntity {
 	@Length(max = 100)
 	protected String			goals;
 
-	//@NotNull
-	//protected Boolean			draftMode;
+	@NotNull
+	protected Boolean			draftMode;
 
 	// Derived attributes -----------------------------------------------------
 

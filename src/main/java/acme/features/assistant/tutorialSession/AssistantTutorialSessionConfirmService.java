@@ -17,7 +17,7 @@ import acme.framework.services.AbstractService;
 import acme.roles.Assistant;
 
 @Service
-public class AssistantTutorialSessionPublishService extends AbstractService<Assistant, TutorialSession> {
+public class AssistantTutorialSessionConfirmService extends AbstractService<Assistant, TutorialSession> {
 
 	// Internal state ---------------------------------------------------------
 	@Autowired
@@ -35,15 +35,17 @@ public class AssistantTutorialSessionPublishService extends AbstractService<Assi
 	@Override
 	public void authorise() {
 		boolean status;
-		Principal principal;
+		int sessionId;
+		final TutorialSession session;
+		final Principal principal;
+		final Assistant assistant;
 		Tutorial tutorial;
-		int tutorialSessionId;
-		TutorialSession tutorialSession;
-		tutorialSessionId = super.getRequest().getData("masterId", int.class);
-		tutorialSession = this.repository.findTutorialSessionById(tutorialSessionId);
 		principal = super.getRequest().getPrincipal();
-		tutorial = this.repository.findTutorialByTutorialSessionId(tutorialSessionId);
-		status = tutorialSession != null && tutorial != null && (!tutorial.isDraftMode() || principal.hasRole(Assistant.class));
+		sessionId = super.getRequest().getData("id", int.class);
+		session = this.repository.findTutorialSessionById(sessionId);
+		assistant = session == null ? null : session.getTutorial().getAssistant();
+		tutorial = this.repository.findTutorialByTutorialSessionId(sessionId);
+		status = tutorial != null && session != null && (tutorial.isDraftMode() || principal.hasRole(assistant));
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -59,7 +61,7 @@ public class AssistantTutorialSessionPublishService extends AbstractService<Assi
 	@Override
 	public void bind(final TutorialSession tutorialSession) {
 		assert tutorialSession != null;
-		super.bind(tutorialSession, "title", "abstractSession", "sessionType", "startPeriod", "finishPeriod", "link", "draftMode");
+		super.bind(tutorialSession, "title", "abstractSession", "sessionType", "startPeriod", "finishPeriod", "link");
 	}
 
 	@Override
@@ -95,12 +97,10 @@ public class AssistantTutorialSessionPublishService extends AbstractService<Assi
 	@Override
 	public void unbind(final TutorialSession tutorialSession) {
 		assert tutorialSession != null;
-		Tutorial tutorial;
 		Tuple tuple;
-		tutorial = tutorialSession.getTutorial();
-		tuple = super.unbind(tutorialSession, "title", "abstractSession", "sessionType", "startPeriod", "finishPeriod", "link", "draftMode");
+		tuple = super.unbind(tutorialSession, "title", "abstractSession", "sessionType", "startPeriod", "finishPeriod", "link");
 		tuple.put("masterId", super.getRequest().getData("id", int.class));
-		tuple.put("draftMode", tutorial.isDraftMode());
+		tuple.put("draftMode", !tutorialSession.getTutorial().isDraftMode() && tutorialSession.isDraftMode());
 		super.getResponse().setData(tuple);
 	}
 }

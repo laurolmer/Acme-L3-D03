@@ -23,21 +23,14 @@
 	<acme:input-moment code="assistant.tutorial-session.form.label.finishPeriod" path="finishPeriod"/>
 	<acme:input-url code="assistant.tutorial-session.form.label.link" path="link"/>
 	<jstl:choose>	
-	<jstl:when test="${acme:anyOf(_command, 'show|update|delete|confirm') && draftMode == false}">
+	<jstl:when test="${acme:anyOf(_command, 'show|update|delete|confirm') && draftMode == true}">
             <acme:submit code="assistant.tutorial-session.form.button.update" action="/assistant/tutorial-session/update"/>
             <acme:submit code="assistant.tutorial-session.form.button.delete" action="/assistant/tutorial-session/delete"/>
             <acme:submit code="assistant.tutorial-session.form.button.publish" action="/assistant/tutorial-session/publish"/>
         </jstl:when> 
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">
-			<acme:submit code="assistant.tutorial-session.form.button.update" action="/assistant/tutorial-session/update"/>
-			<acme:submit code="assistant.tutorial-session.form.button.delete" action="/assistant/tutorial-session/delete"/>
-		</jstl:when>
-		<jstl:when test="${_command == 'create'}">
+		<jstl:when test="${_command == 'create'}"> 
 			<acme:submit code="assistant.tutorial-session.form.button.create" action="/assistant/tutorial-session/create?masterId=${masterId}"/>
 		</jstl:when>		
-	</jstl:choose>
-	
-        
-
+	</jstl:choose>   
 	
 </acme:form>
