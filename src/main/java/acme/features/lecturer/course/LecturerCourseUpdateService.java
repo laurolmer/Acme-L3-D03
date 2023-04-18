@@ -68,7 +68,16 @@ public class LecturerCourseUpdateService extends AbstractService<Lecturer, Cours
 	@Override
 	public void validate(final Course object) {
 		assert object != null;
-		//		TODO - SPAM DETECTOR
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			Course instance;
+			final String code = object.getCode();
+			instance = this.repository.findOneCourseByCode(code);
+			super.state(instance == null, "code", "lecturer.course.error.code.duplicated");
+		}
+		if (!super.getBuffer().getErrors().hasErrors("retailPrice")) {
+			final double retailPrice = object.getRetailPrice().getAmount();
+			super.state(retailPrice >= 0, "retailPrice", "lecturer.course.error.retailPrice.negative");
+		}
 	}
 
 	@Override
