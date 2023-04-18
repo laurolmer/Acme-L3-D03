@@ -27,10 +27,10 @@ public class AuthenticatedProviderController extends AbstractController<Authenti
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected AuthenticatedProviderCreateService createService;
+	protected AuthenticatedProviderCreateService	createService;
 
 	@Autowired
-	protected AuthenticatedProviderUpdateService updateService;
+	protected AuthenticatedProviderUpdateService	updateService;
 
 	// Constructors -----------------------------------------------------------
 

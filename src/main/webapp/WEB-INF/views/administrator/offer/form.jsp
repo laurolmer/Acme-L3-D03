@@ -16,21 +16,21 @@
 <%@taglib prefix="acme" uri="http://www.the-acme-framework.org/"%>
 
 <acme:form >
-	<acme:input-moment readonly="${true}" code="authenticated.offer.form.label.instantationMoment" path="instantationMoment"/>
-	<acme:input-textbox code="authenticated.offer.form.label.headding" path="heading"/>
-	<acme:input-textarea code="authenticated.offer.form.label.summary" path="summary"/>
-	<acme:input-money code="authenticated.offer.form.label.price" path="price"/>
-	<acme:input-moment code="authenticated.offer.form.label.availabilityPeriodStart" path="availabilityPeriodStart"/>
-	<acme:input-moment code="authenticated.offer.form.label.availabilityPeriodEnd" path="availabilityPeriodEnd"/>
-	<acme:input-url code="authenticated.offer.form.label.link" path="link"/>
+	<acme:input-moment readonly="${true}" code="administrator.offer.form.label.instantationMoment" path="instantationMoment"/>
+	<acme:input-textbox code="administrator.offer.form.label.headding" path="heading"/>
+	<acme:input-textarea code="administrator.offer.form.label.summary" path="summary"/>
+	<acme:input-money code="administrator.offer.form.label.price" path="price"/>
+	<acme:input-moment code="administrator.offer.form.label.availabilityPeriodStart" path="availabilityPeriodStart"/>
+	<acme:input-moment code="administrator.offer.form.label.availabilityPeriodEnd" path="availabilityPeriodEnd"/>
+	<acme:input-url code="administrator.offer.form.label.link" path="link"/>
 	
 	<jstl:choose>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete')}">
-			<acme:submit code="administrator.banner.form.button.update" action="/administrator/offer/update"/>
-			<acme:submit code="administrator.banner.form.button.delete" action="/administrator/offer/delete"/>
+			<acme:submit code="administrator.offer.form.button.update" action="/administrator/offer/update"/>
+			<acme:submit code="administrator.offer.form.button.delete" action="/administrator/offer/delete"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
-			<acme:submit code="administrator.banner.form.button.create" action="/administrator/offer/create"/>
+			<acme:submit code="administrator.offer.form.button.create" action="/administrator/offer/create"/>
 			</jstl:when>		
 	</jstl:choose>
 </acme:form>
