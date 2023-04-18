@@ -49,6 +49,7 @@ master.menu.lecturer = Profesor
 master.menu.lecturer.course.create = Crear curso
 master.menu.lecturer.course.list.all = Listar cursos
 master.menu.lecturer.course.list.mine = Listar mis cursos
+master.menu.lecturer.lecture.list.all = Listar mis lecciones
 
 # master.menu.user-account ####################################################
 

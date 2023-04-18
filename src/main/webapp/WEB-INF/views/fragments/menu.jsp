@@ -47,6 +47,8 @@
 			<acme:menu-suboption code="master.menu.lecturer.course.create" action="/lecturer/course/create"/>
 			<acme:menu-suboption code="master.menu.lecturer.course.list.all" action="/lecturer/course/list-all"/>
 			<acme:menu-suboption code="master.menu.lecturer.course.list.mine" action="/lecturer/course/list-mine"/>
+			<acme:menu-suboption code="master.menu.lecturer.lecture.list.all" action="/lecturer/lecture/list-all"/>
+			<acme:menu-suboption code="master.menu.lecturer.lecture.create" action="/lecturer/lecture/create"/>
 		</acme:menu-option>
 	</acme:menu-left>
 

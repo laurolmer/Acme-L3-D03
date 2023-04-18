@@ -1,0 +1,9 @@
+lecturer.lecture.label.title = Título
+lecturer.lecture.label.abstract = Resumen
+lecturer.lecture.label.lectureType = Tipo
+lecturer.lecture.label.link = Enlace
+lecturer.lecture.label.learningTime = Tiempo de aprendizaje
+
+lecturer.lecture.button.create = Añadir lección al curso
+lecturer.lecture.button.update = Actualizar
+lecturer.lecture.button.delete = Borrar

@@ -1,0 +1,9 @@
+lecturer.lecture.label.title = Title
+lecturer.lecture.label.abstract = Abstract
+lecturer.lecture.label.lectureType = Type
+lecturer.lecture.label.link = Link
+lecturer.lecture.label.learningTime = Learning Time
+
+lecturer.lecture.button.create = Add lecture into course
+lecturer.lecture.button.update = Update
+lecturer.lecture.button.delete = Delete
