@@ -40,9 +40,7 @@ public class CompanyPracticumPublishService extends AbstractService<Company, Pra
 		Practicum = this.repository.findPracticumById(PracticumId);
 		Company = Practicum == null ? null : Practicum.getCompany();
 
-		System.out.println(Practicum.getDraftMode());
-
-		status = Practicum != null && Practicum.getDraftMode() && super.getRequest().getPrincipal().hasRole(Company);
+		status = Practicum != null && Practicum.getDraftMode() == false || super.getRequest().getPrincipal().hasRole(Company);
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -101,6 +99,7 @@ public class CompanyPracticumPublishService extends AbstractService<Company, Pra
 		courses = this.repository.findNotInDraftCourses();
 		choices = SelectChoices.from(courses, "title", object.getCourse());
 		tuple = super.unbind(object, "code", "title", "abstractPracticum", "goals");
+		tuple.put("draftMode", object.getDraftMode());
 		tuple.put("course", choices.getSelected().getKey());
 		tuple.put("courses", choices);
 		super.getResponse().setData(tuple);

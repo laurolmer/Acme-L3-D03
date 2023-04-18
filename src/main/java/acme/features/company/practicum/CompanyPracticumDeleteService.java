@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.course.Course;
 import acme.entities.practicum.Practicum;
+import acme.entities.practicumSession.PracticumSession;
 import acme.framework.components.jsp.SelectChoices;
 import acme.framework.components.models.Tuple;
 import acme.framework.services.AbstractService;
@@ -38,7 +39,7 @@ public class CompanyPracticumDeleteService extends AbstractService<Company, Prac
 		PracticumId = super.getRequest().getData("id", int.class);
 		Practicum = this.repository.findPracticumById(PracticumId);
 		Company = Practicum == null ? null : Practicum.getCompany();
-		status = Practicum != null && Practicum.getDraftMode() && super.getRequest().getPrincipal().hasRole(Company);
+		status = Practicum != null && Practicum.getDraftMode() || super.getRequest().getPrincipal().hasRole(Company);
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -75,6 +76,9 @@ public class CompanyPracticumDeleteService extends AbstractService<Company, Prac
 	@Override
 	public void perform(final Practicum object) {
 		assert object != null;
+		Collection<PracticumSession> sessions;
+		sessions = this.repository.findSessionsByPracticumId(object.getId());
+		this.repository.deleteAll(sessions);
 		this.repository.delete(object);
 	}
 
@@ -87,6 +91,7 @@ public class CompanyPracticumDeleteService extends AbstractService<Company, Prac
 		courses = this.repository.findNotInDraftCourses();
 		choices = SelectChoices.from(courses, "title", object.getCourse());
 		tuple = super.unbind(object, "code", "title", "abstractPracticum", "goals", "course");
+		tuple.put("draftMode", object.getDraftMode());
 		tuple.put("course", choices.getSelected().getKey());
 		tuple.put("courses", choices);
 		super.getResponse().setData(tuple);

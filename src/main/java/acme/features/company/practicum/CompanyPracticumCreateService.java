@@ -41,7 +41,9 @@ public class CompanyPracticumCreateService extends AbstractService<Company, Prac
 		Practicum object;
 		Company company;
 		company = this.repository.findCompanyById(super.getRequest().getPrincipal().getActiveRoleId());
+
 		object = new Practicum();
+		object.setCompany(company);
 		object.setCode("");
 		object.setTitle("");
 		object.setAbstractPracticum("");

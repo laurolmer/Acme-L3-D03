@@ -71,10 +71,6 @@ master.menu.company.practicum.list-all = Todas las prácticas
 master.menu.student = Estudiante
 master.menu.student.studentCourseList = Listado de Cursos
 
-# master.menu.practicum ####################################################
-authenticated.practicum.form.button.list= Practicas
-
-
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Cuenta

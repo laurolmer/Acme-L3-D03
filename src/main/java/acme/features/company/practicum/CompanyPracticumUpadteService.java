@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import acme.entities.course.Course;
 import acme.entities.practicum.Practicum;
 import acme.features.authenticated.company.AuthenticatedCompanyRepository;
-import acme.framework.components.accounts.Principal;
 import acme.framework.components.jsp.SelectChoices;
 import acme.framework.components.models.Tuple;
 import acme.framework.services.AbstractService;
@@ -38,26 +37,14 @@ public class CompanyPracticumUpadteService extends AbstractService<Company, Prac
 	public void authorise() {
 		boolean status;
 		int PracticumId;
-		int CompanyId;
 		Practicum Practicum;
 		Company Company;
-
-		Principal principal;
-		int userAccountId;
-
-		principal = super.getRequest().getPrincipal();
-		userAccountId = principal.getAccountId();
-		CompanyId = this.repositoryCompany.findOneCompanyByUserAccountId(userAccountId).getId();
 
 		PracticumId = super.getRequest().getData("id", int.class);
 		Practicum = this.repository.findPracticumById(PracticumId);
 		Company = Practicum == null ? null : Practicum.getCompany();
 
-		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-		System.out.println(CompanyId);
-		System.out.println(Practicum.getCompany().getId());
-
-		status = Practicum != null && Practicum.getDraftMode() && CompanyId == Practicum.getCompany().getId() && super.getRequest().getPrincipal().hasRole(Company);
+		status = Practicum != null && Practicum.getDraftMode() == false || super.getRequest().getPrincipal().hasRole(Company);
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -121,6 +108,7 @@ public class CompanyPracticumUpadteService extends AbstractService<Company, Prac
 		tuple = super.unbind(object, "code", "title", "abstractPracticum", "goals");
 		tuple.put("course", choices.getSelected().getKey());
 		tuple.put("courses", choices);
+		tuple.put("draftMode", object.getDraftMode());
 		super.getResponse().setData(tuple);
 	}
 }
