@@ -61,15 +61,16 @@ master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 
 
+# master.menu.company ###################################################
+
+master.menu.company= Practicums
+master.menu.company.practicum.list-mine = List my practicum
+master.menu.company.practicum.list-all = List all practicum
+
 # master.menu.studentCourse ##########################################################
 
 master.menu.student = Student
 master.menu.student.studentCourseList = Course List
-
-# master.menu.practicum ####################################################
-
-authenticated.practicum.form.button.list= Practicum
-
 
 # master.menu.user-account ####################################################
 
@@ -79,11 +80,8 @@ master.menu.user-account.provider = Provider data
 master.menu.user-account.become-provider = Become a provider
 master.menu.user-account.consumer = Consumer data
 master.menu.user-account.become-consumer = Become a consumer
-
 master.menu.user-account.become-company = Become a company
 master.menu.user-account.company= Company data
-master.menu.practicum= Practicum
-
 master.menu.user-account.assistant = Assistant data
 master.menu.user-account.become-assistant = Become an assistant
 master.menu.user-account.student = Student data

@@ -62,10 +62,12 @@
 		<acme:menu-option code="master.menu.administrator.offer" access="hasRole('Administrator')">
 			<acme:menu-suboption code="master.menu.administrator.offer.list" action="/administrator/offer/list"/>		
 		</acme:menu-option>
+
+		<acme:menu-option code="master.menu.company" access="hasRole('Company')">
+			<acme:menu-suboption code="master.menu.company.practicum.list-mine" action="/company/practicum/list-mine"/>
+			<acme:menu-suboption code="master.menu.company.practicum.list-all" action="/company/practicum/list-all"/>		
+		</acme:menu-option>
 		
-	<acme:menu-option code="authenticated.practicum.form.button.list" action="/authenticated/practicum/list" access="hasRole('Company')"/>
-
-
 	</acme:menu-left>
 
 	<acme:menu-right>
