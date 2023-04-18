@@ -65,6 +65,7 @@ master.menu.consumer.favourite-link = Favourite link
 
 master.menu.student = Student
 master.menu.student.studentCourseList = Course List
+master.menu.student.studentEnrolmentList = Enrolment List
 
 # master.menu.practicum ####################################################
 
