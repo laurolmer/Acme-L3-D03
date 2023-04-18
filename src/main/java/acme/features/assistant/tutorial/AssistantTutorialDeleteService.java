@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.course.Course;
 import acme.entities.tutorial.Tutorial;
+import acme.entities.tutorialSession.TutorialSession;
 import acme.framework.components.jsp.SelectChoices;
 import acme.framework.components.models.Tuple;
 import acme.framework.services.AbstractService;
@@ -75,6 +76,9 @@ public class AssistantTutorialDeleteService extends AbstractService<Assistant, T
 	@Override
 	public void perform(final Tutorial object) {
 		assert object != null;
+		Collection<TutorialSession> sessions;
+		sessions = this.repository.findSessionsByTutorialId(object.getId());
+		this.repository.deleteAll(sessions);
 		this.repository.delete(object);
 	}
 
@@ -87,6 +91,7 @@ public class AssistantTutorialDeleteService extends AbstractService<Assistant, T
 		courses = this.repository.findNotInDraftCourses();
 		choices = SelectChoices.from(courses, "title", object.getCourse());
 		tuple = super.unbind(object, "code", "title", "abstractTutorial", "goals", "course");
+		tuple.put("draftMode", object.isDraftMode());
 		tuple.put("course", choices.getSelected().getKey());
 		tuple.put("courses", choices);
 		super.getResponse().setData(tuple);
