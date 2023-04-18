@@ -16,12 +16,10 @@
 <%@taglib prefix="acme" uri="http://www.the-acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="company.practicum.list.label.code" path="code" width="10%"/>
-	<acme:list-column code="company.practicum.list.label.title" path="title" width="80%"/>
-
+	<acme:list-column code="student.course.list.label.code" path="code" width="10%"/>
+	<acme:list-column code="student.course.list.label.title" path="title" width="10%"/>
+	<acme:list-column code="student.course.list.label.courseAbstract" path="courseAbstract" width="10%"/>
+	<acme:list-column code="student.course.list.label.courseType" path="courseType" width="10%"/>
+	<acme:list-column code="student.course.list.label.retailPrice" path="retailPrice" width="10%"/>
+	<acme:list-column code="student.course.list.label.link" path="link" width="10%"/>
 </acme:list>
-
-<jstl:if test="${_command == 'list-mine'}">
-	<acme:button code="company.practicum.list.button.create" action="/company/practicum/create"/>
-</jstl:if>		
-	

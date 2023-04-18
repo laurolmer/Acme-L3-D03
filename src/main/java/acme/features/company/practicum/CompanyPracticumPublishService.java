@@ -35,10 +35,14 @@ public class CompanyPracticumPublishService extends AbstractService<Company, Pra
 		int PracticumId;
 		Practicum Practicum;
 		Company Company;
+
 		PracticumId = super.getRequest().getData("id", int.class);
 		Practicum = this.repository.findPracticumById(PracticumId);
 		Company = Practicum == null ? null : Practicum.getCompany();
-		status = Practicum != null && !Practicum.getDraftMode() || super.getRequest().getPrincipal().hasRole(Company);
+
+		System.out.println(Practicum.getDraftMode());
+
+		status = Practicum != null && Practicum.getDraftMode() && super.getRequest().getPrincipal().hasRole(Company);
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -48,6 +52,7 @@ public class CompanyPracticumPublishService extends AbstractService<Company, Pra
 		int id;
 		id = super.getRequest().getData("id", int.class);
 		object = this.repository.findPracticumById(id);
+		object.setDraftMode(false);
 		super.getBuffer().setData(object);
 	}
 

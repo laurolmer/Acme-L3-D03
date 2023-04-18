@@ -57,7 +57,7 @@ public class CompanyPracticumUpadteService extends AbstractService<Company, Prac
 		System.out.println(CompanyId);
 		System.out.println(Practicum.getCompany().getId());
 
-		status = Practicum != null && !Practicum.getDraftMode() && Practicum.getCompany().getId() == CompanyId || super.getRequest().getPrincipal().hasRole(Company);
+		status = Practicum != null && Practicum.getDraftMode() && CompanyId == Practicum.getCompany().getId() && super.getRequest().getPrincipal().hasRole(Company);
 		super.getResponse().setAuthorised(status);
 	}
 

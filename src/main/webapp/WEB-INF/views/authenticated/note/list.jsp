@@ -16,12 +16,9 @@
 <%@taglib prefix="acme" uri="http://www.the-acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="company.practicum.list.label.code" path="code" width="10%"/>
-	<acme:list-column code="company.practicum.list.label.title" path="title" width="80%"/>
-
+	<acme:list-column code="authenticated.note.list.label.instantiationMoment" path="instantiationMoment" width="20%"/>
+	<acme:list-column code="authenticated.note.list.label.title" path="title" width="40%"/>
+	<acme:list-column code="authenticated.note.list.label.author" path="author" width="40%"/>
 </acme:list>
 
-<jstl:if test="${_command == 'list-mine'}">
-	<acme:button code="company.practicum.list.button.create" action="/company/practicum/create"/>
-</jstl:if>		
-	
+<acme:button code="authenticated.note.list.button.create" action="/authenticated/note/create"/>

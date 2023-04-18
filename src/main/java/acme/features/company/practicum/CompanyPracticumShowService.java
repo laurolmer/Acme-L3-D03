@@ -40,6 +40,10 @@ public class CompanyPracticumShowService extends AbstractService<Company, Practi
 		Practicum = this.repository.findPracticumById(PracticumId);
 		principal = super.getRequest().getPrincipal();
 		Company = Practicum == null ? null : Practicum.getCompany();
+
+		System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+		System.out.println(Practicum.getDraftMode());
+
 		status = Practicum != null && !Practicum.getDraftMode() || principal.hasRole(Company);
 		super.getResponse().setAuthorised(status);
 	}
@@ -61,7 +65,7 @@ public class CompanyPracticumShowService extends AbstractService<Company, Practi
 		SelectChoices choices;
 		courses = this.repository.findAllCourses();
 		choices = SelectChoices.from(courses, "title", object.getCourse());
-		tuple = super.unbind(object, "code", "title", "abstractPracticum", "goals");
+		tuple = super.unbind(object, "code", "title", "abstractPracticum", "goals", "draftMode");
 		tuple.put("course", choices.getSelected().getKey());
 		tuple.put("courses", choices);
 		super.getResponse().setData(tuple);
