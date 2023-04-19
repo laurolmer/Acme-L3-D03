@@ -70,6 +70,7 @@ master.menu.company.practicum.list-all = Todas las prácticas
 
 master.menu.student = Estudiante
 master.menu.student.studentCourseList = Listado de Cursos
+master.menu.student.studentEnrolmentList = Lista de Matriculas
 
 # master.menu.user-account ####################################################
 
