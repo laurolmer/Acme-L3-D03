@@ -11,3 +11,6 @@
 administrator.configuration.form.label.defaultCurrency = Moneda por defecto:
 administrator.configuration.form.label.aceptedCurrencies = Monedas aceptadas:
 administrator.configuration.form.button.update = Actualizar
+
+administrator.configuration.form.error.not-found-in-list = La moneda por defecto debe estar contenida en las monedas aceptadas
+administrator.configuration.form.error.not-found-in-system = Hay monedas dentro del sistema que no aparecen en el conjunto de monedas aceptadas
