@@ -13,7 +13,7 @@ import acme.framework.services.AbstractService;
 import acme.roles.Lecturer;
 
 @Service
-public class LecturerLectureShowService extends AbstractService<Lecturer, Lecture> {
+public class LecturerLecturePublishService extends AbstractService<Lecturer, Lecture> {
 
 	@Autowired
 	protected LecturerLectureRepository repository;
@@ -30,32 +30,50 @@ public class LecturerLectureShowService extends AbstractService<Lecturer, Lectur
 
 	@Override
 	public void authorise() {
-		final boolean status;
+		boolean status;
+		int objectId;
+		Lecture object;
 		final Principal principal;
 		final int userAccountId;
-		final int objectId;
-		Lecture object;
 
+		principal = super.getRequest().getPrincipal();
+		userAccountId = principal.getAccountId();
 		objectId = super.getRequest().getData("id", int.class);
 		object = this.repository.findOneLectureById(objectId);
 
-		principal = super.getRequest().getPrincipal();
-		userAccountId = principal.getActiveRoleId();
-
-		status = object.getLecturer().getId() == userAccountId;
+		status = object.getLecturer().getUserAccount().getId() == userAccountId;
 
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Lecture object;
 		int objectId;
+		Lecture object;
 
 		objectId = super.getRequest().getData("id", int.class);
 		object = this.repository.findOneLectureById(objectId);
 
 		super.getBuffer().setData(object);
+	}
+
+	@Override
+	public void bind(final Lecture object) {
+		assert object != null;
+
+		super.bind(object, "title", "lectureAbstract", "body", "lectureType", "link");
+	}
+
+	@Override
+	public void validate(final Lecture object) {
+		assert object != null;
+	}
+
+	@Override
+	public void perform(final Lecture object) {
+		object.setDraftMode(false);
+
+		this.repository.save(object);
 	}
 
 	@Override
@@ -66,11 +84,9 @@ public class LecturerLectureShowService extends AbstractService<Lecturer, Lectur
 
 		choices = SelectChoices.from(LectureType.class, object.getLectureType());
 
-		tuple = super.unbind(object, "id", "title", "lectureAbstract", "body", "lectureType");
-		tuple.put("estimatedLearningTime", object.computeEstimatedLearningTime());
+		tuple = super.unbind(object, "title", "lectureAbstract", "body", "lectureType", "link");
 		tuple.put("lectureType", choices.getSelected().getKey());
 		tuple.put("lectureTypes", choices);
-		tuple.put("draftMode", object.isDraftMode());
 		super.getResponse().setData(tuple);
 	}
 

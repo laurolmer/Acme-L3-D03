@@ -61,14 +61,16 @@ public class Lecture extends AbstractEntity {
 	@Valid
 	protected Lecturer lecturer;
 	
+	protected boolean draftMode;
+	
 //	Methods ---------------------------------------------------
 	
 	public double computeEstimatedLearningTime() {
-		double estimatedLearningTime = 0.0;
+		long estimatedLearningTime = 0L;
 		Duration timeBetween;
 		
 		timeBetween = MomentHelper.computeDuration(this.startPeriod, this.endPeriod);
-		estimatedLearningTime = (double) timeBetween.toMinutes() / 60;
+		estimatedLearningTime = timeBetween.toMinutes();
 		
 		return estimatedLearningTime;
 	}

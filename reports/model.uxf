@@ -79,7 +79,8 @@ bg=green
 + endPeriod: Date {NotNull,PastOrPresent,Temporal(TemporalType.TIMESTAMP)}
 + body: String {NotBlank, Lenght(1,100)}
 + lectureType: LectureType
-+ link: String {URL}</panel_attributes>
++ link: String {URL}
++ draftMode: boolean</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

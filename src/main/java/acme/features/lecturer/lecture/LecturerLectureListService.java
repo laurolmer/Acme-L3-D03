@@ -77,7 +77,6 @@ public class LecturerLectureListService extends AbstractService<Lecturer, Lectur
 
 		tuple.put("masterId", masterId);
 		tuple.put("estimatedLearningTime", estimatedLearningTime);
-		super.getResponse().setGlobal("showCreate", showCreate);
 		super.getResponse().setData(tuple);
 	}
 

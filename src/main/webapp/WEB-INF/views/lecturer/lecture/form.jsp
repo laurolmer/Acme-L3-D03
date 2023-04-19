@@ -10,25 +10,26 @@
 	<jstl:if test="${_command == 'create' && courseCode!=null}">
 		<acme:input-textbox code="lecturer.lecture.label.courseCode" path="courseCode" readonly="true"/>
 	</jstl:if>	
+	
 	<acme:input-textbox code="lecturer.lecture.label.title" path="title"/>
 	<acme:input-textbox code="lecturer.lecture.label.lectureAbstract" path="lectureAbstract"/>	
-	<acme:input-double code="lecturer.lecture.label.estimatedLearningTime" path="estimatedLearningTime"/>
+	<acme:input-integer code="lecturer.lecture.label.estimatedLearningTime" path="estimatedLearningTime"/>
 	<acme:input-textbox code="lecturer.lecture.label.body" path="body"/>
-	<jstl:if test="${draftMode == false}">
-	<acme:input-textbox code="lecturer.lecture.label.lectureType" path="lectureType" readonly="true"/>
-	</jstl:if>
-	<jstl:if test="${draftMode != false}">
-	<acme:input-select code="lecturer.lecture.label.type" path="type" choices="${types}"/>
-	</jstl:if>
-	<acme:input-textbox code="lecturer.lecture.label.draftMode" path="draftMode" readonly="true"/>
+	<acme:input-select code="lecturer.lecture.label.lectureType" path="lectureType" choices="${lectureTypes}"/>
 
-	<acme:submit test="${_command == 'create' && courseCode!=null}" code="lecturer.lecture.button.create" action="/lecturer/lecture/create?courseId=${courseId}"/>		
-	<acme:submit test="${_command == 'create' && courseCode==null}" code="lecturer.lecture.button.create" action="/lecturer/lecture/create"/>
+	<jstl:choose>
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == false}">
+			<acme:button code="lecturer.lecture.button.createWithCourse" action="/lecturer/course-lecture/create?lectureId=${id}"/>
+		</jstl:when>
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode != false}">
+			<acme:submit code="lecturer.lecture.button.update" action="/lecturer/lecture/update"/>
+			<acme:submit code="lecturer.lecture.button.delete" action="/lecturer/lecture/delete"/>		
+			<acme:submit code="lecturer.lecture.button.publish" action="/lecturer/lecture/publish"/>
+		</jstl:when>
+	</jstl:choose>
 	
-	<jstl:if test="${_command != 'create' && draftMode == true }">	
-		<acme:submit code="lecturer.lecture.button.update" action="/lecturer/lecture/update"/>
-		<acme:submit code="lecturer.lecture.button.delete" action="/lecturer/lecture/delete"/>		
-		<acme:submit code="lecturer.lecture.button.publish" action="/lecturer/lecture/publish"/>		
-	</jstl:if>
+	<jstl:if test="${_command == 'create'}">
+		<acme:submit code="lecturer.lecture.button.create" action="/lecturer/lecture/create"/>
+	</jstl:if>		
 	
 </acme:form>

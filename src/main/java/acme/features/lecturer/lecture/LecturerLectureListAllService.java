@@ -48,7 +48,7 @@ public class LecturerLectureListAllService extends AbstractService<Lecturer, Lec
 		final Tuple tuple;
 
 		tuple = super.unbind(object, "title", "lectureAbstract");
-		super.getResponse().setGlobal("showCreate", false);
+		tuple.put("estimatedLearningTime", object.computeEstimatedLearningTime());
 		super.getResponse().setData(tuple);
 	}
 }

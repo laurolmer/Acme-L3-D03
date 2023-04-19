@@ -1,12 +1,18 @@
 
 package acme.features.lecturer.lecture;
 
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.lecture.Lecture;
+import acme.entities.lecture.LectureType;
+import acme.framework.components.jsp.SelectChoices;
 import acme.framework.components.models.Tuple;
 import acme.framework.controllers.HttpMethod;
+import acme.framework.helpers.MomentHelper;
 import acme.framework.helpers.PrincipalHelper;
 import acme.framework.services.AbstractService;
 import acme.roles.Lecturer;
@@ -43,6 +49,7 @@ public class LecturerLectureCreateService extends AbstractService<Lecturer, Lect
 
 		object = new Lecture();
 		object.setLecturer(lecturer);
+		object.setStartPeriod(MomentHelper.getCurrentMoment());
 		super.getBuffer().setData(object);
 	}
 
@@ -51,12 +58,21 @@ public class LecturerLectureCreateService extends AbstractService<Lecturer, Lect
 		assert object != null;
 		int activeRoleId;
 		Lecturer lecturer;
+		long estimatedLearningTime;
+		Date startPeriod;
+		Date endPeriod;
 
 		activeRoleId = super.getRequest().getPrincipal().getActiveRoleId();
 		lecturer = this.repository.findOneLecturerById(activeRoleId);
 
+		estimatedLearningTime = super.getRequest().getData("estimatedLearningTime", long.class);
+		startPeriod = object.getStartPeriod();
+		endPeriod = MomentHelper.deltaFromMoment(startPeriod, estimatedLearningTime, ChronoUnit.MINUTES);
+
 		super.bind(object, "title", "lectureAbstract", "body", "lectureType", "link");
+		object.setEndPeriod(endPeriod);
 		object.setLecturer(lecturer);
+		object.setDraftMode(true);
 	}
 
 	@Override
@@ -68,6 +84,7 @@ public class LecturerLectureCreateService extends AbstractService<Lecturer, Lect
 	@Override
 	public void perform(final Lecture object) {
 		assert object != null;
+
 		this.repository.save(object);
 	}
 
@@ -75,9 +92,14 @@ public class LecturerLectureCreateService extends AbstractService<Lecturer, Lect
 	public void unbind(final Lecture object) {
 		assert object != null;
 		Tuple tuple;
+		final SelectChoices choices;
 
 		tuple = super.unbind(object, "title", "lectureAbstract", "body", "lectureType", "link");
 
+		choices = SelectChoices.from(LectureType.class, object.getLectureType());
+		tuple.put("lectureType", choices.getSelected().getKey());
+		tuple.put("lectureTypes", choices);
+		tuple.put("draftMode", object.isDraftMode());
 		super.getResponse().setData(tuple);
 	}
 
