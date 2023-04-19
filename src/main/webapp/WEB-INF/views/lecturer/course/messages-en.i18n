@@ -1,0 +1,17 @@
+lecturer.course.label.code = Code
+lecturer.course.label.title = Title
+lecturer.course.label.abstract = Abstract
+lecturer.course.label.courseType = Type
+lecturer.course.label.price = Price
+lecturer.course.label.link = Link
+lecturer.course.label.draftMode = Draft
+
+lecturer.course.lectures = Lectures
+
+lecturer.course.create = Create
+
+lecturer.course.button.create = Create
+lecturer.course.button.update = Update
+lecturer.course.button.delete = Delete
+lecturer.course.button.publish = Publish
+lecturer.course.button.lectureList = Lectures list

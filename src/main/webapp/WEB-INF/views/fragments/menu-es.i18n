@@ -60,6 +60,13 @@ master.menu.provider.favourite-link = Enlace favorito
 master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
 
+# master.menu.lecturer ##########################################################
+
+master.menu.lecturer = Profesor
+master.menu.lecturer.course.create = Crear curso
+master.menu.lecturer.course.list.all = Listar cursos
+master.menu.lecturer.course.list.mine = Listar mis cursos
+
 # master.menu.company ###################################################
 
 master.menu.company= Prácticas
@@ -86,4 +93,7 @@ master.menu.user-account.assistant = Datos de asistente
 master.menu.user-account.become-assistant = Hazte asistente
 master.menu.user-account.student = Datos de estudiante
 master.menu.user-account.become-student = Hazte estudiante
+master.menu.user-account.lecturer = Datos de profesor
+master.menu.user-account.become-lecturer = Hazte profesor
+
 
