@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.tutorial.Tutorial;
+import acme.entities.tutorialSession.SessionType;
 import acme.entities.tutorialSession.TutorialSession;
 import acme.framework.components.accounts.Principal;
+import acme.framework.components.jsp.SelectChoices;
 import acme.framework.components.models.Tuple;
 import acme.framework.helpers.MomentHelper;
 import acme.framework.services.AbstractService;
@@ -97,8 +99,11 @@ public class AssistantTutorialSessionCreateService extends AbstractService<Assis
 	public void unbind(final TutorialSession tutorialSession) {
 		assert tutorialSession != null;
 		Tuple tuple;
+		SelectChoices choices;
+		choices = SelectChoices.from(SessionType.class, tutorialSession.getSessionType());
 		tuple = super.unbind(tutorialSession, "title", "abstractSession", "sessionType", "startPeriod", "finishPeriod", "link", "draftMode");
 		tuple.put("masterId", super.getRequest().getData("masterId", int.class));
+		tuple.put("sessionType", choices);
 		tuple.put("draftMode", !tutorialSession.getTutorial().isDraftMode() && tutorialSession.isDraftMode());
 		super.getResponse().setData(tuple);
 	}

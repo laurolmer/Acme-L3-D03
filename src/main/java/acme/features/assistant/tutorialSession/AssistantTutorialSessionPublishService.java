@@ -17,7 +17,7 @@ import acme.framework.services.AbstractService;
 import acme.roles.Assistant;
 
 @Service
-public class AssistantTutorialSessionConfirmService extends AbstractService<Assistant, TutorialSession> {
+public class AssistantTutorialSessionPublishService extends AbstractService<Assistant, TutorialSession> {
 
 	// Internal state ---------------------------------------------------------
 	@Autowired

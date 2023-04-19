@@ -41,7 +41,7 @@ master.menu.authenticated.note.list = List all notes
 
 # master.menu.assistant ###################################################
 
-master.menu.assistant = Assistant
+master.menu.assistant.tutorial = Assistant's Tutorials
 master.menu.assistant.tutorial.list-mine = List my tutorials
 master.menu.assistant.tutorial.list-all = List all tutorials
 

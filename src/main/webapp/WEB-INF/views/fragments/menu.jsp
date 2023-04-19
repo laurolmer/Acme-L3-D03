@@ -54,7 +54,7 @@
 			<acme:menu-suboption code="master.menu.student.studentCourseList" action="/student/course/list"/>
 		</acme:menu-option>
 
-		<acme:menu-option code="master.menu.assistant" access="hasRole('Assistant')">
+		<acme:menu-option code="master.menu.assistant.tutorial" access="hasRole('Assistant')">
 			<acme:menu-suboption code="master.menu.assistant.tutorial.list-mine" action="/assistant/tutorial/list-mine"/>
 			<acme:menu-suboption code="master.menu.assistant.tutorial.list-all" action="/assistant/tutorial/list-all"/>		
 		</acme:menu-option>

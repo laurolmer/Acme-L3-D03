@@ -18,11 +18,16 @@ assistant.tutorial-session.form.label.link = Enlace
 assistant.tutorial-session.form.button.create = Crear
 assistant.tutorial-session.form.button.update = Actualizar
 assistant.tutorial-session.form.button.delete = Borrar
+assistant.tutorial-session.form.button.publish = Publicar
+assistant.tutorial-session.form.button.list = Listar sessiones
 
 assistant.tutorial-session.list.label.title = Título
 assistant.tutorial-session.list.label.abstractSession = Abstracto
+assistant.tutorial-session.list.label.finishPeriod = Periodo final
+assistant.tutorial-session.list.label.startPeriod = Periodo inicial
 
 assistant.tutorial-session.list.button.create = Crear
+
 
 assistant.session.startPeriod-before-instantiationMoment = El periodo de inicio debe ser después de la fecha actual
 assistant.session.finishPeriod-before-startPeriod = El periodo final debe ser después del periodo de inicio

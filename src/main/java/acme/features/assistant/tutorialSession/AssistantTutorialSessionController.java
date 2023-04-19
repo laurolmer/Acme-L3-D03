@@ -29,7 +29,7 @@ public class AssistantTutorialSessionController extends AbstractController<Assis
 	private AssistantTutorialSessionListService		listService;
 
 	@Autowired
-	private AssistantTutorialSessionConfirmService	publishService;
+	private AssistantTutorialSessionPublishService	publishService;
 
 
 	@PostConstruct

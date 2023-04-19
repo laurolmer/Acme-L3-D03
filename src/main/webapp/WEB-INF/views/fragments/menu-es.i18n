@@ -41,7 +41,7 @@ master.menu.authenticated.note.list = Listar todas las notas
 
 # master.menu.assistant ###################################################
 
-master.menu.assistant = Asistente
+master.menu.assistant.tutorial = Tutoriales del asistente
 master.menu.assistant.tutorial.list-mine = Listar mis tutoriales
 master.menu.assistant.tutorial.list-all = Listar todos los tutoriales
 
