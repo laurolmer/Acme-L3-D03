@@ -1,5 +1,5 @@
 key,code,motivation,goals,draft-mode,holder-name,lower-nibble,key:student,key:course
-enrolment-01,TU001,Example of motivation,"goal-1, goal-2, goal-3",false,asfafs,1233,student-01,course-02
+enrolment-01,TU001,Motivation example,"goal-1, goal-2, goal-3",true,,,student-01,course-02
 enrolment-02,TUT003,Motivation example,"goal-1, goal-2, goal-3",true,,,student-01,course-01
 enrolment-03,TU003,Motivation example,"goal-1, goal-2, goal-3",true,,,student-02,course-02
 enrolment-04,T003,Motivation example,"goal-1, goal-2, goal-3",true,,,student-01,course-02
@@ -18,4 +18,4 @@ enrolment-16,T015,Motivation example,<title>ExampleHTML</title>,true,,,student-0
 enrolment-17,T016,Motivation example,<script>alert('exampleJS');</script>,true,,,student-02,course-02
 enrolment-18,T017,Motivation example,ข้อความตัวอย่าง.,true,,,student-02,course-02
 enrolment-19,T018,Motivation example,"goal-1, goal-2, goal-3",true,,,student-01,course-02
-enrolment-20,T019,Motivation example,"goal-1, goal-2, goal-3",false,asfafs,1233,student-01,course-01
+enrolment-20,T019,Motivation example,"goal-1, goal-2, goal-3",false,Daniel,1233,student-01,course-01

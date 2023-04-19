@@ -41,3 +41,5 @@ student.enrolment.form.error.cvc = CVC debe tener 3 números
 student.enrolment.form.error.card = La tarjeta de crédito debe ser formato XXXX/XXXX/XXXX/XXXX
 student.enrolment.form.error.code = Código duplicado
 student.enrolment.form.error.holder = Este campo no debe ser vacío
+
+student.enrolment.form.button.activities = Actividades:

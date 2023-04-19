@@ -59,6 +59,7 @@ public class StudentEnrolmentShowService extends AbstractService<Student, Enrolm
 		int id;
 		id = super.getRequest().getData("id", int.class);
 		enrolment = this.repository.findEnrolmentById(id);
+		super.getResponse().setGlobal("draftMode", enrolment.isDraftMode());
 		super.getBuffer().setData(enrolment);
 
 	}
