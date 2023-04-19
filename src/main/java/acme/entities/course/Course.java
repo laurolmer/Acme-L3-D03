@@ -46,7 +46,7 @@ public class Course extends AbstractEntity {
 	@Length(max = 100)
 	protected String			courseAbstract;
 
-	@NotNull
+	//	@NotNull
 	protected CourseType		courseType;
 
 	@NotNull
@@ -74,11 +74,7 @@ public class Course extends AbstractEntity {
 		CourseType courseType = CourseType.HANDS_ON;
 		LectureType modeLectureType;
 
-		modeLectureType = lectures.stream()
-			.map(l -> l.getLectureType())
-			.collect(Collectors.groupingBy(type -> type, Collectors.counting()))
-			.entrySet().stream().max(Map.Entry.comparingByValue())
-			.get().getKey();
+		modeLectureType = lectures.stream().map(l -> l.getLectureType()).collect(Collectors.groupingBy(type -> type, Collectors.counting())).entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey();
 
 		if (modeLectureType.equals(LectureType.THEORETICAL))
 			courseType = CourseType.THEORY_COURSE;

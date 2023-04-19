@@ -18,10 +18,10 @@
 	<acme:input-select code="lecturer.lecture.label.lectureType" path="lectureType" choices="${lectureTypes}"/>
 
 	<jstl:choose>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == false}">
-			<acme:button code="lecturer.lecture.button.createWithCourse" action="/lecturer/course-lecture/create?lectureId=${id}"/>
+		<jstl:when test="${_command != 'create' && draftMode == false}">
+			<acme:button code="lecturer.lecture.button.addToCourse" action="/lecturer/course-lecture/create?lectureId=${id}"/>
 		</jstl:when>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode != false}">
+		<jstl:when test="${_command != 'create' && draftMode != false}">
 			<acme:submit code="lecturer.lecture.button.update" action="/lecturer/lecture/update"/>
 			<acme:submit code="lecturer.lecture.button.delete" action="/lecturer/lecture/delete"/>		
 			<acme:submit code="lecturer.lecture.button.publish" action="/lecturer/lecture/publish"/>

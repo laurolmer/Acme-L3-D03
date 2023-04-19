@@ -62,20 +62,29 @@ public class LecturerLectureListService extends AbstractService<Lecturer, Lectur
 	public void unbind(final Lecture object) {
 		assert object != null;
 		Tuple tuple;
-		final int masterId;
+		final int courseId;
 		final Course course;
-		final boolean showCreate;
+		final boolean showAddToCourse;
 		final double estimatedLearningTime;
+		final Principal principal;
+		final int userAccountId;
 
 		tuple = super.unbind(object, "title", "lectureAbstract");
 
-		masterId = super.getRequest().getData("masterId", int.class);
-		course = this.repository.findOneCourseById(masterId);
-		showCreate = course.isDraftMode();
+		principal = super.getRequest().getPrincipal();
+		userAccountId = principal.getAccountId();
+
+		courseId = super.getRequest().getData("masterId", int.class);
+		course = this.repository.findOneCourseById(courseId);
+		showAddToCourse = course.isDraftMode() && course.getLecturer().getUserAccount().getId() == userAccountId;
 
 		estimatedLearningTime = object.computeEstimatedLearningTime();
 
-		tuple.put("masterId", masterId);
+		System.out.println("=======================================> " + courseId);
+		System.out.println("=======================================> " + showAddToCourse);
+
+		tuple.put("courseId", courseId);
+		tuple.put("showAddToCourse", showAddToCourse);
 		tuple.put("estimatedLearningTime", estimatedLearningTime);
 		super.getResponse().setData(tuple);
 	}

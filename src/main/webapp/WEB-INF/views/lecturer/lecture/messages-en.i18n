@@ -7,6 +7,6 @@ lecturer.lecture.label.link = Link
 lecturer.lecture.label.estimatedLearningTime = Learning Time
 
 lecturer.lecture.button.create = Create
-lecturer.lecture.button.createWithCourse = Add lecture into course
+lecturer.lecture.button.addToCourse = Add into course
 lecturer.lecture.button.update = Update
 lecturer.lecture.button.delete = Delete
