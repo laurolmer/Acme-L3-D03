@@ -1,0 +1,129 @@
+
+package acme.features.lecturer.courseLecture;
+
+import java.util.Collection;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import acme.entities.course.Course;
+import acme.entities.course.CourseLecture;
+import acme.entities.lecture.Lecture;
+import acme.framework.components.accounts.Principal;
+import acme.framework.components.jsp.SelectChoices;
+import acme.framework.components.models.Tuple;
+import acme.framework.controllers.HttpMethod;
+import acme.framework.helpers.PrincipalHelper;
+import acme.framework.services.AbstractService;
+import acme.roles.Lecturer;
+
+@Service
+public class LecturerCourseLectureCreateService extends AbstractService<Lecturer, CourseLecture> {
+
+	@Autowired
+	protected LecturerCourseLectureRepository repository;
+
+
+	@Override
+	public void check() {
+		boolean status;
+
+		status = super.getRequest().hasData("lectureId", int.class);
+
+		super.getResponse().setChecked(status);
+	}
+
+	@Override
+	public void authorise() {
+		final boolean status;
+		final Principal principal;
+		final int userAccountId;
+		int objectId;
+		final Lecture object;
+
+		principal = super.getRequest().getPrincipal();
+		userAccountId = principal.getAccountId();
+		objectId = super.getRequest().getData("lectureId", int.class);
+		object = this.repository.findOneLectureById(objectId);
+
+		status = object.getLecturer().getUserAccount().getId() == userAccountId;
+
+		super.getResponse().setAuthorised(status);
+	}
+
+	@Override
+	public void load() {
+		CourseLecture object;
+		final int lectureId;
+		final Lecture lecture;
+
+		lectureId = super.getRequest().getData("lectureId", int.class);
+		lecture = this.repository.findOneLectureById(lectureId);
+
+		object = new CourseLecture();
+		object.setLecture(lecture);
+
+		super.getResponse().setGlobal("lectureTitle", lecture.getTitle());
+		super.getResponse().setGlobal("lectureAbstract", lecture.getLectureAbstract());
+		super.getResponse().setGlobal("estimatedLearningTime", lecture.computeEstimatedLearningTime());
+		super.getBuffer().setData(object);
+	}
+
+	@Override
+	public void bind(final CourseLecture object) {
+		assert object != null;
+		int courseId;
+		Course course;
+
+		courseId = super.getRequest().getData("courseId", int.class);
+		course = this.repository.findOneCourseById(courseId);
+
+		super.bind(object, "id");
+		object.setCourse(course);
+	}
+
+	@Override
+	public void validate(final CourseLecture object) {
+		assert object != null;
+		if (!super.getBuffer().getErrors().hasErrors("lecture") && !super.getBuffer().getErrors().hasErrors("course")) {
+			final Collection<Lecture> lectures = this.repository.findLecturesByCourseId(object.getCourse().getId());
+			super.state(lectures.isEmpty() || !lectures.contains(object.getLecture()), "course", "lecturer.courseLecture.form.error.lecture");
+		}
+		if (!super.getBuffer().getErrors().hasErrors("course"))
+			super.state(object.getCourse().isDraftMode(), "course", "lecturer.courseLecture.form.error.course");
+	}
+
+	@Override
+	public void perform(final CourseLecture object) {
+		assert object != null;
+		this.repository.save(object);
+	}
+
+	@Override
+	public void unbind(final CourseLecture object) {
+		assert object != null;
+		Tuple tuple;
+		final int lectureId;
+		final Lecturer lecturer;
+		Collection<Course> courses;
+		final SelectChoices choices;
+
+		lectureId = super.getRequest().getData("lectureId", int.class);
+		lecturer = this.repository.findOneLecturerById(super.getRequest().getPrincipal().getActiveRoleId());
+		courses = this.repository.findNotPublishedCoursesByLecturerId(lecturer.getId());
+		choices = SelectChoices.from(courses, "code", object.getCourse());
+
+		tuple = super.unbind(object, "lecture", "course");
+		tuple.put("course", choices.getSelected().getKey());
+		tuple.put("courses", choices);
+		tuple.put("lectureId", lectureId);
+		super.getResponse().setData(tuple);
+	}
+
+	@Override
+	public void onSuccess() {
+		if (super.getRequest().getMethod().equals(HttpMethod.POST))
+			PrincipalHelper.handleUpdate();
+	}
+
+}

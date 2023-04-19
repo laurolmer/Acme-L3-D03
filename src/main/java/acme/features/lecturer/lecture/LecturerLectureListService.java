@@ -62,7 +62,7 @@ public class LecturerLectureListService extends AbstractService<Lecturer, Lectur
 	public void unbind(final Lecture object) {
 		assert object != null;
 		Tuple tuple;
-		final int courseId;
+		final int masterId;
 		final Course course;
 		final boolean showAddToCourse;
 		final double estimatedLearningTime;
@@ -74,19 +74,36 @@ public class LecturerLectureListService extends AbstractService<Lecturer, Lectur
 		principal = super.getRequest().getPrincipal();
 		userAccountId = principal.getAccountId();
 
-		courseId = super.getRequest().getData("masterId", int.class);
-		course = this.repository.findOneCourseById(courseId);
+		masterId = super.getRequest().getData("masterId", int.class);
+		course = this.repository.findOneCourseById(masterId);
 		showAddToCourse = course.isDraftMode() && course.getLecturer().getUserAccount().getId() == userAccountId;
 
 		estimatedLearningTime = object.computeEstimatedLearningTime();
 
-		System.out.println("=======================================> " + courseId);
-		System.out.println("=======================================> " + showAddToCourse);
-
-		tuple.put("courseId", courseId);
-		tuple.put("showAddToCourse", showAddToCourse);
 		tuple.put("estimatedLearningTime", estimatedLearningTime);
+		super.getResponse().setGlobal("courseId", masterId);
+		super.getResponse().setGlobal("showAddToCourse", showAddToCourse);
 		super.getResponse().setData(tuple);
+	}
+
+	@Override
+	public void unbind(final Collection<Lecture> object) {
+		assert object != null;
+		int masterId;
+		final Course course;
+		final boolean showAddToCourse;
+		final Principal principal;
+		final int userAccountId;
+
+		principal = super.getRequest().getPrincipal();
+		userAccountId = principal.getAccountId();
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		course = this.repository.findOneCourseById(masterId);
+		showAddToCourse = course.isDraftMode() && course.getLecturer().getUserAccount().getId() == userAccountId;
+
+		super.getResponse().setGlobal("masterId", masterId);
+		super.getResponse().setGlobal("showAddToCourse", showAddToCourse);
 	}
 
 }

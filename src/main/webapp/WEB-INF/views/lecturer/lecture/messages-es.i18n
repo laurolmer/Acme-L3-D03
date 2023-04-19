@@ -1,12 +1,8 @@
-lecturer.lecture.label.title = Título
-lecturer.lecture.label.lectureAbstract = Resumen
-lecturer.lecture.label.body = Detalles
-lecturer.lecture.label.lectureType = Tipo
-lecturer.lecture.label.lectureTypes = Tipos
-lecturer.lecture.label.link = Enlaces
-lecturer.lecture.label.estimatedLearningTime = Duración estimada
+lecturer.course-lecture.label.title = Título de la lección
+lecturer.course-lecture.label.lectureAbstract = Resumen de la lección
+lecturer.course-lecture.label.estimatedLearningTime = Duración estimada de la lección
 
-lecturer.lecture.button.create = Crear
-lecturer.lecture.button.addToCourse = Añadir a curso
-lecturer.lecture.button.update = Actualizar
-lecturer.lecture.button.delete = Borrar
+lecturer.course-lecture.label.course = Código del curso
+
+lecturer.course-lecture.button.delete = Borrar
+lecturer.course-lecture.button.create = Añadir
