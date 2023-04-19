@@ -24,4 +24,9 @@ authenticated.audit.form.label.auditor = Auditor
 authenticated.audit.form.label.courseName = Course Name
 authenticated.audit.form.label.lecturer = Lecturer
 authenticated.audit.form.label.marks = Marks
+authenticated.audit.form.label.draftMode = Publicated
 
+authenticated.auditor.audit.form.button.update = Update
+authenticated.auditor.audit.form.button.delete = Delete
+authenticated.auditor.audit.form.button.publish = Publish
+authenticated.auditor.audit.form.button.create = Create

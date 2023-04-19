@@ -20,3 +20,7 @@
     <acme:list-column code="auditor.audit.list.label.course" path="course" width="70%"/>
     <acme:list-column code="auditor.audit.list.label.released" path="draftMode" width="70%"/>    
 </acme:list>
+
+<jstl:if test="${_command == 'list'}">
+	<acme:button code="auditor.audit.list.button.create" action="/auditor/audit/create"/>
+</jstl:if>

@@ -8,11 +8,14 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
+auditor.audit.error.code.duplicated = Code already exists
+auditor.audit.error.course.null = Select a course
 
 # Messages for label in list
 auditor.audit.list.label.code = Code
 auditor.audit.list.label.conclusion = Conclusion
-auditor.audit.list.label.courseCode = CourseCode
+auditor.audit.list.label.courseId = Course Id
+auditor.audit.list.label.courseCode = Course Code
 auditor.audit.list.label.course = Course
 auditor.audit.list.label.released = Released
 
@@ -23,8 +26,12 @@ auditor.audit.form.label.conclusion = Conclusion
 auditor.audit.form.label.strongPoints = StrongPoints
 auditor.audit.form.label.weakPoints = WeakPoints
 auditor.audit.form.label.courseCode = Course Code
-auditor.audit.form.label.course = Course Name
 auditor.audit.form.label.released = Released
-auditor.audit.form.label.lecturer = Lecturer
 auditor.audit.form.label.marks = Marks
 
+auditor.audit.form.button.update = Update
+auditor.audit.form.button.delete = Delete
+auditor.audit.form.button.publish = Publish
+auditor.audit.form.button.create = Create
+
+auditor.audit.list.button.create = Create

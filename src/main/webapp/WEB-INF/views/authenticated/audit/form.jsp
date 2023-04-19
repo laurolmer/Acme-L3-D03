@@ -20,8 +20,9 @@
 	<acme:input-textbox code="authenticated.audit.form.label.conclusion" path="conclusion"/>
 	<acme:input-textbox code="authenticated.audit.form.label.strongPoints" path="strongPoints"/>
 	<acme:input-textbox code="authenticated.audit.form.label.weakPoints" path="weakPoints"/>
-	<acme:input-textbox code="authenticated.audit.form.label.auditor" path="auditor"/>
-	<acme:input-textbox code="authenticated.audit.form.label.courseName" path="courseName"/>
-	<acme:input-textbox code="authenticated.audit.form.label.lecturer" path="lecturer"/>	
-	<acme:input-textbox code="authenticated.audit.form.label.marks" path="marks"/>
+	<acme:input-textbox code="authenticated.audit.form.label.auditor" path="auditor" readonly = "true"/>
+	<acme:input-textbox code="authenticated.audit.form.label.draftMode" path="draftMode" readonly = "true"/>
+	<acme:input-textbox code="authenticated.audit.form.label.courseName" path="title" readonly = "true"/>
+	<acme:input-textbox code="authenticated.audit.form.label.lecturer" path="lecturer" readonly = "true"/>		
+
 </acme:form>

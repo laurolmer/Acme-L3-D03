@@ -1,14 +1,10 @@
 
 package acme.features.authenticated.audit;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.audit.Audit;
-import acme.entities.auditRecord.MarkType;
 import acme.framework.components.accounts.Authenticated;
 import acme.framework.components.models.Tuple;
 import acme.framework.services.AbstractService;
@@ -61,17 +57,11 @@ public class AuthenticatedAuditShowService extends AbstractService<Authenticated
 		assert object != null;
 
 		Tuple tuple;
-		final List<MarkType> marks = this.repository.findAllMarksByAuditId(object.getId());
-
 		tuple = super.unbind(object, "code", "conclusion", "strongPoints", "weakPoints");
 		tuple.put("auditor", object.getAuditor().getIdentity().getFullName());
-		tuple.put("courseName", object.getCourse().getTitle());
+		tuple.put("title", object.getCourse().getTitle());
+		tuple.put("draftMode", object.isDraftMode());
 		tuple.put("lecturer", object.getCourse().getLecturer().getIdentity().getFullName());
-
-		if (marks != null && marks.size() > 0)
-			tuple.put("marks", marks.stream().map(MarkType::toString).collect(Collectors.joining(", ", "[ ", " ]")));
-		else
-			tuple.put("marks", "Aun no existen notas");
 		super.getResponse().setData(tuple);
 	}
 }

@@ -24,3 +24,10 @@ authenticated.audit.form.label.auditor = Auditor
 authenticated.audit.form.label.courseName = Nombre del curso
 authenticated.audit.form.label.lecturer = Profesor
 authenticated.audit.form.label.marks = Notas
+authenticated.audit.form.label.draftMode = Publicado
+
+
+authenticated.auditor.audit.form.button.update = Actualizar
+authenticated.auditor.audit.form.button.delete = Borrar
+authenticated.auditor.audit.form.button.publish = Publicar
+authenticated.auditor.audit.form.button.create = Crear
