@@ -14,11 +14,15 @@
 
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="http://www.the-acme-framework.org/"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<acme:form>
-	<acme:input-textbox code="student.enrolment.pay.label.nameHolder" path="nameHolder"/>
-	<acme:input-textbox code="student.enrolment.pay.label.cardNumber" path="cardNumber"/>
-	<acme:input-textbox code="student.enrolment.pay.label.expiryDate" path="expiryDate"/>
-	<acme:input-textbox code="student.enrolment.pay.label.cvc" path="cvc"/>
-	<acme:input-select code="student.enrolment.pay.label.course" path="course" choices="${courses}"/>
-</acme:form>
+<acme:list>
+	<acme:list-column code="student.activity.list.label.title" path="title"/>
+	<acme:list-column code="student.activity.list.label.activityType" path="activityType"/>
+</acme:list>
+
+<jstl:if test="${_command == 'list'}">
+	<c:if test="${draftMode}">
+		<acme:button code="student.activity.list.button.create" action="/student/activity/create?enrolmentId=${enrolmentId}"/>
+	</c:if>
+</jstl:if>
