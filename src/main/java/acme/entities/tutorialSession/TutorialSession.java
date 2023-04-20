@@ -52,15 +52,7 @@ public class TutorialSession extends AbstractEntity {
 	@URL
 	protected String			link;
 
-	// Derived attributes -----------------------------------------------------
-	// El tiempo total de un tutorial se calcula con la suma de todos las sesiones pertenecientes a ese tutorial.
-	//	protected int totalTutorialTime(final List<TutorialSession> sessions, final Tutorial tuto) {
-	//		int tutorialTime = 0;
-	//		for (final TutorialSession session : sessions)
-	//			if (session.getTutorial().equals(tuto))
-	//				tutorialTime += session.getFinishPeriod().getHours() - session.getStartPeriod().getHours();
-	//		return tutorialTime;
-	//	}
+	protected boolean			draftMode;
 
 	// Relationships ----------------------------------------------------------
 	@NotNull
