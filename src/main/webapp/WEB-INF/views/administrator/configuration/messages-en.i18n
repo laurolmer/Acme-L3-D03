@@ -11,3 +11,6 @@
 administrator.configuration.form.label.defaultCurrency = Default currency:
 administrator.configuration.form.label.aceptedCurrencies = Accepted currencies:
 administrator.configuration.form.button.update = Update
+
+administrator.configuration.form.error.not-found-in-list = The system currency must be contained in accepted currencies.
+administrator.configuration.form.error.not-found-in-system = There are currencies in the system that don't appear in the set of accepted currencies
