@@ -1,6 +1,10 @@
 
 package acme.entities.course;
 
+import java.util.Collection;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -12,6 +16,8 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
+import acme.entities.lecture.Lecture;
+import acme.entities.lecture.LectureType;
 import acme.framework.components.datatypes.Money;
 import acme.framework.data.AbstractEntity;
 import acme.roles.Lecturer;
@@ -40,7 +46,7 @@ public class Course extends AbstractEntity {
 	@Length(max = 100)
 	protected String			courseAbstract;
 
-	@NotNull
+	//	@NotNull
 	protected CourseType		courseType;
 
 	@NotNull
@@ -61,4 +67,18 @@ public class Course extends AbstractEntity {
 	@ManyToOne(optional = false)
 	protected Lecturer			lecturer;
 
+	//	Methods ------------------------------------------------
+
+
+	public CourseType computeCourseType(final Collection<Lecture> lectures) {
+		CourseType courseType = CourseType.HANDS_ON;
+		LectureType modeLectureType;
+
+		modeLectureType = lectures.stream().map(l -> l.getLectureType()).collect(Collectors.groupingBy(type -> type, Collectors.counting())).entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey();
+
+		if (modeLectureType.equals(LectureType.THEORETICAL))
+			courseType = CourseType.THEORY_COURSE;
+
+		return courseType;
+	}
 }

@@ -1,0 +1,12 @@
+# FORM -------------------------------------------------------------
+lecturer.lecture.label.title = Título
+lecturer.lecture.label.lectureAbstract = Resumen
+lecturer.lecture.label.body = Detalles
+lecturer.lecture.label.lectureType = Tipo
+lecturer.lecture.label.estimatedLearningTime = Tiempo estimado de aprendizaje
+
+# LECTURER.LECTURE BUTTONS -----------------------------------------
+lecturer.lecture.button.create = Crear
+lecturer.lecture.button.update = Actualizar
+lecturer.lecture.button.delete = Borrar
+lecturer.lecture.button.publish = Publicar
