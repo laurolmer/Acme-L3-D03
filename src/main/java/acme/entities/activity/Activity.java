@@ -42,11 +42,11 @@ public class Activity extends AbstractEntity {
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	protected Date				periodStart;
+	protected Date				startPeriod;
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	protected Date				periodEnd;
+	protected Date				endPeriod;
 
 	@URL
 	protected String			link;

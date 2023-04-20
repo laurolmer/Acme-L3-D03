@@ -51,10 +51,10 @@ public class AuthenticatedConsumerCreateService extends AbstractService<Authenti
 
 	@Override
 	public void load() {
-		Consumer	object;
-		Principal	principal;
-		int			userAccountId;
-		UserAccount	userAccount;
+		Consumer object;
+		Principal principal;
+		int userAccountId;
+		UserAccount userAccount;
 
 		principal = super.getRequest().getPrincipal();
 		userAccountId = principal.getAccountId();
