@@ -1,3 +1,4 @@
+
 key,title,abstract-session,session-type,start-period,finish-period,link,draftMode,key:tutorial
 tutorial-session-01,Session,Abstract,HANDS_ON,2023/08/21 19:30,2023/08/21 20:45,null,false,tutorial-01
 tutorial-session-02,This session is going to reach 75 characs in order to prove the restriction,Abstract 2,HANDS_ON,2023/08/21 19:30,2023/08/21 20:45,null,false,tutorial-02

@@ -1,0 +1,11 @@
+any.course.label.code = Code
+any.course.label.title = Title
+any.course.label.retailPrice = Price
+any.course.label.abstraction = Resume
+any.course.label.draftMode = Draft
+any.course.label.link = Link
+any.course.button.update = Update
+any.course.button.delete = Delete
+any.course.button.create = Create course
+any.course.error.code.duplicated = Duplicated code
+any.course.button.publish = Publish

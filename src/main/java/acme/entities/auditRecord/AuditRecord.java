@@ -37,7 +37,7 @@ public class AuditRecord extends AbstractEntity {
 
 	@PastOrPresent
 	@Temporal(TemporalType.TIMESTAMP)
-	//Falta la custom @ asi que aun no se puede.	
+	//Falta la custom @ asi que aun no se puede.
 	@NotNull
 	protected Date				periodStart;
 
@@ -52,6 +52,7 @@ public class AuditRecord extends AbstractEntity {
 	@URL
 	protected String			link;
 
+	protected boolean			draftMode;
 	//Relaciones
 	@Valid
 	@NotNull
