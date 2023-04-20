@@ -14,16 +14,17 @@ import acme.roles.Lecturer;
 public class LecturerCourseLectureController extends AbstractController<Lecturer, CourseLecture> {
 
 	@Autowired
-	protected LecturerCourseLectureCreateService createService;
-	
+	protected LecturerCourseLectureAddService		addService;
+
 	@Autowired
-	protected LecturerCourseLectureDeleteService deleteService;
+	protected LecturerCourseLectureDeleteService	deleteService;
 
 
 	@PostConstruct
 	public void initialise() {
-		super.addBasicCommand("create", this.createService);
 		super.addBasicCommand("delete", this.deleteService);
+
+		super.addCustomCommand("add", "create", this.addService);
 	}
 
 }

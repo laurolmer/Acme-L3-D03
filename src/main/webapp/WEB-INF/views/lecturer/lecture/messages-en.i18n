@@ -1,8 +1,12 @@
-lecturer.course-lecture.label.title = Lecture title
-lecturer.course-lecture.label.lectureAbstract = Lecture abstract
-lecturer.course-lecture.label.estimatedLearningTime = Lecture learning time
+# FORM -------------------------------------------------------------
+lecturer.lecture.label.title = Lecture title
+lecturer.lecture.label.lectureAbstract = Lecture abstract
+lecturer.lecture.label.body = Details
+lecturer.lecture.label.lectureType = Type
+lecturer.lecture.label.estimatedLearningTime = Lecture learning time
 
-lecturer.course-lecture.label.course = Course code
-
-lecturer.course-lecture.button.delete = Delete
-lecturer.course-lecture.button.create = Add
+# LECTURER.LECTURE BUTTONS -----------------------------------------
+lecturer.lecture.button.create = Create
+lecturer.lecture.button.update = Update
+lecturer.lecture.button.delete = Delete
+lecturer.lecture.button.publish = Publish
