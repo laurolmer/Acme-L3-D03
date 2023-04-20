@@ -22,6 +22,9 @@
 	<acme:input-textbox code="auditor.audit.form.label.weakPoints" path="weakPoints"/>
 	<acme:input-textbox code="auditor.audit.form.label.released" path="draftMode" readonly="true"/>
 	<acme:input-select code="auditor.audit.form.label.courseCode" path="course" choices="${elecs}"/>
+	<jstl:if test="${_command != 'create'}">
+		<acme:button code="auditor.audit.form.button.auditRecords.list" action="/auditor/auditRecord/list?auditId=${id}"/>
+	</jstl:if>
 
 	<jstl:choose>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">

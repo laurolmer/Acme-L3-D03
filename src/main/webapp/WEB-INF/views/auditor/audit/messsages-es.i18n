@@ -35,3 +35,5 @@ auditor.audit.form.button.publish = Publicar
 auditor.audit.form.button.create = Crear
 
 auditor.audit.list.button.create = Create
+
+auditor.audit.form.button.auditRecords.list = Listado de registros de auditoría
