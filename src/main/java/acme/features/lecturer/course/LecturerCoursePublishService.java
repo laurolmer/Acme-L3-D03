@@ -71,7 +71,7 @@ public class LecturerCoursePublishService extends AbstractService<Lecturer, Cour
 
 		super.bind(object, "code", "title", "courseAbstract", "retailPrice", "link");
 		object.setDraftMode(false);
-		object.setCourseType(courseType);
+		//		object.setCourseType(courseType);
 	}
 
 	@Override

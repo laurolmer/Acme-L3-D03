@@ -5,10 +5,9 @@
 
 <acme:form>
 
-	<acme:hidden-data path="id"/>
 	<acme:input-textbox code="lecturer.course-ecture.label.course" path="courseCode" readonly="true"/>
 	<jstl:if test="${_command=='add'}">
-		<acme:input-select code="lecturer.course-ecture.label.lecture" path="lecture" choices="${lectures}"/>
+		<acme:input-select code="lecturer.course-ecture.label.lecture" path="lectureId" choices="${lectures}"/>
 		<acme:submit test="${_command=='add'}" code="lecturer.course-lecture.button.add" action="/lecturer/course-lecture/add?courseId=${courseId}"/>
 	</jstl:if>
 
