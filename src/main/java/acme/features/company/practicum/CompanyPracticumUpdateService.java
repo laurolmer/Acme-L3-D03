@@ -15,7 +15,7 @@ import acme.framework.services.AbstractService;
 import acme.roles.Company;
 
 @Service
-public class CompanyPracticumUpadteService extends AbstractService<Company, Practicum> {
+public class CompanyPracticumUpdateService extends AbstractService<Company, Practicum> {
 
 	// Internal state ---------------------------------------------------------
 	@Autowired
