@@ -39,6 +39,11 @@ master.menu.administrator.configuration = Show system configuration
 master.menu.authenticated = Authenticated
 master.menu.authenticated.note.list = List all notes
 
+# master.menu.bulletin ###################################################
+master.menu.bulletin = Bulletins
+master.menu.bulletin.list = List all bulletins
+master.menu.administrator.bulletin.form = Create a Bulletin
+
 # master.menu.assistant ###################################################
 
 master.menu.assistant = Assistant
@@ -49,6 +54,11 @@ master.menu.assistant.tutorial.list-all = List all tutorials
 
 master.menu.administrator.offer = Offers Administrator
 master.menu.administrator.offer.list = Offers list
+
+# master.menu.auditor ########################################################
+
+master.menu.auditor = Auditor
+master.menu.auditor.audit.list = My audits
 
 # master.menu.provider ########################################################
 

@@ -9,12 +9,11 @@
 # they accept any liabilities with respect to them.
 
 # Messages for label in form
-authenticated.practicum.form.label.code = Código
-authenticated.practicum.form.label.title = Título
-authenticated.practicum.form.label.abstractPracticum = Resumen práctica
-authenticated.practicum.form.label.nameCompany = Nombre de la compañía
+administrator.bulletin.form.label.moment = Momento
+administrator.bulletin.form.label.title = Título
+administrator.bulletin.form.label.message = Mensaje
+administrator.bulletin.form.label.critical = Crítico
+administrator.bulletin.form.label.link = Link
 
-# Messages for label in list
-authenticated.practicum.list.label.code = Código
-authenticated.practicum.list.label.title = Título
-authenticated.practicum.list.label.abstractPracticum = Resumen práctica
+administrator.bulletin.form.button.create = Crear
+administrator.bulletin.form.label.confirmation = Confirmar

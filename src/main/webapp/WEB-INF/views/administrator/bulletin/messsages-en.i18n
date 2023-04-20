@@ -1,4 +1,4 @@
-# messages-es.i18n
+# messages-en.i18n
 #
 # Copyright (C) 2012-2023 Rafael Corchuelo.
 #
@@ -9,12 +9,11 @@
 # they accept any liabilities with respect to them.
 
 # Messages for label in form
-authenticated.practicum.form.label.code = Código
-authenticated.practicum.form.label.title = Título
-authenticated.practicum.form.label.abstractPracticum = Resumen práctica
-authenticated.practicum.form.label.nameCompany = Nombre de la compañía
+administrator.bulletin.form.label.moment = Moment
+administrator.bulletin.form.label.title = Title
+administrator.bulletin.form.label.message = Message
+administrator.bulletin.form.label.critical = Critical
+administrator.bulletin.form.label.link = Link
 
-# Messages for label in list
-authenticated.practicum.list.label.code = Código
-authenticated.practicum.list.label.title = Título
-authenticated.practicum.list.label.abstractPracticum = Resumen práctica
+administrator.bulletin.form.button.create = Create
+administrator.bulletin.form.label.confirmation = Confirm
