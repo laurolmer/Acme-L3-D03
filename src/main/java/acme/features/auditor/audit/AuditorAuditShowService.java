@@ -57,7 +57,7 @@ public class AuditorAuditShowService extends AbstractService<Auditor, Audit> {
 		assert object != null;
 
 		Tuple tuple;
-		final List<Course> ls = this.repository.findAllCoursesPublished();
+		final List<Course> ls = this.repository.findAllCourses();
 		final SelectChoices elec = SelectChoices.from(ls, "code", object.getCourse());
 		tuple = super.unbind(object, "code", "conclusion", "strongPoints", "weakPoints");
 		tuple.put("draftMode", object.isDraftMode());

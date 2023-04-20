@@ -8,7 +8,6 @@ import acme.entities.auditRecord.AuditRecord;
 import acme.entities.auditRecord.MarkType;
 import acme.framework.components.jsp.SelectChoices;
 import acme.framework.components.models.Tuple;
-import acme.framework.helpers.MomentHelper;
 import acme.framework.services.AbstractService;
 import acme.roles.Auditor;
 
@@ -48,15 +47,12 @@ public class AuditorAuditRecordShowService extends AbstractService<Auditor, Audi
 	@Override
 	public void unbind(final AuditRecord object) {
 		assert object != null;
-		final String format = "dd/MM/yyyy hh:mm";
 		Tuple tuple;
 		final SelectChoices choices = SelectChoices.from(MarkType.class, object.getMark());
-		tuple = super.unbind(object, "subject", "assesment", "link");
-		tuple.put("marks", choices);
+		tuple = super.unbind(object, "subject", "assesment", "periodStart", "periodFin", "link");
+		tuple.put("elecs", choices);
 		tuple.put("draftMode", object.isDraftMode());
-		tuple.put("confirmated", object.isConfirmated());
-		tuple.put("periodFin", MomentHelper.format(format, object.getPeriodFin()));
-		tuple.put("periodStart", MomentHelper.format(format, object.getPeriodStart()));
+		tuple.put("correction", object.isCorrection());
 		tuple.put("hours", object.getARDuration());
 
 		super.getResponse().setData(tuple);

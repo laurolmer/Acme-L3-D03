@@ -22,7 +22,7 @@ auditor.auditRecord.form.label.subject = Asignatura
 auditor.auditRecord.form.label.assesment = Evaluación
 auditor.auditRecord.form.label.link = Link
 auditor.auditRecord.form.label.mark = Nota
-auditor.auditRecord.form.label.released = Publicado
+auditor.auditRecord.form.label.released = Borrador
 auditor.auditRecord.form.label.confirmated = Confirmado
 auditor.auditRecord.form.label.periodStart= Hora de inicio
 auditor.auditRecord.form.label.periodFin = Hora de finalización
@@ -33,8 +33,11 @@ auditor.audit.form.button.delete = Borrar
 auditor.audit.form.button.publish = Publicar
 auditor.audit.form.button.create = Crear
 
+auditor.auditRecord.form.button.confirmation = Confirmar
+auditor.auditRecord.form.button.correction = Correción
 auditor.audit.list.button.create = Create
 
 auditor.auditRecord.announce.updated = Este registro de auditoría ha sido modificado después de su publicación
 auditor.auditRecord.error.date.StartFinError = La fecha de finalicación no debe fijarse antes que la de inicio.
 auditor.auditingrecord.error.date.oneHourRule = El tiempo total debe ser de mas de una hora
+auditor.auditRecord.correction.confirmation = Registro de auditoría para correción

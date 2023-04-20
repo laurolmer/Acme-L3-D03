@@ -22,8 +22,9 @@
 	<acme:input-textbox code="auditor.audit.form.label.weakPoints" path="weakPoints"/>
 	<acme:input-textbox code="auditor.audit.form.label.released" path="draftMode" readonly="true"/>
 	<acme:input-select code="auditor.audit.form.label.courseCode" path="course" choices="${elecs}"/>
+	
 	<jstl:if test="${_command != 'create'}">
-		<acme:button code="auditor.audit.form.button.auditRecords.list" action="/auditor/auditRecord/list?auditId=${id}"/>
+		<acme:button code="auditor.audit.form.button.auditRecords.list" action="/auditor/audit-record/list?auditId=${id}"/>		
 	</jstl:if>
 
 	<jstl:choose>
@@ -31,7 +32,11 @@
 			<acme:submit code="auditor.audit.form.button.update" action="/auditor/audit/update"/>
 			<acme:submit code="auditor.audit.form.button.delete" action="/auditor/audit/delete"/>
 			<acme:submit code="auditor.audit.form.button.publish" action="/auditor/audit/publish"/>
-			
+			<acme:button code="auditor.audit.form.button.auditRecords.create" action="/auditor/audit-record/create?auditId=${id}"/>
+		</jstl:when>
+		
+		<jstl:when test="${_command == 'show' && draftMode == false}">
+			<acme:button code="auditor.audit.form.button.addCorrect" action="/auditor/audit-record/correction?auditId=${id}"/>
 		</jstl:when>	
 		
 		<jstl:when test="${_command == 'create'}">

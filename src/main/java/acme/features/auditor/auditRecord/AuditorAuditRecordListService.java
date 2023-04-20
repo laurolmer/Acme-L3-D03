@@ -18,8 +18,6 @@ public class AuditorAuditRecordListService extends AbstractService<Auditor, Audi
 	@Autowired
 	protected AuditorAuditRecordRepository repository;
 
-	// AbstractService interface ----------------------------------------------
-
 
 	@Override
 	public void check() {

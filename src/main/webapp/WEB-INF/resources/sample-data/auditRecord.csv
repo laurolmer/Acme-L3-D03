@@ -1,4 +1,4 @@
-key,subject,assesment,period-start,period-fin,mark,link,draft-mode,confirmated,key:audit
+key,subject,assesment,period-start,period-fin,mark,link,draft-mode,correction,key:audit
 auditing-record-01,E,texto de prueba,1990/01/15 09:20,1990/01/15 09:20,APLUS,https://github.com/laurolmer/Acme-L3-D02,false,false,audit-01
 auditing-record-02,Es,texto de prueba,1990/01/15 09:20,1990/01/15 09:20,APLUS,https://github.com/laurolmer/Acme-L3-D02,false,false,audit-01
 auditing-record-03,La frase contiene 40 caracteres en total,texto de prueba,1990/01/15 09:20,1990/01/15 09:20,APLUS,https://github.com/laurolmer/Acme-L3-D02,false,false,audit-01
@@ -43,4 +43,3 @@ auditing-record-41,texto de prueba,texto de prueba,1990/01/15 09:20,1990/01/15 0
 auditing-record-42,texto de prueba,texto de prueba,1990/01/15 09:20,1990/01/15 09:20,APLUS,https://github.com/laurolmer/Acme-L3-D02,false,false,audit-02
 auditing-record-43,texto de prueba,texto de prueba,1990/01/15 09:20,1990/01/15 09:20,APLUS,https://github.com/laurolmer/Acme-L3-D02,true,false,audit-02
 auditing-record-44,texto de prueba,texto de prueba,1990/01/15 09:20,1990/01/15 09:20,APLUS,https://github.com/laurolmer/Acme-L3-D02,true,true,audit-02
-

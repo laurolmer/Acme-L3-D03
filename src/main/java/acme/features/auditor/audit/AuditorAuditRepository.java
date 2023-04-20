@@ -42,6 +42,9 @@ public interface AuditorAuditRepository extends AbstractRepository {
 	@Query("select C from Course C where C.draftMode = false")
 	List<Course> findAllCoursesPublished();
 
+	@Query("select C from Course C")
+	List<Course> findAllCourses();
+
 	@Query("select AR from AuditRecord AR where AR.audit.id = :aid")
 	List<AuditRecord> findAllAuditRecordsByAId(int aid);
 }

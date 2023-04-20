@@ -18,7 +18,3 @@
     <acme:list-column code="auditor.auditRecord.list.label.hours" path="hours"/>
     <acme:list-column code="auditor.auditRecord.list.label.mark" path="mark"/> 
 </acme:list>
-
-<jstl:if test="${_command == 'list'}">
-	<acme:button code="auditor.auditRecord.list.button.create" action="/auditor/auditRecord/create"/>
-</jstl:if>

@@ -53,11 +53,11 @@ public class AuditorAuditRecordCreateService extends AbstractService<Auditor, Au
 		final int aid = super.getRequest().getData("auditId", int.class);
 		final Audit audit = this.repository.findAuditById(aid);
 		final String mark = super.getRequest().getData("mark", String.class);
-		super.bind(object, "subject", "assesment", "link", "periodStart", "periodFin");
+		super.bind(object, "subject", "assesment", "periodStart", "periodFin", "link");
 		object.setMark(MarkType.transform(mark));
 		object.setAudit(audit);
 		object.setDraftMode(true);
-		object.setConfirmated(false);
+		object.setCorrection(false);
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class AuditorAuditRecordCreateService extends AbstractService<Auditor, Au
 			if (!MomentHelper.isBefore(object.getPeriodStart(), object.getPeriodFin()))
 				super.state(false, "periodStart", "auditor.auditRecord.error.date.StartFinError");
 			else
-				super.state(!(object.getARDuration() < 1), "startDate", "auditor.auditingrecord.error.date.oneHourRule");
+				super.state(!(object.getARDuration() <= 1), "periodStart", "auditor.auditRecord.error.date.oneHourRule");
 
 	}
 
@@ -84,7 +84,7 @@ public class AuditorAuditRecordCreateService extends AbstractService<Auditor, Au
 
 		final Tuple tuple;
 		final SelectChoices elecs = SelectChoices.from(MarkType.class, object.getMark());
-		tuple = super.unbind(object, "subject", "assessment", "link", "mark", "startDate", "finishDate");
+		tuple = super.unbind(object, "subject", "assesment", "periodStart", "periodFin", "mark", "link");
 		tuple.put("elecs", elecs);
 		tuple.put("auditId", super.getRequest().getData("auditId", int.class));
 
