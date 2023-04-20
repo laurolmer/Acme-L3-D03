@@ -1,5 +1,5 @@
 /*
- * StudentCourseRepository.java
+ * StudentLectureRepository.java
  *
  * Copyright (C) 2012-2023 Rafael Corchuelo.
  *
@@ -10,29 +10,19 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.student.course;
+package acme.features.student.lecture;
 
 import java.util.Collection;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import acme.entities.course.Course;
+import acme.entities.course.CourseLecture;
 import acme.framework.repositories.AbstractRepository;
-import acme.roles.Lecturer;
 
 @Repository
-public interface StudentCourseRepository extends AbstractRepository {
+public interface StudentLectureRepository extends AbstractRepository {
 
-	@Query("select c from Course c")
-	Collection<Course> findAllCourses();
-
-	@Query("select c from Course c where c.draftMode = false")
-	Collection<Course> findNotInDraftCourses();
-
-	@Query("select l from Lecturer l where l.id = :id")
-	Lecturer findLecturerById(int id);
-
-	@Query("select c from Course c where c.id = :id")
-	Course findCourseById(int id);
+	@Query("SELECT cl FROM CourseLecture cl WHERE cl.course.id = :id")
+	Collection<CourseLecture> findCourseLectureByCourseId(int id);
 }

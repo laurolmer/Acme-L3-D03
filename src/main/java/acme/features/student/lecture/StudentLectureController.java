@@ -1,5 +1,5 @@
 /*
- * StudentCourseController.java
+ * StudentLectureController.java
  *
  * Copyright (C) 2012-2023 Rafael Corchuelo.
  *
@@ -10,30 +10,26 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.student.course;
+package acme.features.student.lecture;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import acme.entities.course.Course;
+import acme.entities.lecture.Lecture;
 import acme.framework.controllers.AbstractController;
 import acme.roles.Student;
 
 @Controller
-public class StudentCourseController extends AbstractController<Student, Course> {
+public class StudentLectureController extends AbstractController<Student, Lecture> {
 
 	@Autowired
-	protected StudentCourseListService	listService;
-
-	@Autowired
-	protected StudentCourseShowService	showService;
+	protected StudentLectureListService listService;
 
 
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
-		super.addBasicCommand("show", this.showService);
 	}
 }
