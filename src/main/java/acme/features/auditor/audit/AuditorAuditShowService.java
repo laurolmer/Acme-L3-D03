@@ -63,6 +63,7 @@ public class AuditorAuditShowService extends AbstractService<Auditor, Audit> {
 		tuple.put("draftMode", object.isDraftMode());
 		tuple.put("course", elec.getSelected().getKey());
 		tuple.put("elecs", elec);
+		tuple.put("published", !object.isDraftMode());
 		super.getResponse().setData(tuple);
 	}
 }

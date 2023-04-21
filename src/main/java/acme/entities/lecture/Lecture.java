@@ -55,25 +55,26 @@ public class Lecture extends AbstractEntity {
 	protected LectureType		lectureType;
 
 	@URL
-	protected String link;
-	
+	protected String			link;
+
 	@ManyToOne(optional = false)
 	@NotNull
 	@Valid
-	protected Lecturer lecturer;
-	
-	protected boolean draftMode;
-	
-//	Methods ---------------------------------------------------
-	
+	protected Lecturer			lecturer;
+
+	protected boolean			draftMode;
+
+	//	Methods ---------------------------------------------------
+
+
 	public double computeEstimatedLearningTime() {
-		long estimatedLearningTime = 0L;
+		double estimatedLearningTime;
 		Duration timeBetween;
-		
+
 		timeBetween = MomentHelper.computeDuration(this.startPeriod, this.endPeriod);
-		estimatedLearningTime = timeBetween.toMinutes();
-		
+		estimatedLearningTime = timeBetween.toHours();
+
 		return estimatedLearningTime;
 	}
-	
+
 }

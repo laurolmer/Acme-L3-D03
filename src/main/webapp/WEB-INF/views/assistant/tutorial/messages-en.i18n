@@ -13,6 +13,7 @@ assistant.tutorial.form.label.title = Title
 assistant.tutorial.form.label.abstractTutorial = Abstract
 assistant.tutorial.form.label.goals = Goals
 assistant.tutorial.form.label.course = Course
+assistant.tutorial.form.label.draftMode = Published
 
 assistant.tutorial.form.button.create = Create
 assistant.tutorial.form.button.update = Update

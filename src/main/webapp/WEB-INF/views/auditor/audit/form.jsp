@@ -16,11 +16,11 @@
 <%@taglib prefix="acme" uri="http://www.the-acme-framework.org/"%>
 
 <acme:form>
+	<acme:input-checkbox code="auditor.audit.form.label.draftMode" path="published" readonly="true"/>
 	<acme:input-textbox code="auditor.audit.form.label.code" path="code"/>
 	<acme:input-textbox code="auditor.audit.form.label.conclusion" path="conclusion"/>
 	<acme:input-textbox code="auditor.audit.form.label.strongPoints" path="strongPoints"/>
 	<acme:input-textbox code="auditor.audit.form.label.weakPoints" path="weakPoints"/>
-	<acme:input-textbox code="auditor.audit.form.label.released" path="draftMode" readonly="true"/>
 	<acme:input-select code="auditor.audit.form.label.courseCode" path="course" choices="${elecs}"/>
 
 	<jstl:choose>

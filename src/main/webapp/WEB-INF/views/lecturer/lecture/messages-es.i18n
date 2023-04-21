@@ -1,4 +1,5 @@
 # FORM -------------------------------------------------------------
+lecturer.lecture.label.draftMode = Publicado
 lecturer.lecture.label.title = Título
 lecturer.lecture.label.lectureAbstract = Resumen
 lecturer.lecture.label.body = Detalles

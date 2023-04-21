@@ -1,4 +1,5 @@
 # FORM -------------------------------------------------------------
+lecturer.lecture.label.draftMode = Published
 lecturer.lecture.label.title = Lecture title
 lecturer.lecture.label.lectureAbstract = Lecture abstract
 lecturer.lecture.label.body = Details
