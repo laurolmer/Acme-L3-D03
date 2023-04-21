@@ -13,6 +13,7 @@ company.practicum.form.label.title = Título
 company.practicum.form.label.abstractPracticum = Abstracto
 company.practicum.form.label.goals = Objetivos
 company.practicum.form.label.course = Curso
+company.practicum.form.label.draftMode = Publicado
 
 company.practicum.form.button.create = Crear
 company.practicum.form.button.update = Actualizar

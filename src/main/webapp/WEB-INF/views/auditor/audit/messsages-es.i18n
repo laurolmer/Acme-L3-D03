@@ -17,7 +17,7 @@ auditor.audit.list.label.conclusion = Conclusion
 auditor.audit.list.label.courseId = Id del curso
 auditor.audit.list.label.courseCode = Código del curso
 auditor.audit.list.label.course = Curso
-auditor.audit.list.label.released = Borrador
+auditor.audit.form.label.draftMode = Publicado
 
 
 # Messages for label in form

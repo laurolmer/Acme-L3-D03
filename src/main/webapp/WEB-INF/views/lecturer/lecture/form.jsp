@@ -6,10 +6,10 @@
 <acme:form>
 
 	<acme:hidden-data path="id"/>
-	
+	<acme:input-checkbox code="lecturer.lecture.label.draftMode" path="published" readonly="true"/>
 	<acme:input-textbox code="lecturer.lecture.label.title" path="title"/>
 	<acme:input-textbox code="lecturer.lecture.label.lectureAbstract" path="lectureAbstract"/>	
-	<acme:input-integer code="lecturer.lecture.label.estimatedLearningTime" path="estimatedLearningTime"/>
+	<acme:input-double code="lecturer.lecture.label.estimatedLearningTime" path="estimatedLearningTime"/>
 	<acme:input-textbox code="lecturer.lecture.label.body" path="body"/>
 	<acme:input-select code="lecturer.lecture.label.lectureType" path="lectureType" choices="${lectureTypes}"/>
 

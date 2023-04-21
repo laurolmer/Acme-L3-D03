@@ -17,6 +17,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <acme:form>
+			
+			<acme:input-checkbox code="student.enrolment.form.label.draftMode" path="published" readonly="true"/>
 			<acme:input-textbox code="student.enrolment.form.label.code" path="code"/>
 			<acme:input-textbox code="student.enrolment.form.label.motivation" path="motivation"/>
 			<acme:input-textbox code="student.enrolment.form.label.goals" path="goals"/>

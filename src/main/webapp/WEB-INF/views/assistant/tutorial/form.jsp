@@ -16,6 +16,7 @@
 <%@taglib prefix="acme" uri="http://www.the-acme-framework.org/"%>
 
 <acme:form> 
+	<acme:input-checkbox code="assistant.tutorial.form.label.draftMode" path="published" readonly="true"/>
 	<acme:input-textbox code="assistant.tutorial.form.label.code" path="code"/>
 	<acme:input-textbox code="assistant.tutorial.form.label.title" path="title"/>
 	<acme:input-textarea code="assistant.tutorial.form.label.abstractTutorial" path="abstractTutorial"/>

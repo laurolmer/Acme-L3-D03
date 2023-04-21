@@ -65,6 +65,7 @@ public class AuditorAuditShowService extends AbstractService<Auditor, Audit> {
 		tuple.put("draftMode", object.isDraftMode());
 		tuple.put("course", elec.getSelected().getKey());
 		tuple.put("elecs", elec);
+		tuple.put("published", !object.isDraftMode());
 		if (allMarks != null && !allMarks.isEmpty())
 			tuple.put("allMarks", allMarks.stream().map(MarkType::toString).collect(Collectors.joining(", ", "[ ", " ]")));
 		else

@@ -63,15 +63,9 @@ public class LecturerCoursePublishService extends AbstractService<Lecturer, Cour
 	@Override
 	public void bind(final Course object) {
 		assert object != null;
-		final Collection<Lecture> lectures;
-		final CourseType courseType;
-
-		lectures = this.repository.findLecturesByCourseId(object.getId());
-		courseType = object.computeCourseType(lectures);
 
 		super.bind(object, "code", "title", "courseAbstract", "retailPrice", "link");
 		object.setDraftMode(false);
-		//		object.setCourseType(courseType);
 	}
 
 	@Override
@@ -82,12 +76,12 @@ public class LecturerCoursePublishService extends AbstractService<Lecturer, Cour
 		boolean publishedLectures;
 
 		lectures = this.repository.findLecturesByCourseId(object.getId());
-		super.state(lectures.isEmpty(), "courseType", "lecturer.course.form.error.nolecture");
+		super.state(!lectures.isEmpty(), "courseType", "lecturer.course.form.error.nolecture");
 		if (!lectures.isEmpty()) {
 			handOnLectureInCourse = lectures.stream().anyMatch(l -> l.getLectureType().equals(LectureType.HANDS_ON));
 			super.state(handOnLectureInCourse, "courseType", "lecturer.course.form.error.nohandson");
 
-			publishedLectures = lectures.stream().allMatch(l -> l.isDraftMode() == false);
+			publishedLectures = lectures.stream().allMatch(l -> !l.isDraftMode());
 			super.state(publishedLectures, "courseType", "lecturer.course.form.error.lecturenotpublished");
 		}
 	}
@@ -104,12 +98,16 @@ public class LecturerCoursePublishService extends AbstractService<Lecturer, Cour
 		Tuple tuple;
 		final Collection<Lecture> lectures;
 		final CourseType courseType;
+		final Double estimatedTotalTime;
 
 		lectures = this.repository.findLecturesByCourseId(object.getId());
 		courseType = object.computeCourseType(lectures);
+		estimatedTotalTime = object.computeEstimatedTotalTime(lectures);
 
 		tuple = super.unbind(object, "code", "title", "courseAbstract", "retailPrice", "link");
 		tuple.put("courseType", courseType);
+		tuple.put("estimatedTotalTime", estimatedTotalTime);
+		tuple.put("published", !object.isDraftMode());
 		super.getResponse().setData(tuple);
 	}
 }
