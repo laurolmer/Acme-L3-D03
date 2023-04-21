@@ -1,11 +1,13 @@
 
 package acme.form;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class Statistic {
 
 	// Serialisation identifier -----------------------------------------------

@@ -43,6 +43,8 @@ master.menu.provider.favourite-link = Favourite Link
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 
+master.menu.assistant.dashboard = Assistant's Dashboard
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account
