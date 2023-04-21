@@ -96,5 +96,4 @@ public class AssistantTutorialDeleteService extends AbstractService<Assistant, T
 		tuple.put("courses", choices);
 		super.getResponse().setData(tuple);
 	}
-
 }
