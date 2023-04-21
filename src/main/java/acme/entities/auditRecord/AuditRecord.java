@@ -1,12 +1,14 @@
 
 package acme.entities.auditRecord;
 
+import java.time.Duration;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -17,6 +19,7 @@ import org.hibernate.validator.constraints.URL;
 
 import acme.entities.audit.Audit;
 import acme.framework.data.AbstractEntity;
+import acme.framework.helpers.MomentHelper;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,7 +40,6 @@ public class AuditRecord extends AbstractEntity {
 
 	@PastOrPresent
 	@Temporal(TemporalType.TIMESTAMP)
-	//Falta la custom @ asi que aun no se puede.
 	@NotNull
 	protected Date				periodStart;
 
@@ -53,9 +55,21 @@ public class AuditRecord extends AbstractEntity {
 	protected String			link;
 
 	protected boolean			draftMode;
+
+	protected boolean			correction;
+
 	//Relaciones
 	@Valid
 	@NotNull
 	@ManyToOne(optional = false)
 	protected Audit				audit;
+
+	//Derivados
+
+
+	@Transient
+	public Double getARDuration() {
+		final Duration duration = MomentHelper.computeDuration(this.periodStart, this.periodFin);
+		return duration.getSeconds() / 3600.0;
+	}
 }

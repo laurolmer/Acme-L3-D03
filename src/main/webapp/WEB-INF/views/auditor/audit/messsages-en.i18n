@@ -17,7 +17,7 @@ auditor.audit.list.label.conclusion = Conclusion
 auditor.audit.list.label.courseId = Course Id
 auditor.audit.list.label.courseCode = Course Code
 auditor.audit.list.label.course = Course
-auditor.audit.list.label.released = Released
+auditor.audit.list.label.released = Draft
 
 
 # Messages for label in form
@@ -35,3 +35,8 @@ auditor.audit.form.button.publish = Publish
 auditor.audit.form.button.create = Create
 
 auditor.audit.list.button.create = Create
+auditor.audit.form.button.addCorrect = Add correction
+
+
+auditor.audit.form.button.auditRecords.list = Audit Records list
+auditor.audit.form.button.auditRecords.create = Audit Record create

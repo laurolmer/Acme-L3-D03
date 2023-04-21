@@ -17,7 +17,7 @@ auditor.audit.list.label.conclusion = Conclusion
 auditor.audit.list.label.courseId = Id del curso
 auditor.audit.list.label.courseCode = Código del curso
 auditor.audit.list.label.course = Curso
-auditor.audit.list.label.released = Publicado
+auditor.audit.list.label.released = Borrador
 
 
 # Messages for label in form
@@ -35,3 +35,7 @@ auditor.audit.form.button.publish = Publicar
 auditor.audit.form.button.create = Crear
 
 auditor.audit.list.button.create = Create
+auditor.audit.form.button.addCorrect = Añadir Correción
+
+auditor.audit.form.button.auditRecords.list = Listado de registros de auditoría
+auditor.audit.form.button.auditRecords.create = Creacion de registro de auditoría
