@@ -44,7 +44,7 @@ public class AuthenticatedBulletinShowService extends AbstractService<Authentica
 
 		Tuple tuple;
 
-		tuple = super.unbind(object, "title", "message", "critical", "link");
+		tuple = super.unbind(object, "title", "moment", "message", "critical", "link");
 
 		super.getResponse().setData(tuple);
 	}

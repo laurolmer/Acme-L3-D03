@@ -20,7 +20,7 @@
 	<acme:input-textbox code="administrator.bulletin.form.label.title" path="title"/>
 	<acme:input-textbox code="administrator.bulletin.form.label.message" path="message"/>
 	<acme:input-checkbox code="administrator.bulletin.form.label.critical" path="critical"/>
-	<acme:input-textbox code="administrator.bulletin.form.label.link" path="url"/>
+	<acme:input-url code="administrator.bulletin.form.label.link" path="link"/>
 
 	<jstl:choose> 
 		<jstl:when test="${_command == 'create'}">

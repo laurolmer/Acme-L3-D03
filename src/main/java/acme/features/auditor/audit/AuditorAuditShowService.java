@@ -2,11 +2,13 @@
 package acme.features.auditor.audit;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.audit.Audit;
+import acme.entities.auditRecord.MarkType;
 import acme.entities.course.Course;
 import acme.framework.components.jsp.SelectChoices;
 import acme.framework.components.models.Tuple;
@@ -55,15 +57,19 @@ public class AuditorAuditShowService extends AbstractService<Auditor, Audit> {
 	@Override
 	public void unbind(final Audit object) {
 		assert object != null;
-
+		final List<MarkType> allMarks = this.repository.findMarksByAuditId(object.getId());
 		Tuple tuple;
-		final List<Course> ls = this.repository.findAllCoursesPublished();
+		final List<Course> ls = this.repository.findAllCourses();
 		final SelectChoices elec = SelectChoices.from(ls, "code", object.getCourse());
 		tuple = super.unbind(object, "code", "conclusion", "strongPoints", "weakPoints");
 		tuple.put("draftMode", object.isDraftMode());
 		tuple.put("course", elec.getSelected().getKey());
 		tuple.put("elecs", elec);
 		tuple.put("published", !object.isDraftMode());
+		if (allMarks != null && !allMarks.isEmpty())
+			tuple.put("allMarks", allMarks.stream().map(MarkType::toString).collect(Collectors.joining(", ", "[ ", " ]")));
+		else
+			tuple.put("allMarks", "N/A");
 		super.getResponse().setData(tuple);
 	}
 }

@@ -20,6 +20,6 @@
 	<acme:input-textbox code="authenticated.bulletin.form.label.title" path="title"/>
 	<acme:input-textbox code="authenticated.bulletin.form.label.message" path="message"/>
 	<acme:input-checkbox code="authenticated.bulletin.form.label.critical" path="critical"/>
-	<acme:input-textbox code="authenticated.bulletin.form.label.link" path="url"/>
+	<acme:input-textbox code="authenticated.bulletin.form.label.link" path="link"/>
 
 </acme:form>

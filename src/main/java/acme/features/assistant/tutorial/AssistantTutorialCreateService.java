@@ -97,5 +97,4 @@ public class AssistantTutorialCreateService extends AbstractService<Assistant, T
 		tuple.put("courses", choices);
 		super.getResponse().setData(tuple);
 	}
-
 }
