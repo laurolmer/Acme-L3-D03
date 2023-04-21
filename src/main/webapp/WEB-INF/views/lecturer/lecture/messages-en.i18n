@@ -1,0 +1,12 @@
+# FORM -------------------------------------------------------------
+lecturer.lecture.label.title = Lecture title
+lecturer.lecture.label.lectureAbstract = Lecture abstract
+lecturer.lecture.label.body = Details
+lecturer.lecture.label.lectureType = Type
+lecturer.lecture.label.estimatedLearningTime = Lecture learning time
+
+# LECTURER.LECTURE BUTTONS -----------------------------------------
+lecturer.lecture.button.create = Create
+lecturer.lecture.button.update = Update
+lecturer.lecture.button.delete = Delete
+lecturer.lecture.button.publish = Publish
