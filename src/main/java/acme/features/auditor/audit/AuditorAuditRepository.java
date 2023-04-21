@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import acme.entities.audit.Audit;
 import acme.entities.auditRecord.AuditRecord;
+import acme.entities.auditRecord.MarkType;
 import acme.entities.course.Course;
 import acme.framework.repositories.AbstractRepository;
 import acme.roles.Auditor;
@@ -47,4 +48,7 @@ public interface AuditorAuditRepository extends AbstractRepository {
 
 	@Query("select AR from AuditRecord AR where AR.audit.id = :aid")
 	List<AuditRecord> findAllAuditRecordsByAId(int aid);
+
+	@Query("select AR.mark from AuditRecord AR where AR.audit.id = :aid")
+	List<MarkType> findMarksByAuditId(int aid);
 }

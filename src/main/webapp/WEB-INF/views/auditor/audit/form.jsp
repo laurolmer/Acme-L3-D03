@@ -20,6 +20,9 @@
 	<acme:input-textbox code="auditor.audit.form.label.conclusion" path="conclusion"/>
 	<acme:input-textbox code="auditor.audit.form.label.strongPoints" path="strongPoints"/>
 	<acme:input-textbox code="auditor.audit.form.label.weakPoints" path="weakPoints"/>
+	<jstl:if test="${_command != 'create' && allMarks != null}">
+		<acme:input-textarea code="auditor.audit.form.label.marks" path="allMarks" readonly="true"/>
+	</jstl:if>
 	<acme:input-textbox code="auditor.audit.form.label.released" path="draftMode" readonly="true"/>
 	<acme:input-select code="auditor.audit.form.label.courseCode" path="course" choices="${elecs}"/>
 	

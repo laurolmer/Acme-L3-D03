@@ -18,7 +18,7 @@
 <jstl:if test="${correction != null && correction == true}">
 	<div style="margin-bottom: 5%;">
 		<h2>
-			<acme:message code="auditor.auditRecord.announce.updated"/>
+			<acme:message code="auditor.auditRecord.announce.correction"/>
 		</h2>
 	</div>
 </jstl:if>
