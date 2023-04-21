@@ -14,7 +14,6 @@
 
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="http://www.the-acme-framework.org/"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <acme:form>
 			<acme:input-textbox code="student.enrolment.form.label.code" path="code"/>
@@ -30,11 +29,9 @@
 
 	
 	<jstl:choose>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|update')}">	
-		<c:if test="${draftMode}">
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|update') && draftMode == true}">	
             <acme:submit code="student.enrolment.form.button.update" action="/student/enrolment/update"/>
 			<acme:submit code="student.enrolment.form.button.delete" action="/student/enrolment/delete"/>
-        </c:if>
 			<acme:submit code="student.enrolment.form.button.finalize" action="/student/enrolment/finalize"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">

@@ -72,6 +72,7 @@ public class StudentEnrolmentCreateService extends AbstractService<Student, Enro
 		courseId = super.getRequest().getData("course", int.class);
 		course = this.repository.findCourseById(courseId);
 		super.bind(object, "code", "motivation", "goals");
+		object.setDraftMode(true);
 		object.setStudent(student);
 		object.setCourse(course);
 	}
@@ -100,7 +101,7 @@ public class StudentEnrolmentCreateService extends AbstractService<Student, Enro
 		Collection<Course> courses;
 		Tuple tuple;
 		courses = this.repository.findNotInDraftCourses();
-		choices = SelectChoices.from(courses, "title", object.getCourse());
+		choices = SelectChoices.from(courses, "code", object.getCourse());
 		tuple = super.unbind(object, "code", "motivation", "goals", "course");
 		tuple.put("course", choices.getSelected().getKey());
 		tuple.put("courses", choices);

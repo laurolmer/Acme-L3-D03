@@ -51,7 +51,7 @@ public class StudentEnrolmentUpdateService extends AbstractService<Student, Enro
 		enrolmentId = super.getRequest().getData("id", int.class);
 		enrolment = this.repository.findEnrolmentById(enrolmentId);
 		student = enrolment == null ? null : enrolment.getStudent();
-		status = (enrolment != null || super.getRequest().getPrincipal().hasRole(student)) && enrolment.isDraftMode();
+		status = enrolment != null && !enrolment.isDraftMode() || super.getRequest().getPrincipal().hasRole(student);
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -88,6 +88,8 @@ public class StudentEnrolmentUpdateService extends AbstractService<Student, Enro
 			otherEnrolment = this.repository.findAEnrolmentByCode(object.getCode());
 			super.state(otherEnrolment == null || otherEnrolment.getCode().equals(object.getCode()) && otherEnrolment.getId() == object.getId(), "code", "student.enrolment.form.error.code");
 		}
+		if (!super.getBuffer().getErrors().hasErrors("course"))
+			super.state(!object.getCourse().isDraftMode(), "course", "student.enrolment.error.course-in-draft");
 	}
 
 	@Override
@@ -102,11 +104,10 @@ public class StudentEnrolmentUpdateService extends AbstractService<Student, Enro
 		SelectChoices choices;
 		Collection<Course> courses;
 		Tuple tuple;
-		if (object.getHolderName() != null && object.getLowerNibble() != null)
-			object.setDraftMode(false);
 		courses = this.repository.findNotInDraftCourses();
-		choices = SelectChoices.from(courses, "title", object.getCourse());
+		choices = SelectChoices.from(courses, "code", object.getCourse());
 		tuple = super.unbind(object, "code", "motivation", "goals", "course");
+		tuple.put("draftMode", object.isDraftMode());
 		tuple.put("course", choices.getSelected().getKey());
 		tuple.put("courses", choices);
 		super.getResponse().setData(tuple);
