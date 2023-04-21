@@ -38,30 +38,30 @@ public class AssistantTutorialSessionListService extends AbstractService<Assista
 		tutorialId = super.getRequest().getData("masterId", int.class);
 		tutorial = this.repository.findTutorialById(tutorialId);
 		principal = super.getRequest().getPrincipal();
-		status = tutorial != null && !(tutorial.isDraftMode() || principal.hasRole(Assistant.class));
+		status = tutorial != null && (!tutorial.isDraftMode() || principal.hasRole(Assistant.class));
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Collection<TutorialSession> tutorialSessions;
+		Collection<TutorialSession> tutorialSession;
 		int tutorialId;
 		tutorialId = super.getRequest().getData("masterId", int.class);
-		tutorialSessions = this.repository.findAllSessionsByTutorialId(tutorialId);
-		super.getBuffer().setData(tutorialSessions);
+		tutorialSession = this.repository.findAllSessionsByTutorialId(tutorialId);
+		super.getBuffer().setData(tutorialSession);
 	}
 
 	@Override
 	public void unbind(final TutorialSession tutorialSession) {
 		assert tutorialSession != null;
 		Tuple tuple;
-		tuple = super.unbind(tutorialSession, "title", "abstractSession", "sessionType", "startPeriod", "finishPeriod", "link");
+		tuple = super.unbind(tutorialSession, "title", "abstractSession", "sessionType", "startPeriod", "finishPeriod", "link", "draftMode");
 		super.getResponse().setData(tuple);
 	}
 
 	@Override
-	public void unbind(final Collection<TutorialSession> tutorialSessions) {
-		assert tutorialSessions != null;
+	public void unbind(final Collection<TutorialSession> tutorialSession) {
+		assert tutorialSession != null;
 		int tutorialId;
 		final Tutorial tutorial;
 		final boolean showCreate;

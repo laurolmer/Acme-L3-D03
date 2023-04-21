@@ -1,6 +1,4 @@
 <%--
-- list.jsp
--
 - Copyright (C) 2012-2023 Rafael Corchuelo.
 -
 - In keeping with the traditional purpose of furthering education and research, it is
@@ -16,10 +14,6 @@
 <%@taglib prefix="acme" uri="http://www.the-acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="assistant.tutorial-session.list.label.title" path="title"/>
-	<acme:list-column code="assistant.tutorial-session.list.label.abstractSession" path="abstractSession"/>
+    <acme:list-column code="authenticated.bulletin.list.label.moment" path="moment" width="20%"/>
+    <acme:list-column code="authenticated.bulletin.list.label.title" path="title" width="70%"/>
 </acme:list>
-
-<acme:button test="${showCreate}" code="assistant.tutorial-session.list.button.create" action="/assistant/tutorial-session/create?masterId=${masterId}"/>	
-	
-

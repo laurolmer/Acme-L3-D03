@@ -33,12 +33,16 @@ public class AssistantTutorialSessionShowService extends AbstractService<Assista
 	public void authorise() {
 		boolean status;
 		Principal principal;
+		final TutorialSession session;
+		final Assistant assistant;
+		int sessionId;
 		Tutorial tutorial;
-		int tutorialId;
-		tutorialId = super.getRequest().getData("masterId", int.class);
-		tutorial = this.repository.findTutorialById(tutorialId);
 		principal = super.getRequest().getPrincipal();
-		status = tutorial != null && !(tutorial.isDraftMode() || principal.hasRole(Assistant.class));
+		sessionId = super.getRequest().getData("id", int.class);
+		session = this.repository.findTutorialSessionById(sessionId);
+		tutorial = this.repository.findTutorialByTutorialSessionId(sessionId);
+		assistant = session == null ? null : session.getTutorial().getAssistant();
+		status = session != null && (!tutorial.isDraftMode() || principal.hasRole(assistant));
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -54,16 +58,13 @@ public class AssistantTutorialSessionShowService extends AbstractService<Assista
 	@Override
 	public void unbind(final TutorialSession tutorialSession) {
 		assert tutorialSession != null;
-		Tutorial tutorial;
-		SelectChoices choices;
 		Tuple tuple;
-		tutorial = tutorialSession.getTutorial();
+		SelectChoices choices;
 		choices = SelectChoices.from(SessionType.class, tutorialSession.getSessionType());
-		tuple = super.unbind(tutorialSession, "title", "abstractSession", "sessionType", "startPeriod", "finishPeriod", "link");
+		tuple = super.unbind(tutorialSession, "title", "abstractSession", "sessionType", "startPeriod", "finishPeriod", "link", "draftMode");
 		tuple.put("masterId", super.getRequest().getData("id", int.class));
-		tuple.put("type", choices);
-		tuple.put("tutorial", tutorial);
-		tuple.put("tutorialDraftMode", tutorial.isDraftMode());
+		tuple.put("sessionType", choices);
+		tuple.put("draftMode", tutorialSession.getTutorial().isDraftMode() && tutorialSession.isDraftMode());
 		super.getResponse().setData(tuple);
 	}
 }

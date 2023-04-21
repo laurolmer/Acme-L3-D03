@@ -5,10 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.tutorial.Tutorial;
-import acme.entities.tutorialSession.SessionType;
 import acme.entities.tutorialSession.TutorialSession;
 import acme.framework.components.accounts.Principal;
-import acme.framework.components.jsp.SelectChoices;
 import acme.framework.components.models.Tuple;
 import acme.framework.services.AbstractService;
 import acme.roles.Assistant;
@@ -32,13 +30,17 @@ public class AssistantTutorialSessionDeleteService extends AbstractService<Assis
 	@Override
 	public void authorise() {
 		boolean status;
-		Principal principal;
-		TutorialSession tutorialSession;
 		int sessionId;
-		sessionId = super.getRequest().getData("masterId", int.class);
-		tutorialSession = this.repository.findTutorialSessionById(sessionId);
+		final TutorialSession session;
+		final Principal principal;
+		final Assistant assistant;
+		Tutorial tutorial;
 		principal = super.getRequest().getPrincipal();
-		status = tutorialSession != null && principal.hasRole(tutorialSession.getTutorial().getAssistant());
+		sessionId = super.getRequest().getData("id", int.class);
+		session = this.repository.findTutorialSessionById(sessionId);
+		assistant = session == null ? null : session.getTutorial().getAssistant();
+		tutorial = this.repository.findTutorialByTutorialSessionId(sessionId);
+		status = tutorial != null && session != null && (tutorial.isDraftMode() || principal.hasRole(assistant));
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -73,15 +75,11 @@ public class AssistantTutorialSessionDeleteService extends AbstractService<Assis
 	public void unbind(final TutorialSession tutorialSession) {
 		assert tutorialSession != null;
 		Tutorial tutorial;
-		SelectChoices choices;
 		Tuple tuple;
 		tutorial = tutorialSession.getTutorial();
-		choices = SelectChoices.from(SessionType.class, tutorialSession.getSessionType());
-		tuple = super.unbind(tutorialSession, "title", "abstractSession", "sessionType", "startPeriod", "finishPeriod", "link");
+		tuple = super.unbind(tutorialSession, "title", "abstractSession", "sessionType", "startPeriod", "finishPeriod", "link", "draftMode");
 		tuple.put("masterId", super.getRequest().getData("id", int.class));
-		tuple.put("type", choices);
-		tuple.put("tutorial", tutorial);
-		tuple.put("tutorialDraftMode", tutorial.isDraftMode());
+		tuple.put("draftMode", tutorialSession.getTutorial().isDraftMode() && tutorialSession.isDraftMode());
 		super.getResponse().setData(tuple);
 	}
 }

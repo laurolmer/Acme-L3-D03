@@ -32,6 +32,17 @@ master.menu.administrator.user-accounts = User accounts
 master.menu.administrator.populate-initial = Populate DB (initial)
 master.menu.administrator.populate-sample = Populate DB (samples)
 master.menu.administrator.shut-down = Shut down
+master.menu.administrator.configuration = Show system configuration
+
+# master.menu.authenticated #######################################################
+
+master.menu.authenticated = Authenticated
+master.menu.authenticated.note.list = List all notes
+
+# master.menu.bulletin ###################################################
+master.menu.bulletin = Bulletins
+master.menu.bulletin.list = List all bulletins
+master.menu.administrator.bulletin.form = Create a Bulletin
 
 # master.menu.assistant ###################################################
 
@@ -44,18 +55,44 @@ master.menu.assistant.tutorial.list-all = List all tutorials
 master.menu.administrator.offer = Offers Administrator
 master.menu.administrator.offer.list = Offers list
 
+# master.menu.auditor ########################################################
+
+master.menu.auditor = Auditor
+master.menu.auditor.audit.list = My audits
+
 # master.menu.provider ########################################################
 
 master.menu.provider = Provider
 master.menu.provider.favourite-link = Favourite Link
+
+# master.menu.assistant ########################################################
+master.menu.assistant = Assistant
+master.menu.assistant.tutorial.list-mine = List My Tutorials
+master.menu.assistant.tutorial.list-all = List All Tutorials
 
 # master.menu.consumer ##########################################################
 
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 
-# master.menu.practicum ####################################################
-authenticated.practicum.form.button.list= Practicum
+# master.menu.lecturer ##########################################################
+
+master.menu.lecturer = Lecturer
+master.menu.lecturer.course.create = Create course
+master.menu.lecturer.course.list.all = List courses
+master.menu.lecturer.course.list.mine = List my courses
+
+# master.menu.company ###################################################
+
+master.menu.company= Practicums
+master.menu.company.practicum.list-mine = List my practicum
+master.menu.company.practicum.list-all = List all practicum
+
+# master.menu.studentCourse ##########################################################
+
+master.menu.student = Student
+master.menu.student.studentCourseList = Course List
+master.menu.student.studentEnrolmentList = Enrolment List
 
 # master.menu.user-account ####################################################
 
@@ -65,13 +102,11 @@ master.menu.user-account.provider = Provider data
 master.menu.user-account.become-provider = Become a provider
 master.menu.user-account.consumer = Consumer data
 master.menu.user-account.become-consumer = Become a consumer
-
 master.menu.user-account.become-company = Become a company
 master.menu.user-account.company= Company data
-master.menu.practicum= Practicum
-
 master.menu.user-account.assistant = Assistant data
 master.menu.user-account.become-assistant = Become an assistant
 master.menu.user-account.student = Student data
 master.menu.user-account.become-student = Become a student
-
+master.menu.user-account.lecturer = Lecturer data
+master.menu.user-account.become-lecturer = Become a lecturer

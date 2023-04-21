@@ -1,3 +1,4 @@
+
 package acme.form;
 
 import acme.framework.data.AbstractForm;
@@ -8,17 +9,17 @@ import lombok.Setter;
 @Setter
 public class LecturersDashboard extends AbstractForm {
 
-//	Serialisation identifier -----------------------------------------------
+	//	Serialisation identifier -----------------------------------------------
 	protected static final long	serialVersionUID	= 1L;
 
-//	Attributes -------------------------------------------------------------
-	
-	protected Integer totalNumTheoryLectures;
-	
-//	totalNumHandsOnLectures = totalLectures - totalNumTheoryLectures
-	
-	protected Statistic lectureTime;
-	
-	protected Statistic courseTime; 
-	
+	//	Attributes -------------------------------------------------------------
+
+	protected Integer			totalNumTheoryLectures;
+
+	//	totalNumHandsOnLectures = totalLectures - totalNumTheoryLectures
+
+	protected Statistic			lectureTime;
+
+	protected Statistic			courseTime;
+
 }
