@@ -12,7 +12,11 @@
 
 package acme.features.student.enrolment;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +25,7 @@ import acme.entities.course.Course;
 import acme.entities.enrolment.Enrolment;
 import acme.framework.components.jsp.SelectChoices;
 import acme.framework.components.models.Tuple;
+import acme.framework.helpers.MomentHelper;
 import acme.framework.services.AbstractService;
 import acme.roles.Student;
 
@@ -87,8 +92,14 @@ public class StudentEnrolmentFinalizeService extends AbstractService<Student, En
 			throw new IllegalArgumentException("student.enrolment.form.error.cvc");
 
 		final String expiryDate = super.getRequest().getData("expiryDate", String.class);
-		if (!expiryDate.matches("^\\d{2}\\/\\d{2}$"))
+		final DateFormat format = new SimpleDateFormat("MM/yy");
+		try {
+			final Date date = format.parse(expiryDate);
+			if (MomentHelper.isBefore(date, MomentHelper.getCurrentMoment()))
+				throw new IllegalArgumentException("student.enrolment.form.error.expiryDate");
+		} catch (final ParseException e) {
 			throw new IllegalArgumentException("student.enrolment.form.error.expiryDate");
+		}
 	}
 
 	@Override
@@ -116,7 +127,7 @@ public class StudentEnrolmentFinalizeService extends AbstractService<Student, En
 		Collection<Course> courses;
 		Tuple tuple;
 		courses = this.repository.findNotInDraftCourses();
-		choices = SelectChoices.from(courses, "title", object.getCourse());
+		choices = SelectChoices.from(courses, "code", object.getCourse());
 		tuple = super.unbind(object, "nameHolder");
 		tuple.put("course", choices.getSelected().getKey());
 		tuple.put("courses", choices);
