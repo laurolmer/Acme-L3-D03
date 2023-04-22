@@ -64,7 +64,7 @@ public class AdministratorOfferCreateService extends AbstractService<Administrat
 			minStartPeriod = MomentHelper.deltaFromCurrentMoment(1, ChronoUnit.DAYS);
 			super.state(MomentHelper.isAfter(object.getAvailabilityPeriodStart(), minStartPeriod), "availabilityPeriodStart", "administrator.offer.start-close-to-instantiation");
 		}
-		// EndPeriod -> Must last for at least one week (7 days) 
+		// EndPeriod -> Must last for at least one week (7 days)
 		if (!super.getBuffer().getErrors().hasErrors("availabilityPeriodEnd"))
 			super.state(MomentHelper.isLongEnough(object.getAvailabilityPeriodStart(), object.getAvailabilityPeriodEnd(), 7, ChronoUnit.DAYS), "availabilityPeriodEnd", "administrator.offer.end-duration-insufficient");
 		// EndPeriod must be after StartPeriod.
@@ -79,6 +79,9 @@ public class AdministratorOfferCreateService extends AbstractService<Administrat
 		// Price -> Positive, possibly nought.
 		if (!super.getBuffer().getErrors().hasErrors("price"))
 			super.state(object.getPrice().getAmount() > 0, "price", "administrator.offer.positive-naught-price");
+		// Max price -> 1,000,000
+		if (!super.getBuffer().getErrors().hasErrors("price"))
+			super.state(object.getPrice().getAmount() <= 1000000, "price", "administrator.offer.price-reached-limit-value");
 	}
 
 	@Override

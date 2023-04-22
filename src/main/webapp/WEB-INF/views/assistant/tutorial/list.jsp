@@ -18,9 +18,11 @@
 <acme:list>
 	<acme:list-column code="assistant.tutorial.list.label.code" path="code" width="10%"/>
 	<acme:list-column code="assistant.tutorial.list.label.title" path="title" width="10%"/>
-	<acme:list-column code="assistant.tutorial.list.label.abstractTutorial" path="abstractTutorial" width="30%"/>		
-	<acme:list-column code="assistant.tutorial.list.label.goals" path="goals" width="10%"/>
-	
-	<acme:button code="assistant.tutorial.list.button.create" action="/assistant/tutorial/create"/>
-	
+	<acme:list-column code="assistant.tutorial.list.label.abstractTutorial" path="abstractTutorial" width="30%"/>
+	<acme:list-column code="assistant.tutorial.list.label.goals" path="goals" width="20%"/>
 </acme:list>
+
+<jstl:if test="${_command == 'list-mine'}">
+	<acme:button code="assistant.tutorial.list.button.create" action="/assistant/tutorial/create"/>
+</jstl:if>		
+	

@@ -36,3 +36,4 @@ administrator.offer.end-duration-insufficient = An offer must last at least one 
 administrator.offer.end-after-start = End period must be after the start period
 administrator.offer.end-reached-max-value = End period can't be after the date "2100/12/31 at 23:59"
 administrator.offer.start-didnot-reach-min-value = Start period must be after the date "2000/01/01 at 00:00"
+administrator.offer.price-reached-limit-value = Price must be less than 1,000,000
