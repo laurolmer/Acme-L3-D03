@@ -34,3 +34,5 @@ administrator.offer.start-close-to-instantiation = Periodo inicial debe ser al m
 administrator.offer.positive-naught-price = El precio debe ser una cantidad positiva o cero
 administrator.offer.end-duration-insufficient = Una oferta debe durar al menos una semana
 administrator.offer.end-after-start = El periodo final debe ser posterior al periodo inicial
+administrator.offer.end-reached-max-value = El periodo final no debe ser posterior a la fecha "2100/12/31" a las "23:59"
+administrator.offer.start-didnot-reach-min-value = El periodo inicial debe ser posterior a la fecha "2000/01/01" a las "00:00"
