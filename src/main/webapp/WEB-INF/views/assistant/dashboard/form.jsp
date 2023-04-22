@@ -103,4 +103,5 @@
 		<acme:message code="assistant.dashboard.form.label.handson-tutorials"/>
 		<acme:print value="${totalNumHandsOnTutorials}"/>
 	</h2>
+
 <acme:return/>

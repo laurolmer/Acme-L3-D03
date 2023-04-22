@@ -29,16 +29,16 @@ public class Banner extends AbstractEntity {
 
 	@NotNull
 	@PastOrPresent
-	@Temporal(TemporalType.TIMESTAMP)		
-	protected Date				upgrade;    
-	
+	@Temporal(TemporalType.TIMESTAMP)
+	protected Date				upgrade;
+
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP) 			//a display period (must start at any moment after the instantiation/update 
 	protected Date				startDisplay;			//moment and must last for at least one week)
 
 	@NotNull
-	@Temporal(TemporalType.TIMESTAMP) 			//a display period (must start at any moment after the instantiation/update 
-	protected Date				endDisplay;			//moment and must last for at least one week)
+	@Temporal(TemporalType.TIMESTAMP)
+	protected Date				endDisplay;
 
 	@NotNull
 	@URL

@@ -15,12 +15,12 @@ public class AssistantDashboardController extends AbstractController<Assistant, 
 
 	// Internal state ---------------------------------------------------------
 	@Autowired
-	private AssistantDashboardShowService showService;
+	protected AssistantDashboardShowService showService;
 
 
 	// Constructors -----------------------------------------------------------
 	@PostConstruct
-	private void initialise() {
+	protected void initialise() {
 		super.addBasicCommand("show", this.showService);
 	}
 }

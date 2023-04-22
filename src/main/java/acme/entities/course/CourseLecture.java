@@ -16,18 +16,18 @@ import lombok.Setter;
 @Setter
 public class CourseLecture extends AbstractEntity {
 
-//	Serialisation identifier ----------------------------
-	protected static final long serialVersionUID = 1L;
+	//	Serialisation identifier ----------------------------
+	protected static final long	serialVersionUID	= 1L;
 
-//	Relationships ---------------------------------------
+	//	Relationships ---------------------------------------
 	@Valid
 	@NotNull
 	@ManyToOne(optional = false)
-	protected Course course;
-	
+	protected Course			course;
+
 	@Valid
 	@NotNull
 	@ManyToOne(optional = false)
-	protected Lecture lecture;
+	protected Lecture			lecture;
 
 }

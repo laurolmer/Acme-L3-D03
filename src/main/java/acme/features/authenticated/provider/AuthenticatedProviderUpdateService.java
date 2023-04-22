@@ -46,9 +46,9 @@ public class AuthenticatedProviderUpdateService extends AbstractService<Authenti
 
 	@Override
 	public void load() {
-		Provider	object;
-		Principal	principal;
-		int			userAccountId;
+		Provider object;
+		Principal principal;
+		int userAccountId;
 
 		principal = super.getRequest().getPrincipal();
 		userAccountId = principal.getAccountId();

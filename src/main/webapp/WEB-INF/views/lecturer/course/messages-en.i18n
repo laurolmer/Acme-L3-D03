@@ -1,0 +1,23 @@
+lecturer.course.label.code = Code
+lecturer.course.label.title = Title
+lecturer.course.label.courseAbstract = Abstract
+lecturer.course.label.courseType = Type
+lecturer.course.label.retailPrice = Price
+lecturer.course.label.link = Link
+lecturer.course.label.draftMode = Published
+
+lecturer.course.label.courseType = Course type
+lecturer.course.label.estimatedTotalTime = Estimated total time
+
+lecturer.course.lectures = Lectures
+
+lecturer.course.create = Create
+
+lecturer.course.button.create = Create
+lecturer.course.button.update = Update
+lecturer.course.button.delete = Delete
+lecturer.course.button.publish = Publish
+lecturer.course.button.lectureList = Lectures list
+
+lecturer.course.form.error.nolecture = Can't publish course without lectures
+lecturer.course.form.error.nohandson = Can't publish course without hands on lectures

@@ -79,7 +79,8 @@ bg=green
 + endPeriod: Date {NotNull,PastOrPresent,Temporal(TemporalType.TIMESTAMP)}
 + body: String {NotBlank, Lenght(1,100)}
 + lectureType: LectureType
-+ link: String {URL}</panel_attributes>
++ link: String {URL}
++ draftMode: boolean</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -373,7 +374,7 @@ bg=green
     <coordinates>
       <x>948</x>
       <y>324</y>
-      <w>66</w>
+      <w>72</w>
       <h>102</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
@@ -591,7 +592,7 @@ m2=1..*
     <coordinates>
       <x>564</x>
       <y>492</y>
-      <w>258</w>
+      <w>264</w>
       <h>372</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
@@ -649,5 +650,19 @@ bg=green
 + emailAddress: String {Email}
 + url: String {URL}</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1050</x>
+      <y>288</y>
+      <w>150</w>
+      <h>354</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1..*
+created by ^</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0;140.0;560.0;90.0;560.0</additional_attributes>
   </element>
 </diagram>

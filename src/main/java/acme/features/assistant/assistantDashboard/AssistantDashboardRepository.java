@@ -1,11 +1,18 @@
 
 package acme.features.assistant.assistantDashboard;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import acme.entities.course.Course;
+import acme.entities.course.CourseType;
+import acme.entities.lecture.Lecture;
+import acme.entities.tutorial.Tutorial;
 import acme.entities.tutorialSession.TutorialSession;
 import acme.framework.repositories.AbstractRepository;
 import acme.roles.Assistant;
@@ -13,42 +20,39 @@ import acme.roles.Assistant;
 @Repository
 public interface AssistantDashboardRepository extends AbstractRepository {
 
+	// SESSION TIME
 	@Query("select a from Assistant a where a.userAccount.id = :userAccountId")
 	Assistant findAssistantByUserAccountId(int userAccountId);
 
 	@Query("select avg(ts.finishPeriod - ts.startPeriod)/3600000 from TutorialSession ts where ts.tutorial.assistant.id = :assistantId")
-	double findAverageTutorialSessionLength(int assistantId);
+	Double findAverageTutorialSessionLength(int assistantId);
 
 	@Query("select stddev(ts.finishPeriod - ts.startPeriod)/3600000 from TutorialSession ts where ts.tutorial.assistant.id = :assistantId")
-	double findDeviationTutorialSessionLength(int assistantId);
+	Double findDeviationTutorialSessionLength(int assistantId);
 
 	@Query("select min(ts.finishPeriod - ts.startPeriod)/3600000 from TutorialSession ts where ts.tutorial.assistant.id = :assistantId")
-	double findMinimumTutorialSessionLength(int assistantId);
+	Double findMinimumTutorialSessionLength(int assistantId);
 
 	@Query("select max(ts.finishPeriod - ts.startPeriod)/3600000 from TutorialSession ts where ts.tutorial.assistant.id = :assistantId")
-	double findMaximumTutorialSessionLength(int assistantId);
+	Double findMaximumTutorialSessionLength(int assistantId);
 
 	@Query("select count(ts) from TutorialSession ts where ts.tutorial.assistant.id = :assistantId")
 	int findCountTutorialSession(int assistantId);
 
-	@Query("select avg(t.estimatedTime) from Tutorial t where t.assistant.id = :assistantId")
-	double findAverageTutorialLength(int assistantId);
+	// TUTORIAL TIME
+	@Query("select avg(time_to_sec(timediff(ts.finishPeriod,ts.startPeriod))/3600.0) from TutorialSession ts where ts.tutorial.id in (select t.id from Tutorial t where t.assistant.id = :assistantId)")
+	Double findAvgTutorialLength(int assistantId);
 
-	@Query("select stddev(t.estimatedTime) from Tutorial t where t.assistant.id = :assistantId")
-	double findDeviationTutorialLength(int assistantId);
+	@Query("select stddev(time_to_sec(timediff(ts.finishPeriod,ts.startPeriod))/3600.0) from TutorialSession ts where ts.tutorial.id in (select t.id from Tutorial t where t.assistant.id = :assistantId)")
+	Double findDevTutorialLength(int assistantId);
 
-	@Query("select min(t.estimatedTime) from Tutorial t where t.assistant.id = :assistantId")
-	double findMinimumTutorialLength(int assistantId);
+	@Query("select min(time_to_sec(timediff(ts.finishPeriod,ts.startPeriod))/3600.0) from TutorialSession ts where ts.tutorial.id in (select t.id from Tutorial t where t.assistant.id = :assistantId)")
+	Double findMinTutorialLength(int assistantId);
 
-	@Query("select max(t.estimatedTime) from Tutorial t where t.assistant.id = :assistantId")
-	double findMaximumTutorialLength(int assistantId);
+	@Query("select max(time_to_sec(timediff(ts.finishPeriod,ts.startPeriod))/3600.0) from TutorialSession ts where ts.tutorial.id in (select t.id from Tutorial t where t.assistant.id = :assistantId)")
+	Double findMaxTutorialLength(int assistantId);
 
-	@Query("select count(select t from from Tutorial t where t.course.courseType = :THEORY_COURSE) from TutorialSession ts where ts.tutorial.assistant.id = :assistantId")
-	int findCountTheoryTutorial(int assistantId);
-
-	@Query("select count(select t from from Tutorial t where t.course.courseType = :HANDS-ON) from TutorialSession ts where ts.tutorial.assistant.id = :assistantId")
-	int findCountHandsOnTutorial(int assistantId);
-
+	//AUXILIARY QUERIES
 	@Query("select count(t) from Tutorial t where t.assistant.id = :assistantId")
 	int findCountTutorial(int assistantId);
 
@@ -58,4 +62,41 @@ public interface AssistantDashboardRepository extends AbstractRepository {
 	@Query("select ts from TutorialSession ts where ts.tutorial.id = :id")
 	Collection<TutorialSession> findSessionsByTutorialId(int id);
 
+	@Query("select c from Course c where c.draftMode = false")
+	Collection<Course> findAllCourses();
+
+	@Query("select l from Lecture l inner join CourseLecture cl on l = cl.lecture inner join Course c on cl.course = c where c.id = :id")
+	Collection<Lecture> findLecturesByCourseId(int id);
+
+	@Query("select t from Tutorial t where t.course.id = :id")
+	Collection<Tutorial> findTutorialsByCourse(int id);
+
+	@Query("select t from Tutorial t where t.assistant.id = :id")
+	Collection<Tutorial> findTutorialsByAssistantId(int id);
+
+	// AUXILIARY METHODS
+	default Map<CourseType, Collection<Course>> coursesRegardingCourseType() {
+		final Map<CourseType, Collection<Course>> coursesByType = new HashMap<>();
+		final Collection<Course> allCourses = this.findAllCourses();
+		for (final Course c : allCourses) {
+			final CourseType ct = c.computeCourseType(this.findLecturesByCourseId(c.getId()));
+			Collection<Course> coursesListByType = new ArrayList<>();
+			if (coursesByType.containsKey(ct)) {
+				coursesListByType = coursesByType.get(ct);
+				coursesListByType.add(c);
+			} else
+				coursesListByType.add(c);
+			coursesByType.put(ct, coursesListByType);
+		}
+		return coursesByType;
+	}
+
+	default Integer findCountTutorialRegardingCourse(final Collection<Course> courses) {
+		int totalNumberTutorialsByCoursesCollection = 0;
+		for (final Course c : courses) {
+			final Collection<Tutorial> tutorialsByCourse = this.findTutorialsByCourse(c.getId());
+			totalNumberTutorialsByCoursesCollection += tutorialsByCourse.size();
+		}
+		return totalNumberTutorialsByCoursesCollection;
+	}
 }
