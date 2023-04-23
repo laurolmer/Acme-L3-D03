@@ -40,11 +40,10 @@
 		
 		<acme:menu-option code="master.menu.authenticated" access="isAuthenticated()">
 			<acme:menu-suboption code="master.menu.authenticated.note.list" action="/authenticated/note/list"/>
+			<acme:menu-suboption code="master.menu.bulletin.list" action="/authenticated/bulletin/list"/>
 		</acme:menu-option>
 
-		<acme:menu-option code="master.menu.bulletin" access="isAuthenticated()">
-			<acme:menu-suboption code="master.menu.bulletin.list" action="/authenticated/bulletin/list"/>
-			</acme:menu-option>
+		<acme:menu-option code="master.menu.any.course" action="/any/course/list"/>
 		
 		<acme:menu-option code="master.menu.auditor" access="hasRole('Auditor')">
 			<acme:menu-suboption code="master.menu.auditor.audit.list" action="/auditor/audit/list"/>

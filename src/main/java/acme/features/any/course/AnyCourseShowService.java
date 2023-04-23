@@ -1,10 +1,14 @@
 
 package acme.features.any.course;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.course.Course;
+import acme.entities.course.CourseType;
+import acme.entities.lecture.Lecture;
 import acme.framework.components.accounts.Any;
 import acme.framework.components.models.Tuple;
 import acme.framework.services.AbstractService;
@@ -27,15 +31,7 @@ public class AnyCourseShowService extends AbstractService<Any, Course> {
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int id;
-		final Course course;
-
-		id = super.getRequest().getData("id", int.class);
-		course = this.repository.findCourseById(id);
-		status = course != null;
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
@@ -53,7 +49,18 @@ public class AnyCourseShowService extends AbstractService<Any, Course> {
 	public void unbind(final Course object) {
 		assert object != null;
 		Tuple tuple;
-		tuple = super.unbind(object, "code", "title", "courseAbstract", "courseType", "retailPrice", "link", "draftMode");
+		final Collection<Lecture> lectures;
+		final CourseType courseType;
+		final Double estimatedTotalTime;
+
+		lectures = this.repository.findLecturesByCourseId(object.getId());
+		courseType = object.computeCourseType(lectures);
+		estimatedTotalTime = object.computeEstimatedTotalTime(lectures);
+
+		tuple = super.unbind(object, "code", "title", "courseAbstract", "retailPrice", "link");
+		tuple.put("courseType", courseType);
+		tuple.put("estimatedTotalTime", estimatedTotalTime);
+		tuple.put("published", !object.isDraftMode());
 		super.getResponse().setData(tuple);
 	}
 }
