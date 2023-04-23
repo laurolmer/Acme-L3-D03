@@ -65,5 +65,4 @@ public interface LecturerCourseRepository extends AbstractRepository {
 		else
 			return CourseType.THEORY_COURSE;
 	}
-
 }
