@@ -6,7 +6,7 @@
 <acme:form>
 	<acme:input-textbox code="authenticated.lecturer.form.label.almaMater" path="almaMater"/>
 	<acme:input-textbox code="authenticated.lecturer.form.label.resume" path="resume"/>
-	<acme:input-textbox code="authenticated.lecturer.form.label.qualifications" path="qualifications"/>
+	<acme:input-textbox code="authenticated.lecturer.form.label.qualifications" path="qualificationsList"/>
 	<acme:input-textbox code="authenticated.lecturer.form.label.link" path="link"/>
 	
 	<acme:submit test="${_command == 'create'}" code="authenticated.lecturer.form.button.create" action="/authenticated/lecturer/create"/>

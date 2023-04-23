@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 import acme.framework.components.accounts.Authenticated;
 import acme.framework.components.accounts.Principal;
 import acme.framework.components.models.Tuple;
-import acme.framework.controllers.HttpMethod;
-import acme.framework.helpers.PrincipalHelper;
 import acme.framework.services.AbstractService;
 import acme.roles.Lecturer;
 
@@ -80,9 +78,9 @@ public class AuthenticatedLecturerUpdateService extends AbstractService<Authenti
 		super.getResponse().setData(tuple);
 	}
 
-	@Override
-	public void onSuccess() {
-		if (super.getRequest().getMethod().equals(HttpMethod.POST))
-			PrincipalHelper.handleUpdate();
-	}
+	//	@Override
+	//	public void onSuccess() {
+	//		if (super.getRequest().getMethod().equals(HttpMethod.POST))
+	//			PrincipalHelper.handleUpdate();
+	//	}
 }
