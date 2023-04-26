@@ -82,7 +82,6 @@ public class Course extends AbstractEntity {
 	}
 
 	public CourseType computeCourseType(final Collection<Lecture> lectures) {
-		CourseType courseType = CourseType.HANDS_ON;
 		Map<LectureType, Long> modeLectureType;
 		Long handsOnLectures;
 		Long theoreticalLectures;
@@ -91,11 +90,13 @@ public class Course extends AbstractEntity {
 		handsOnLectures = modeLectureType.get(LectureType.HANDS_ON);
 		theoreticalLectures = modeLectureType.get(LectureType.THEORETICAL);
 
+		if (modeLectureType.isEmpty())
+			return null;
 		if (handsOnLectures.equals(theoreticalLectures))
-			courseType = CourseType.BALANCED;
+			return CourseType.BALANCED;
 		if (theoreticalLectures > handsOnLectures)
-			courseType = CourseType.THEORY_COURSE;
+			return CourseType.THEORY_COURSE;
 
-		return courseType;
+		return CourseType.HANDS_ON;
 	}
 }
