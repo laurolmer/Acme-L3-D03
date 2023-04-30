@@ -54,7 +54,7 @@ public class AnyPeepUpdateService extends AbstractService<Any, Peep> {
 	@Override
 	public void bind(final Peep object) {
 		assert object != null;
-		super.bind(object, "title", "nick", "message", "link", "email");
+		super.bind(object, "moment", "title", "nick", "message", "link", "email");
 	}
 
 	@Override
@@ -74,10 +74,9 @@ public class AnyPeepUpdateService extends AbstractService<Any, Peep> {
 	@Override
 	public void unbind(final Peep object) {
 		Tuple tuple;
-		tuple = super.unbind(object, "title", "nick", "message", "link", "email");
+		tuple = super.unbind(object, "moment", "title", "nick", "message", "link", "email");
 		tuple.put("draftMode", object.getDraftMode());
 		super.getResponse().setData(tuple);
 
 	}
-
 }

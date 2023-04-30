@@ -25,7 +25,7 @@
 	<acme:input-url code="any.peep.form.label.link" path="link"/>
 
 	<jstl:choose>
-        <jstl:when test="${acme:anyOf(_command, 'show|update|publish') && draftMode== true}">
+        <jstl:when test="${acme:anyOf(_command,'show|update|publish') && draftMode== true}">
             <acme:submit code="any.peep.form.button.update" action="/any/peep/update"/>
             <acme:submit code="any.peep.form.button.publish" action="/any/peep/publish"/>
         </jstl:when>

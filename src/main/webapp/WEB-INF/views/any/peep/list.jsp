@@ -23,4 +23,4 @@
 	
 </acme:list>
 
-<acme:button code="any.peep.button.create" action="/any/peep/create"/>	
+<acme:button code="any.peep.form.button.create" action="/any/peep/create"/>	

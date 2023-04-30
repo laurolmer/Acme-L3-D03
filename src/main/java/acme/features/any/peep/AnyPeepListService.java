@@ -38,11 +38,28 @@ public class AnyPeepListService extends AbstractService<Any, Peep> {
 	}
 
 	@Override
+	public void bind(final Peep object) {
+		assert object != null;
+		super.bind(object, "moment", "title", "nick", "message", "link", "email", "draftMode");
+	}
+
+	@Override
+	public void validate(final Peep object) {
+		assert object != null;
+
+	}
+
+	@Override
+	public void perform(final Peep object) {
+		assert object != null;
+		this.repository.save(object);
+	}
+
+	@Override
 	public void unbind(final Peep object) {
 		assert object != null;
 		Tuple tuple;
-		tuple = super.unbind(object, "title", "nick", "message", "link", "email");
+		tuple = super.unbind(object, "moment", "title", "nick", "message", "link", "email");
 		super.getResponse().setData(tuple);
 	}
-
 }

@@ -27,15 +27,7 @@ public class AnyPeepShowService extends AbstractService<Any, Peep> {
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int peepId;
-		Peep peep;
-
-		peepId = super.getRequest().getData("id", int.class);
-		peep = this.repository.findPeepById(peepId);
-		status = peep != null;
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
@@ -45,16 +37,32 @@ public class AnyPeepShowService extends AbstractService<Any, Peep> {
 
 		id = super.getRequest().getData("id", int.class);
 		object = this.repository.findPeepById(id);
-
 		super.getBuffer().setData(object);
+	}
+
+	@Override
+	public void bind(final Peep object) {
+		assert object != null;
+		super.bind(object, "moment", "title", "nick", "message", "link", "email", "draftMode");
+	}
+
+	@Override
+	public void validate(final Peep object) {
+		assert object != null;
+
+	}
+
+	@Override
+	public void perform(final Peep object) {
+		assert object != null;
+		this.repository.save(object);
 	}
 
 	@Override
 	public void unbind(final Peep object) {
 		assert object != null;
 		Tuple tuple;
-		tuple = super.unbind(object, "title", "nick", "message", "link", "email", "draftMode");
+		tuple = super.unbind(object, "moment", "title", "nick", "message", "link", "email", "draftMode");
 		super.getResponse().setData(tuple);
 	}
-
 }
