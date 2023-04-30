@@ -1,12 +1,15 @@
 
 package acme.features.administrator.offer;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.offer.Offer;
 import acme.framework.components.accounts.Administrator;
 import acme.framework.components.models.Tuple;
+import acme.framework.helpers.MomentHelper;
 import acme.framework.services.AbstractService;
 
 @Service
@@ -43,8 +46,9 @@ public class AdministratorOfferShowService extends AbstractService<Administrator
 	public void unbind(final Offer object) {
 		assert object != null;
 		Tuple tuple;
+		final Date instantiationMoment = MomentHelper.getCurrentMoment();
 		tuple = super.unbind(object, "instantiationMoment", "heading", "summary", "price", "availabilityPeriodStart", "availabilityPeriodEnd", "link");
-		tuple.put("confirmation", false);
+		tuple.put("isInDisplay", MomentHelper.isBeforeOrEqual(instantiationMoment, object.getAvailabilityPeriodEnd()));
 		super.getResponse().setData(tuple);
 	}
 }

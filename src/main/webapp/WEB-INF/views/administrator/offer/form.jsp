@@ -25,7 +25,7 @@
 	<acme:input-url code="administrator.offer.form.label.link" path="link"/>
 	
 	<jstl:choose>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete')}">
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete') && isInDisplay == false}">
 			<acme:submit code="administrator.offer.form.button.update" action="/administrator/offer/update"/>
 			<acme:submit code="administrator.offer.form.button.delete" action="/administrator/offer/delete"/>
 		</jstl:when>
