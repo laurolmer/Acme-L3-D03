@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import acme.entities.course.Course;
 import acme.entities.course.CourseType;
 import acme.entities.lecture.Lecture;
-import acme.entities.lecture.LectureType;
 import acme.framework.components.accounts.Principal;
 import acme.framework.components.models.Tuple;
 import acme.framework.services.AbstractService;
@@ -44,7 +43,7 @@ public class LecturerCoursePublishService extends AbstractService<Lecturer, Cour
 		objectId = super.getRequest().getData("id", int.class);
 		object = this.repository.findOneCourseById(objectId);
 
-		status = object.getLecturer().getUserAccount().getId() == userAccountId;
+		status = object.isDraftMode() && object.getLecturer().getUserAccount().getId() == userAccountId;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -71,19 +70,37 @@ public class LecturerCoursePublishService extends AbstractService<Lecturer, Cour
 	@Override
 	public void validate(final Course object) {
 		assert object != null;
-		final Collection<Lecture> lectures;
-		boolean handOnLectureInCourse;
-		boolean publishedLectures;
+		int courseId;
+		boolean hasLectures;
+		boolean hasLecturesNotPublished;
+		boolean hasHandsOnLecturesInCourse;
 
-		lectures = this.repository.findLecturesByCourseId(object.getId());
-		super.state(!lectures.isEmpty(), "courseType", "lecturer.course.form.error.nolecture");
-		if (!lectures.isEmpty()) {
-			handOnLectureInCourse = lectures.stream().anyMatch(l -> l.getLectureType().equals(LectureType.HANDS_ON));
-			super.state(handOnLectureInCourse, "courseType", "lecturer.course.form.error.nohandson");
-
-			publishedLectures = lectures.stream().allMatch(l -> !l.isDraftMode());
-			super.state(publishedLectures, "courseType", "lecturer.course.form.error.lecturenotpublished");
+		if (!super.getBuffer().getErrors().hasErrors("draftMode")) {
+			final boolean draftMode = object.isDraftMode();
+			super.state(draftMode, "draftMode", "lecturer.course.error.draftMode.published");
 		}
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			Course instance;
+			final String code = object.getCode();
+			boolean eval;
+
+			instance = this.repository.findOneCourseByCode(code);
+			eval = instance == null || object.getId() == instance.getId();
+			super.state(eval, "code", "lecturer.course.error.code.duplicated");
+		}
+		if (!super.getBuffer().getErrors().hasErrors("retailPrice")) {
+			final double retailPrice = object.getRetailPrice().getAmount();
+			super.state(retailPrice >= 0, "retailPrice", "lecturer.course.error.retailPrice.negative");
+		}
+
+		courseId = object.getId();
+		hasLectures = this.repository.hasACourseLecturesByCourseId(courseId);
+		hasLecturesNotPublished = this.repository.hasACourseLecturesNotPublishedByCourseId(courseId);
+		hasHandsOnLecturesInCourse = this.repository.hasACourseHandsOnLecturesByCourseId(courseId);
+
+		super.state(hasLectures, "*", "lecturer.course.form.error.noLecture");
+		super.state(hasLecturesNotPublished, "*", "lecturer.course.form.error.lectureNotPublished");
+		super.state(hasHandsOnLecturesInCourse, "*", "lecturer.course.form.error.noHandsOn");
 	}
 
 	@Override

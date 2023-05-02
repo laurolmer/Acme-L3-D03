@@ -42,6 +42,15 @@ public interface LecturerCourseRepository extends AbstractRepository {
 	@Query("select l from Lecture l inner join CourseLecture cl on l = cl.lecture inner join Course c on cl.course = c where c.id = :id")
 	Collection<Lecture> findLecturesByCourseId(int id);
 
+	@Query("select count(cl) > 0 from CourseLecture cl where cl.course.id = :courseId")
+	boolean hasACourseLecturesByCourseId(int courseId);
+
+	@Query("select count(cl) > 0 from CourseLecture cl where cl.course.id = :courseId and cl.lecture.draftMode = true")
+	boolean hasACourseLecturesNotPublishedByCourseId(int courseId);
+
+	@Query("select count(cl) > 0 from CourseLecture cl where cl.course.id = :courseId and cl.lecture.lectureType = acme.entities.lecture.LectureType.HANDS_ON")
+	boolean hasACourseHandsOnLecturesByCourseId(int courseId);
+
 	@Query("select count(cl) from CourseLecture cl where cl.course.id = :courseId and cl.lecture.lectureType = :type")
 	Integer numLecturesFromCourseByType(int courseId, LectureType type);
 

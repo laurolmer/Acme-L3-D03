@@ -29,5 +29,6 @@ lecturer.course.error.retailPrice.negative = El precio debe ser mayor de cero
  
 ## PUBLISH ----------------------------------------------------------------------------
 
-lecturer.course.form.error.nolecture = No se puede publicar un curso sin lecciones
-lecturer.course.form.error.nohandson = No se puede publicar un curso sin lecciones prácticas
+lecturer.course.form.error.noLecture = No se puede publicar un curso sin lecciones
+lecturer.course.form.error.noHandsOn = No se puede publicar un curso sin lecciones prácticas
+lecturer.course.form.error.lectureNotPublished = No se puede publicar un curso con lecciones sin publicar

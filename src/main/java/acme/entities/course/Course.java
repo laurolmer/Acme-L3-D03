@@ -90,7 +90,7 @@ public class Course extends AbstractEntity {
 		handsOnLectures = modeLectureType.get(LectureType.HANDS_ON);
 		theoreticalLectures = modeLectureType.get(LectureType.THEORETICAL);
 
-		if (modeLectureType.isEmpty())
+		if (modeLectureType.isEmpty() || modeLectureType == null || handsOnLectures == null || theoreticalLectures == null)
 			return null;
 		if (handsOnLectures.equals(theoreticalLectures))
 			return CourseType.BALANCED;

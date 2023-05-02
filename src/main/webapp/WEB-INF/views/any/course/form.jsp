@@ -12,10 +12,8 @@
 	<acme:input-textarea code="lecturer.course.label.courseAbstract" path="courseAbstract"/>	
 	<acme:input-double code="lecturer.course.label.retailPrice" path="retailPrice"/>
 	<acme:input-url code="lecturer.course.label.link" path="link"/>
-	<jstl:if test="${courseType != null}">
+	<jstl:if test="${courseType != null && estimatedTotalTime > 0.0}">
 		<acme:input-double code="lecturer.course.label.courseType" path="courseType" readonly="true"/>
-	</jstl:if>
-	<jstl:if test="${estimatedTotalTime != null}">
 		<acme:input-textbox code="lecturer.course.label.estimatedTotalTime" path="estimatedTotalTime" readonly="true"/>
 	</jstl:if>
 </acme:form>
