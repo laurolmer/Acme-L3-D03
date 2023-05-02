@@ -24,12 +24,6 @@ public class AnyPeepController extends AbstractController<Any, Peep> {
 	@Autowired
 	protected AnyPeepCreateService	createService;
 
-	@Autowired
-	protected AnyPeepUpdateService	updateService;
-
-	@Autowired
-	protected AnyPeepPublishService	publishService;
-
 	// Constructors --------------------------------------------------------------
 
 
@@ -38,9 +32,9 @@ public class AnyPeepController extends AbstractController<Any, Peep> {
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("create", this.createService);
-		super.addBasicCommand("update", this.updateService);
-
-		super.addCustomCommand("publish", "update", this.publishService);
+		//		super.addBasicCommand("update", this.updateService);
+		//
+		//		super.addCustomCommand("publish", "update", this.publishService);
 	}
 
 }

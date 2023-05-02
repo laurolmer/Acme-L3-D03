@@ -36,7 +36,7 @@ public class Peep extends AbstractEntity {
 	@Length(max = 75)
 	protected String			title;
 
-	@NotNull
+	@NotBlank
 	@Length(max = 75)
 	protected String			nick;
 
@@ -51,6 +51,6 @@ public class Peep extends AbstractEntity {
 	protected String			email;
 
 	@NotNull
-	protected Boolean			draftMode;
+	protected Boolean			publish;
 
 }

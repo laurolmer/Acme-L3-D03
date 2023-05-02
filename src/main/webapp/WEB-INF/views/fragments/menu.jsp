@@ -83,9 +83,7 @@
 			<acme:menu-suboption code="master.menu.company.practicum.list-all" action="/company/practicum/list-all"/>		
 		</acme:menu-option>
 		
-		<acme:menu-option code="master.menu.any.peep">
-			<acme:menu-suboption code="master.menu.any.peep" action="/any/peep/list"/>
-		</acme:menu-option>
+		<acme:menu-option code="master.menu.any.peep" action="/any/peep/list"/>
 		
 	</acme:menu-left>
 

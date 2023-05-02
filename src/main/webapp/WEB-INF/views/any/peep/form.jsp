@@ -23,14 +23,13 @@
 	<acme:input-textarea code="any.peep.form.label.message" path="message"/>
 	<acme:input-email code="any.peep.form.label.email" path="email"/>
 	<acme:input-url code="any.peep.form.label.link" path="link"/>
-
-	<jstl:choose>
-        <jstl:when test="${acme:anyOf(_command,'show|update|publish') && draftMode== true}">
-            <acme:submit code="any.peep.form.button.update" action="/any/peep/update"/>
-            <acme:submit code="any.peep.form.button.publish" action="/any/peep/publish"/>
+	<acme:input-checkbox code="any.peep.form.label.publish" path="publish" readonly="true"/>
+	
+<jstl:choose>
+        <jstl:when test="${acme:anyOf(_command,'show') && draftMode== true}">
         </jstl:when>
         <jstl:when test="${_command == 'create'}">
-            <acme:submit code="any.peep.form.button.create" action="/any/peep/create"/>
+            <acme:submit code="any.peep.form.button.publish" action="/any/peep/create"/>
         </jstl:when>
     </jstl:choose>
 </acme:form>

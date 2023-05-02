@@ -15,12 +15,12 @@ any.peep.form.label.nick = Nombre
 any.peep.form.label.message = Mensaje
 any.peep.form.label.email = Email
 any.peep.form.label.link = Enlace
+any.peep.form.label.publish= Publicado
 
 any.peep.list.title = Título
 any.peep.list.nick = Nombre
 any.peep.list.moment = Momento
 
 
-any.peep.form.button.update = Actualizar Peep
 any.peep.form.button.publish= Publicar Peep
 any.peep.form.button.create = Crear Peep

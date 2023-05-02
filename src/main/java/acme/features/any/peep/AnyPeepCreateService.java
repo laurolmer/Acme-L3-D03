@@ -50,9 +50,8 @@ public class AnyPeepCreateService extends AbstractService<Any, Peep> {
 			userAccount = this.repository.findOneUserAccountById(userAccountId);
 			Name = userAccount.getIdentity().getFullName();
 		}
-
 		object.setNick(Name);
-		object.setDraftMode(true);
+		object.setPublish(false);
 		super.getBuffer().setData(object);
 
 	}
@@ -60,7 +59,7 @@ public class AnyPeepCreateService extends AbstractService<Any, Peep> {
 	@Override
 	public void bind(final Peep object) {
 		assert object != null;
-		super.bind(object, "moment", "title", "nick", "message", "link", "email");
+		super.bind(object, "moment", "title", "nick", "message", "link", "email", "publish");
 	}
 
 	@Override
@@ -78,7 +77,8 @@ public class AnyPeepCreateService extends AbstractService<Any, Peep> {
 	@Override
 	public void unbind(final Peep object) {
 		Tuple tuple;
-		tuple = super.unbind(object, "moment", "title", "nick", "message", "link", "email");
+		tuple = super.unbind(object, "moment", "title", "nick", "message", "link", "email", "publish");
+		tuple.put("publish", true);
 		super.getResponse().setData(tuple);
 
 	}
