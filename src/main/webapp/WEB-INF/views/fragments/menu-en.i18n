@@ -39,10 +39,11 @@ master.menu.administrator.configuration = Show system configuration
 master.menu.authenticated = Authenticated
 master.menu.authenticated.note.list = List all notes
 
-# master.menu.bulletin ###################################################
-master.menu.bulletin = Bulletins
 master.menu.bulletin.list = List all bulletins
 master.menu.administrator.bulletin.form = Create a Bulletin
+
+master.menu.offer.list= List all offers
+
 
 # master.menu.assistant ###################################################
 
