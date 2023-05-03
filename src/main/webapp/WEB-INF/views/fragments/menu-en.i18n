@@ -96,6 +96,11 @@ master.menu.student = Student
 master.menu.student.studentCourseList = Course List
 master.menu.student.studentEnrolmentList = Enrolment List
 
+
+# master.menu.any #############################################################
+
+master.menu.any.peep= Peep List
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account
