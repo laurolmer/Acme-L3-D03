@@ -1,12 +1,15 @@
 lecturer.course.label.code = Código
 lecturer.course.label.title = Título
-lecturer.course.label.abstract = Resumen
+lecturer.course.label.courseAbstract = Resumen
 lecturer.course.label.courseType = Tipo
-lecturer.course.label.price = Precio
+lecturer.course.label.retailPrice = Precio
 lecturer.course.label.link = Enlace
-lecturer.course.label.draftMode = Borrador
+lecturer.course.label.draftMode = Publicado
 
-lecturer.course.lectures = Clases
+lecturer.course.label.courseType = Tipo de curso
+lecturer.course.label.estimatedTotalTime = Tiempo total estimado
+
+lecturer.course.lectures = Lecciones
 
 lecturer.course.create = Crear
 
@@ -14,4 +17,7 @@ lecturer.course.button.create = Crear
 lecturer.course.button.update = Actualizar
 lecturer.course.button.delete = Borrar
 lecturer.course.button.publish = Publicar
-lecturer.course.button.lectureList = Lista de clases
+lecturer.course.button.lectureList = Lista de lecciones
+
+lecturer.course.form.error.nolecture = No se puede publicar un curso sin lecciones
+lecturer.course.form.error.nohandson = No se puede publicar un curso sin lecciones prácticas

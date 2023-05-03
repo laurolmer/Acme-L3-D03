@@ -80,7 +80,7 @@ public class StudentActivityUpdateService extends AbstractService<Student, Activ
 		assert object != null;
 		if (!super.getBuffer().getErrors().hasErrors("startPeriod") && !super.getBuffer().getErrors().hasErrors("endPeriod")) {
 			final boolean validPeriod = MomentHelper.isAfter(object.getEndPeriod(), object.getStartPeriod());
-			super.state(validPeriod, "endDisplayPeriod", "student.workbook.form.error.end-before-start");
+			super.state(validPeriod, "endPeriod", "student.workbook.form.error.validPeriod");
 		}
 	}
 
@@ -95,12 +95,14 @@ public class StudentActivityUpdateService extends AbstractService<Student, Activ
 	public void unbind(final Activity object) {
 		assert object != null;
 		Tuple tuple;
+		Enrolment enrolment;
+		enrolment = object.getEnrolment();
 
 		final SelectChoices choices = SelectChoices.from(ActivityType.class, object.getActivityType());
 
 		tuple = super.unbind(object, "title", "abstractActivity", "activityType", "startPeriod", "endPeriod", "link");
 		tuple.put("choicesActivityType", choices);
-
+		tuple.put("draftMode", enrolment.isDraftMode());
 		super.getResponse().setData(tuple);
 	}
 

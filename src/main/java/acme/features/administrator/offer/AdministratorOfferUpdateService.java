@@ -53,7 +53,9 @@ public class AdministratorOfferUpdateService extends AbstractService<Administrat
 	public void validate(final Offer object) {
 		assert object != null;
 		Date minStartPeriod;
-		// StartPeriod -> At least one day after the offer is instantiated.
+		final Date maxValue = new Date("2100/12/31 23:59");
+		final Date minValue = new Date("2000/01/01 00:00");
+		// StartPeriod -> At least 1 day after the offer is instantiated.
 		if (!super.getBuffer().getErrors().hasErrors("availabilityPeriodStart")) {
 			minStartPeriod = MomentHelper.deltaFromCurrentMoment(1, ChronoUnit.DAYS);
 			super.state(MomentHelper.isAfter(object.getAvailabilityPeriodStart(), minStartPeriod), "availabilityPeriodStart", "administrator.offer.start-close-to-instantiation");
@@ -64,9 +66,18 @@ public class AdministratorOfferUpdateService extends AbstractService<Administrat
 		// EndPeriod must be after StartPeriod.
 		if (!super.getBuffer().getErrors().hasErrors("availabilityPeriodEnd"))
 			super.state(MomentHelper.isAfter(object.getAvailabilityPeriodEnd(), object.getAvailabilityPeriodStart()), "availabilityPeriodEnd", "administrator.offer.end-after-start");
+		// EndPeriod must be before 2100/12/31 23:59
+		if (!super.getBuffer().getErrors().hasErrors("availabilityPeriodEnd"))
+			super.state(!MomentHelper.isAfter(object.getAvailabilityPeriodEnd(), maxValue), "availabilityPeriodEnd", "administrator.offer.end-reached-max-value");
+		// StartPeriod must be after 2000/01/01 00:00
+		if (!super.getBuffer().getErrors().hasErrors("availabilityPeriodStart"))
+			super.state(MomentHelper.isAfter(object.getAvailabilityPeriodStart(), minValue), "getAvailabilityPeriodStart", "administrator.offer.start-didnot-reach-min-value");
 		// Price -> Positive, possibly nought.
 		if (!super.getBuffer().getErrors().hasErrors("price"))
 			super.state(object.getPrice().getAmount() > 0, "price", "administrator.offer.positive-naught-price");
+		// Max price -> 1,000,000
+		if (!super.getBuffer().getErrors().hasErrors("price"))
+			super.state(object.getPrice().getAmount() <= 1000000, "price", "administrator.offer.price-reached-limit-value");
 	}
 
 	@Override
@@ -82,8 +93,9 @@ public class AdministratorOfferUpdateService extends AbstractService<Administrat
 	public void unbind(final Offer object) {
 		assert object != null;
 		Tuple tuple;
+		final Date instantiationMoment = MomentHelper.getCurrentMoment();
 		tuple = super.unbind(object, "instantiationMoment", "heading", "summary", "price", "availabilityPeriodStart", "availabilityPeriodEnd", "link");
+		tuple.put("isInDisplay", MomentHelper.isBeforeOrEqual(instantiationMoment, object.getAvailabilityPeriodEnd()));
 		super.getResponse().setData(tuple);
 	}
-
 }
