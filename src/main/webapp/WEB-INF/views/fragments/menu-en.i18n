@@ -66,6 +66,11 @@ master.menu.auditor.audit.list = My audits
 master.menu.provider = Provider
 master.menu.provider.favourite-link = Favourite Link
 
+# master.menu.assistant ########################################################
+master.menu.assistant = Assistant
+master.menu.assistant.tutorial.list-mine = List My Tutorials
+master.menu.assistant.tutorial.list-all = List All Tutorials
+
 # master.menu.consumer ##########################################################
 
 master.menu.consumer = Consumer
@@ -77,6 +82,8 @@ master.menu.lecturer = Lecturer
 master.menu.lecturer.course.create = Create course
 master.menu.lecturer.course.list.all = List courses
 master.menu.lecturer.course.list.mine = List my courses
+master.menu.lecturer.lecture.list.all = List my lectures
+master.menu.lecturer.lecture.create = Create lecture
 
 # master.menu.company ###################################################
 
@@ -89,6 +96,11 @@ master.menu.company.practicum.list-all = List all practicum
 master.menu.student = Student
 master.menu.student.studentCourseList = Course List
 master.menu.student.studentEnrolmentList = Enrolment List
+
+
+# master.menu.any #############################################################
+
+master.menu.any.peep= Peep List
 
 # master.menu.user-account ####################################################
 

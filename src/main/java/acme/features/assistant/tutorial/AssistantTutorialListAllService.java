@@ -44,5 +44,4 @@ public class AssistantTutorialListAllService extends AbstractService<Assistant, 
 		tuple = super.unbind(object, "code", "title", "abstractTutorial", "goals");
 		super.getResponse().setData(tuple);
 	}
-
 }

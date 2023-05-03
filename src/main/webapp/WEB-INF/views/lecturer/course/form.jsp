@@ -6,14 +6,19 @@
 <acme:form>
 
 	<acme:hidden-data path="id"/>
-
+	<acme:input-checkbox code="lecturer.course.label.draftMode" path="published" readonly="true"/>
 	<acme:input-textbox code="lecturer.course.label.code" path="code"/>
 	<acme:input-textbox code="lecturer.course.label.title" path="title"/>
 	<acme:input-textarea code="lecturer.course.label.courseAbstract" path="courseAbstract"/>	
 	<acme:input-double code="lecturer.course.label.retailPrice" path="retailPrice"/>
 	<acme:input-url code="lecturer.course.label.link" path="link"/>
+	<jstl:if test="${_command != 'create' && courseType != null && estimatedTotalTime != null}">
+		<acme:input-double code="lecturer.course.label.courseType" path="courseType" readonly="true"/>
+		<acme:input-textbox code="lecturer.course.label.estimatedTotalTime" path="estimatedTotalTime" readonly="true"/>
+	</jstl:if>
+	
+	
 	<jstl:if test="${_command != 'create'}">
-		<acme:input-textbox code="lecturer.course.label.courseType" path="courseType" readonly="true"/>
 		<acme:button code="lecturer.course.button.lectureList" action="/lecturer/lecture/list?courseId=${id}"/>
 	</jstl:if>
 

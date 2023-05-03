@@ -26,4 +26,3 @@
 	<acme:button code="assistant.tutorial.list.button.create" action="/assistant/tutorial/create"/>
 </jstl:if>		
 	
-
