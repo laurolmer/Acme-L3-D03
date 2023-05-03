@@ -1,15 +1,10 @@
 
 package acme.features.assistant.assistantDashboard;
 
-import java.util.Collection;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.course.Course;
-import acme.entities.course.CourseType;
-import acme.form.AssistantsDashboard;
+import acme.form.AssistantDashboard;
 import acme.form.Statistic;
 import acme.framework.components.accounts.Principal;
 import acme.framework.components.models.Tuple;
@@ -17,7 +12,7 @@ import acme.framework.services.AbstractService;
 import acme.roles.Assistant;
 
 @Service
-public class AssistantDashboardShowService extends AbstractService<Assistant, AssistantsDashboard> {
+public class AssistantDashboardShowService extends AbstractService<Assistant, AssistantDashboard> {
 
 	// Internal state ---------------------------------------------------------
 	@Autowired
@@ -32,24 +27,21 @@ public class AssistantDashboardShowService extends AbstractService<Assistant, As
 
 	@Override
 	public void authorise() {
-		/*
-		 * boolean status;
-		 * final Assistant assistant;
-		 * Principal principal;
-		 * int userAccountId;
-		 * principal = super.getRequest().getPrincipal();
-		 * userAccountId = principal.getAccountId();
-		 * assistant = this.repository.findAssistantByUserAccountId(userAccountId);
-		 * status = assistant != null && principal.hasRole(Assistant.class);
-		 * super.getResponse().setAuthorised(status);
-		 */
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		final Assistant assistant;
+		Principal principal;
+		int userAccountId;
+		principal = super.getRequest().getPrincipal();
+		userAccountId = principal.getAccountId();
+		assistant = this.repository.findAssistantByUserAccountId(userAccountId);
+		status = assistant != null && principal.hasRole(Assistant.class);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
 		final int assistantId;
-		final AssistantsDashboard assistantDashboard;
+		final AssistantDashboard assistantDashboard;
 		final Principal principal;
 		int userAccountId;
 		final Assistant assistant;
@@ -90,20 +82,20 @@ public class AssistantDashboardShowService extends AbstractService<Assistant, As
 		countTutorial = this.repository.findCountTutorial(assistantId);
 		tutorialLength = new Statistic(countTutorial, averageTutorialLength, maximumTutorialLength, minimumTutorialLength, deviationTutorialLength);
 
-		final Map<CourseType, Collection<Course>> courseType = this.repository.coursesRegardingCourseType();
-		totalNumberOfTheoryTutorial = this.repository.findCountTutorialRegardingCourse(courseType.get(CourseType.THEORY_COURSE));
-		totalNumOfHandsOnTutorials = this.repository.findCountTutorialRegardingCourse(courseType.get(CourseType.HANDS_ON));
+		//final Map<CourseType, Collection<Course>> courseType = this.repository.coursesRegardingCourseType();
+		//totalNumberOfTheoryTutorial = this.repository.findCountTutorialRegardingCourse(courseType.get(CourseType.THEORY_COURSE));
+		//totalNumOfHandsOnTutorials = this.repository.findCountTutorialRegardingCourse(courseType.get(CourseType.HANDS_ON));
 
-		assistantDashboard = new AssistantsDashboard();
-		assistantDashboard.setTotalNumTheoryTutorials(totalNumberOfTheoryTutorial);
-		assistantDashboard.setTotalNumHandsOnTutorials(totalNumOfHandsOnTutorials);
+		assistantDashboard = new AssistantDashboard();
+		//assistantDashboard.setTotalNumTheoryTutorials(totalNumberOfTheoryTutorial);
+		//assistantDashboard.setTotalNumHandsOnTutorials(totalNumOfHandsOnTutorials);
 		assistantDashboard.setSessionTime(sessionLength);
 		assistantDashboard.setTutorialTime(tutorialLength);
 		super.getBuffer().setData(assistantDashboard);
 	}
 
 	@Override
-	public void unbind(final AssistantsDashboard assistantDashboard) {
+	public void unbind(final AssistantDashboard assistantDashboard) {
 		Tuple tuple;
 		tuple = super.unbind(assistantDashboard, "totalNumTheoryTutorials", "totalNumHandsOnTutorials", "sessionTime", "tutorialTime");
 		super.getResponse().setData(tuple);

@@ -62,7 +62,7 @@
             <acme:menu-suboption code="master.menu.assistant.tutorial.list-mine" action="/assistant/tutorial/list-mine"/>
             <acme:menu-suboption code="master.menu.assistant.tutorial.list-all" action="/assistant/tutorial/list-all"/>  
             <acme:menu-separator/>
-            <acme:menu-suboption code="master.menu.assistant.dashboard" action="/assistant/dashboard/show"/>      
+            <acme:menu-suboption code="master.menu.assistant.dashboard" action="/assistant/assistant-dashboard/show"/>      
         </acme:menu-option>
 
 		<acme:menu-option code="master.menu.lecturer" access="hasRole('Lecturer')">

@@ -19,7 +19,7 @@
 	<acme:message code="assistant.dashboard.form.title.general-metrics"/>
 </h2>
 <h3>
-	<acme:message code="assistant.dashboard.form.title.tutorial-length"/>
+	<acme:message code="assistant.dashboard.form.title.tutorial-time"/>
 </h3>
 <table class="table table-sm">
 	<tr>
