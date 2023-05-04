@@ -19,8 +19,14 @@ import acme.roles.Company;
 public class CompanyPracticumSessionCreateService extends AbstractService<Company, PracticumSession> {
 
 	// Constants -------------------------------------------------------------
+	protected static final String[]				PROPERTIES_BIND		= {
+		"code", "title", "abstractSession", "start", "end", "link"
+	};
 
-	public static final int						ONE_WEEK	= 1;
+	protected static final String[]				PROPERTIES_UNBIND	= {
+		"code", "title", "abstractSession", "start", "end", "link", "additional", "confirmed"
+	};
+	public static final int						ONE_WEEK			= 1;
 
 	// Internal state ---------------------------------------------------------
 	@Autowired
@@ -83,7 +89,7 @@ public class CompanyPracticumSessionCreateService extends AbstractService<Compan
 	public void bind(final PracticumSession PracticumSession) {
 		assert PracticumSession != null;
 
-		super.bind(PracticumSession, "code", "title", "abstractSession", "start", "end", "link");
+		super.bind(PracticumSession, CompanyPracticumSessionCreateService.PROPERTIES_BIND);
 	}
 
 	@Override
@@ -123,7 +129,7 @@ public class CompanyPracticumSessionCreateService extends AbstractService<Compan
 		Tuple tuple;
 
 		practicum = PracticumSession.getPracticum();
-		tuple = super.unbind(PracticumSession, "code", "title", "abstractSession", "start", "end", "link", "additional", "confirmed");
+		tuple = super.unbind(PracticumSession, CompanyPracticumSessionCreateService.PROPERTIES_UNBIND);
 		tuple.put("masterId", practicum.getId());
 		tuple.put("draftMode", practicum.getDraftMode());
 

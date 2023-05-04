@@ -12,9 +12,10 @@
 company.practicum-session.form.label.code = Código
 company.practicum-session.form.label.title = Título
 company.practicum-session.form.label.abstractSession = Resumen
-company.practicum-session.form.label.startDate = Fecha de inicio
-company.practicum-session.form.label.finishDate = Fecha de fin
+company.practicum-session.form.label.start = Fecha de inicio
+company.practicum-session.form.label.end = Fecha de fin
 company.practicum-session.form.label.link = Enlace
+
 
 # Messages for button in form
 company.practicum-session.form.button.create = Crear
@@ -23,17 +24,20 @@ company.practicum-session.form.button.delete = Eliminar
 company.practicum-session.form.button.confirm = Confirmar
 
 # Messages for label in list
+company.practicum-session.list.label.yes= Si
+company.practicum-session.list.label.no= No
 company.practicum-session.list.label.code = Código
 company.practicum-session.list.label.title = Título
 company.practicum-session.list.label.abstractSession = Resumen
-company.practicum-session.list.label.finishDate = Fecha de fin
-company.practicum-session.list.label.startDate = Fecha de inicio
+company.practicum-session.list.label.end = Fecha de fin
+company.practicum-session.list.label.start = Fecha de inicio
 company.practicum-session.list.label.additional = Adicional
 company.practicum-session.list.label.confirmed = Confirmado
+company.practicum-session.list.label.exact-duration= Duración
 
 # Messages for button in list
 company.practicum-session.list.button.create = Crear
 
 # Messages for error in form
-company.practicum-session.error.startDate-after-now = La fecha de inicio debe ser posterior a la fecha actual.
-company.practicum-session.error.finishDate-before-startDate = La fecha de fin debe ser posterior a la fecha de inicio.
+company.session-practicum.error.start-after-now = La fecha de inicio debe ser posterior a la fecha actual.
+company.session-practicum.error.end-before-start = La fecha de fin debe ser posterior a la fecha de inicio.

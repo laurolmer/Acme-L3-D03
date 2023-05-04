@@ -39,5 +39,4 @@ public class CompanyPracticumSessionController extends AbstractController<Compan
 
 		super.addCustomCommand("confirm", "update", this.confirmService);
 	}
-
 }

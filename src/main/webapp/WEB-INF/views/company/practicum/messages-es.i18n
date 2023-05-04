@@ -27,4 +27,6 @@ company.practicum.list.label.goals = Objetivos
 company.practicum.list.button.create = Crear
 company.practicum.list.button.publish = Publicar
 
+company.practicum.form.button.practicumSession= Sesiones
+
 company.practicum.form.error.code-uniqueness = El código está repetido y debe ser único
