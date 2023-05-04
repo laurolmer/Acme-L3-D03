@@ -12,7 +12,7 @@
 	<acme:input-textarea code="lecturer.course.label.courseAbstract" path="courseAbstract" placeholder="course abstract"/>	
 	<acme:input-double code="lecturer.course.label.retailPrice" path="retailPrice" placeholder="10.0 EUR"/>
 	<acme:input-url code="lecturer.course.label.link" path="link" placeholder="http://acme-l3-d03.com"/>
-	<jstl:if test="${ _command != 'create' && courseType != null && estimatedTotalTime > 0.0 }">
+	<jstl:if test="${ _command != 'create' && draftMode != true && courseType != null && estimatedTotalTime > 0.0 }">
 		<acme:input-double code="lecturer.course.label.courseType" path="courseType" readonly="true"/>
 		<acme:input-textbox code="lecturer.course.label.estimatedTotalTime" path="estimatedTotalTime" readonly="true"/>
 	</jstl:if>

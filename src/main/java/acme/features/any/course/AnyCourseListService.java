@@ -42,7 +42,7 @@ public class AnyCourseListService extends AbstractService<Any, Course> {
 	public void unbind(final Course object) {
 		assert object != null;
 		Tuple tuple;
-		tuple = super.unbind(object, "title", "courseAbstract", "retailPrice");
+		tuple = super.unbind(object, "code", "title", "courseAbstract", "retailPrice");
 		super.getResponse().setData(tuple);
 	}
 }

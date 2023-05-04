@@ -2,6 +2,7 @@
 package acme.entities.lecture;
 
 import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -67,14 +68,32 @@ public class Lecture extends AbstractEntity {
 	//	Methods ---------------------------------------------------
 
 
+	public Date deltaFromStartMoment(final double amount) {
+		assert this.startPeriod != null;
+
+		Date result;
+		long hour, minutes;
+		long delta, millis;
+
+		hour = (long) Math.floor(amount);
+		minutes = (long) ((amount - hour) * ChronoUnit.HOURS.getDuration().toMinutes());
+
+		delta = hour * ChronoUnit.HOURS.getDuration().toMillis() + minutes * ChronoUnit.MINUTES.getDuration().toMillis();
+		millis = this.startPeriod.getTime() + delta;
+		result = new Date(millis);
+
+		return result;
+	}
+
 	public double computeEstimatedLearningTime() {
-		double estimatedLearningTime;
 		Duration timeBetween;
 
-		timeBetween = MomentHelper.computeDuration(this.startPeriod, this.endPeriod);
-		estimatedLearningTime = timeBetween.toHours();
+		if (this.endPeriod != null) {
+			timeBetween = MomentHelper.computeDuration(this.startPeriod, this.endPeriod);
+			return (double) timeBetween.toMinutes() / ChronoUnit.HOURS.getDuration().toMinutes();
+		}
 
-		return estimatedLearningTime;
+		return 0.0;
 	}
 
 }

@@ -18,6 +18,9 @@ public interface LecturerCourseLectureRepository extends AbstractRepository {
 	@Query("select cl from CourseLecture cl where cl.id = :id")
 	CourseLecture findOneCourseLectureById(int id);
 
+	@Query("select cl from CourseLecture cl where cl.lecture.id = :lectureId and cl.course.id = :courseId")
+	CourseLecture findOneCourseLectureByLectureIdAndCourseId(int lectureId, int courseId);
+
 	@Query("select l from Lecturer l where l.id = :id")
 	Lecturer findOneLecturerById(int id);
 
@@ -41,5 +44,11 @@ public interface LecturerCourseLectureRepository extends AbstractRepository {
 
 	@Query("select c from Course c where c.draftMode = true and c.lecturer.id = :id")
 	Collection<Course> findNotPublishedCoursesByLecturerId(int id);
+
+	@Query("select c.draftMode from Course c where c.id = :id")
+	boolean isCourseInDraftModeByCourseId(int id);
+
+	@Query("select l.draftMode from Lecture l where l.id = :id")
+	boolean isLectureInDraftModeByCourseId(int id);
 
 }

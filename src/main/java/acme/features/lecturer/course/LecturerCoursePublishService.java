@@ -64,7 +64,6 @@ public class LecturerCoursePublishService extends AbstractService<Lecturer, Cour
 		assert object != null;
 
 		super.bind(object, "code", "title", "courseAbstract", "retailPrice", "link");
-		object.setDraftMode(false);
 	}
 
 	@Override
@@ -105,6 +104,7 @@ public class LecturerCoursePublishService extends AbstractService<Lecturer, Cour
 
 	@Override
 	public void perform(final Course object) {
+		object.setDraftMode(false);
 
 		this.repository.save(object);
 	}
