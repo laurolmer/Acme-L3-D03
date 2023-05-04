@@ -16,9 +16,14 @@
 <%@taglib prefix="acme" uri="http://www.the-acme-framework.org/" %>
 
 <acme:list>
-    <acme:list-column code="company.practicum-session.list.label.code" path="code" width="20%"/>
-    <acme:list-column code="company.practicum-session.list.label.title" path="title" width="80%"/>
+    <acme:list-column code="company.session-practicum.list.label.title" path="title" width="70%"/>
+    <acme:list-column code="company.session-practicum.list.label.exact-duration" path="exactDuration" width="70%"/>
+    <acme:list-column code="company.session-practicum.list.label.end" path="end" width="5%"/>
+    <acme:list-column code="company.session-practicum.list.label.start" path="start" width="5%"/>
+    <acme:list-column code="company.session-practicum.list.label.additional" path="additional" width="5%"/>
+    <acme:list-column code="company.session-practicum.list.label.confirmed" path="confirmed" width="5%"/>
+    <acme:list-payload path="payload"/>
 </acme:list>
 <jstl:if test="${extraAvailable}">
-    <acme:button code="company.practicum-session.list.button.create" action="/company/practicum-session/create?masterId=${masterId}"/>
+    	<acme:button code="company.session-practicum.list.button.create" action="/company/session-practicum/create?masterId=${masterId}"/>
 </jstl:if>

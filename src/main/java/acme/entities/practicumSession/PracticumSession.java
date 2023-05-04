@@ -45,25 +45,33 @@ public class PracticumSession extends AbstractEntity {
 
 	@NotNull
 	@Temporal(TemporalType.DATE)
-	protected Date				startDate;
+	protected Date				start;
 
 	@NotNull								//(at least one week ahead, at least one week long)
 	@Temporal(TemporalType.DATE)
-	protected Date				finishDate;
+	protected Date				end;
 
 	@URL
 	protected String			link;
 
-	private boolean				additional;
+	protected boolean			additional;
 
-	private boolean				confirmed;
+	protected boolean			confirmed;
 
 	// Derived attributes -----------------------------------------------------
+
+	//	public double computeEstimatedTotalTime() {
+	//		double estimatedTotalTime;
+	//		Duration timeBetween;
+	//		timeBetween = MomentHelper.computeDuration(this.start, this.end);
+	//		estimatedTotalTime = timeBetween.toHours();
+	//		return estimatedTotalTime;
+	//	}
 
 	// Relationships ----------------------------------------------------------
 
 	@Valid
 	@NotNull
 	@ManyToOne(optional = false)
-	private Practicum			practicum;
+	protected Practicum			practicum;
 }

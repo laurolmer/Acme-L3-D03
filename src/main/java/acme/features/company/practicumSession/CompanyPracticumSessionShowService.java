@@ -16,7 +16,9 @@ public class CompanyPracticumSessionShowService extends AbstractService<Company,
 
 	// Internal state ---------------------------------------------------------
 	@Autowired
-	private CompanyPracticumSessionRepository repository;
+	private CompanyPracticumSessionRepository	repository;
+
+	public static final int						ONE_WEEK	= 1;
 
 
 	// AbstractService Interface ----------------------------------------------
@@ -66,7 +68,7 @@ public class CompanyPracticumSessionShowService extends AbstractService<Company,
 		Tuple tuple;
 
 		practicum = PracticumSession.getPracticum();
-		tuple = super.unbind(PracticumSession, "code", "title", "abstractSession", "description", "start", "end", "link", "additional", "confirmed");
+		tuple = super.unbind(PracticumSession, "code", "title", "abstractSession", "start", "end", "link", "additional", "confirmed");
 		tuple.put("masterId", practicum.getId());
 		tuple.put("draftMode", practicum.getDraftMode());
 

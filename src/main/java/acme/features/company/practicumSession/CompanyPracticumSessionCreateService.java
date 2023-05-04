@@ -83,20 +83,12 @@ public class CompanyPracticumSessionCreateService extends AbstractService<Compan
 	public void bind(final PracticumSession PracticumSession) {
 		assert PracticumSession != null;
 
-		super.bind(PracticumSession, "code", "title", "abstractSession", "description", "start", "end", "link");
+		super.bind(PracticumSession, "code", "title", "abstractSession", "start", "end", "link");
 	}
 
 	@Override
 	public void validate(final PracticumSession PracticumSession) {
 		assert PracticumSession != null;
-
-		if (!super.getBuffer().getErrors().hasErrors("code")) {
-			boolean isUnique;
-
-			isUnique = this.repository.findManyPracticumSessionsByCode(PracticumSession.getCode()).isEmpty();
-
-			super.state(isUnique, "code", "company.practicum.form.error.not-unique-code");
-		}
 
 		if (!super.getBuffer().getErrors().hasErrors("start") || !super.getBuffer().getErrors().hasErrors("end")) {
 			Date start;
@@ -104,8 +96,8 @@ public class CompanyPracticumSessionCreateService extends AbstractService<Compan
 			Date inAWeekFromNow;
 			Date inAWeekFromStart;
 
-			start = PracticumSession.getStartDate();
-			end = PracticumSession.getFinishDate();
+			start = PracticumSession.getStart();
+			end = PracticumSession.getEnd();
 			inAWeekFromNow = MomentHelper.deltaFromCurrentMoment(CompanyPracticumSessionCreateService.ONE_WEEK, ChronoUnit.WEEKS);
 			inAWeekFromStart = MomentHelper.deltaFromMoment(start, CompanyPracticumSessionCreateService.ONE_WEEK, ChronoUnit.WEEKS);
 
@@ -131,7 +123,7 @@ public class CompanyPracticumSessionCreateService extends AbstractService<Compan
 		Tuple tuple;
 
 		practicum = PracticumSession.getPracticum();
-		tuple = super.unbind(PracticumSession, "code", "title", "abstractSession", "description", "start", "end", "link", "additional", "confirmed");
+		tuple = super.unbind(PracticumSession, "code", "title", "abstractSession", "start", "end", "link", "additional", "confirmed");
 		tuple.put("masterId", practicum.getId());
 		tuple.put("draftMode", practicum.getDraftMode());
 

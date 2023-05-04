@@ -71,31 +71,19 @@ public class CompanyPracticumSessionConfirmService extends AbstractService<Compa
 		PracticumSession = this.repository.findOnePracticumSessionById(PracticumSessionId);
 		PracticumSession.setConfirmed(true);
 
-		super.getRequest().setData(PracticumSession);
+		super.getBuffer().setData(PracticumSession);
 	}
 
 	@Override
 	public void bind(final PracticumSession object) {
 		assert object != null;
 
-		super.bind(object, "code", "title", "abstractSession", "description", "start", "end", "link");
+		super.bind(object, "code", "title", "abstractSession", "start", "end", "link");
 	}
 
 	@Override
 	public void validate(final PracticumSession PracticumSession) {
 		assert PracticumSession != null;
-
-		if (!super.getBuffer().getErrors().hasErrors("code")) {
-			boolean isUnique;
-			int PracticumSessionId;
-			PracticumSession old;
-
-			PracticumSessionId = super.getRequest().getData("id", int.class);
-			old = this.repository.findOnePracticumSessionById(PracticumSessionId);
-			isUnique = this.repository.findManyPracticumSessionsByCode(PracticumSession.getCode()).isEmpty() || old.getCode().equals(PracticumSession.getCode());
-
-			super.state(isUnique, "code", "company.practicum.form.error.not-unique-code");
-		}
 
 		if (!super.getBuffer().getErrors().hasErrors("start") || !super.getBuffer().getErrors().hasErrors("end")) {
 			Date start;
@@ -103,8 +91,8 @@ public class CompanyPracticumSessionConfirmService extends AbstractService<Compa
 			Date inAWeekFromNow;
 			Date inAWeekFromStart;
 
-			start = PracticumSession.getStartDate();
-			end = PracticumSession.getFinishDate();
+			start = PracticumSession.getStart();
+			end = PracticumSession.getEnd();
 			inAWeekFromNow = MomentHelper.deltaFromCurrentMoment(CompanyPracticumSessionConfirmService.ONE_WEEK, ChronoUnit.WEEKS);
 			inAWeekFromStart = MomentHelper.deltaFromMoment(start, CompanyPracticumSessionConfirmService.ONE_WEEK, ChronoUnit.WEEKS);
 
@@ -131,7 +119,7 @@ public class CompanyPracticumSessionConfirmService extends AbstractService<Compa
 		Tuple tuple;
 
 		practicum = PracticumSession.getPracticum();
-		tuple = super.unbind(PracticumSession, "code", "title", "abstractSession", "description", "start", "end", "link", "additional", "confirmed");
+		tuple = super.unbind(PracticumSession, "code", "title", "abstractSession", "start", "end", "link", "additional", "confirmed");
 		tuple.put("masterId", practicum.getId());
 		tuple.put("draftMode", practicum.getDraftMode());
 

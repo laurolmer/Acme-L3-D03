@@ -35,8 +35,9 @@ public class CompanyPracticumSessionController extends AbstractController<Compan
 		super.addBasicCommand("create", this.createService);
 		super.addBasicCommand("update", this.updateService);
 		super.addBasicCommand("delete", this.deleteService);
-		super.addCustomCommand("confirm", "update", this.confirmService);
 		super.addBasicCommand("list", this.listService);
+
+		super.addCustomCommand("confirm", "update", this.confirmService);
 	}
 
 }

@@ -16,12 +16,11 @@
 <%@taglib prefix="acme" uri="http://www.the-acme-framework.org/" %>
 
 <acme:form>
-    <acme:input-textbox code="company.practicum-session.form.label.code" path="code"/> 
+ 	<acme:input-textbox code="company.practicum-session.form.label.code" path="code"/>
     <acme:input-textbox code="company.practicum-session.form.label.title" path="title"/>
     <acme:input-textarea code="company.practicum-session.form.label.abstractSession" path="abstractSession"/>
-    <acme:input-textarea code="company.practicum-session.form.label.description" path="description"/>
-    <acme:input-moment code="company.practicum-session.form.label.startDate" path="startDate"/>
-    <acme:input-moment code="company.practicum-session.form.label.finishDate" path="finishDate"/>
+    <acme:input-moment code="company.practicum-session.form.label.start" path="start"/>
+    <acme:input-moment code="company.practicum-session.form.label.end" path="end"/>
     <acme:input-url code="company.practicum-session.form.label.link" path="link"/>
     <jstl:choose>
         <jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">

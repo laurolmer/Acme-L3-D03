@@ -37,7 +37,7 @@ public class CompanyPracticumSessionDeleteService extends AbstractService<Compan
 		PracticumSession PracticumSession;
 		Principal principal;
 		Practicum practicum;
-		Boolean isDraftMode;
+		Boolean getDraftMode;
 		Boolean isAdditional;
 
 		principal = super.getRequest().getPrincipal();
@@ -48,10 +48,10 @@ public class CompanyPracticumSessionDeleteService extends AbstractService<Compan
 		if (PracticumSession != null) {
 			practicum = PracticumSession.getPracticum();
 
-			isDraftMode = practicum.getDraftMode();
-			isAdditional = !PracticumSession.isConfirmed() && !isDraftMode;
+			getDraftMode = practicum.getDraftMode();
+			isAdditional = !PracticumSession.isConfirmed() && !getDraftMode;
 
-			status = (isDraftMode || isAdditional) && principal.hasRole(practicum.getCompany());
+			status = (getDraftMode || isAdditional) && principal.hasRole(practicum.getCompany());
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -72,7 +72,7 @@ public class CompanyPracticumSessionDeleteService extends AbstractService<Compan
 	public void bind(final PracticumSession PracticumSession) {
 		assert PracticumSession != null;
 
-		super.bind(PracticumSession, "code", "title", "abstractSession", "description", "start", "end", "link", "additional", "confirmed");
+		super.bind(PracticumSession, "code", "title", "abstractSession", "start", "end", "link");
 	}
 
 	@Override
@@ -95,7 +95,7 @@ public class CompanyPracticumSessionDeleteService extends AbstractService<Compan
 		Tuple tuple;
 
 		practicum = PracticumSession.getPracticum();
-		tuple = super.unbind(PracticumSession, "code", "title", "abstractSession", "description", "start", "end", "link", "additional", "confirmed");
+		tuple = super.unbind(PracticumSession, "code", "title", "abstractSession", "start", "end", "link", "additional", "confirmed");
 		tuple.put("masterId", practicum.getId());
 		tuple.put("draftMode", practicum.getDraftMode());
 

@@ -12,7 +12,6 @@
 company.practicum-session.form.label.code = Código
 company.practicum-session.form.label.title = Título
 company.practicum-session.form.label.abstractSession = Resumen
-company.practicum-session.form.label.description = Descripción
 company.practicum-session.form.label.startDate = Fecha de inicio
 company.practicum-session.form.label.finishDate = Fecha de fin
 company.practicum-session.form.label.link = Enlace
@@ -27,7 +26,6 @@ company.practicum-session.form.button.confirm = Confirmar
 company.practicum-session.list.label.code = Código
 company.practicum-session.list.label.title = Título
 company.practicum-session.list.label.abstractSession = Resumen
-company.practicum-session.list.label.description = Descripción
 company.practicum-session.list.label.finishDate = Fecha de fin
 company.practicum-session.list.label.startDate = Fecha de inicio
 company.practicum-session.list.label.additional = Adicional
