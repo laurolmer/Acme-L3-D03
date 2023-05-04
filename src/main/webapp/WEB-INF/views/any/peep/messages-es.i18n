@@ -19,8 +19,11 @@ any.peep.form.label.publish= Publicado
 
 any.peep.list.title = Título
 any.peep.list.nick = Nombre
-any.peep.list.moment = Momento
-
+any.peep.list.message = Mensaje
 
 any.peep.form.button.publish= Publicar Peep
 any.peep.form.button.create = Crear Peep
+
+any.peep.moment-reached-max-value = Momento alcanzó el valor máximo para las fechas (2100/12/31 23:59)
+any.peep.moment-didnot-reach-min-value = Momento debe superar a la fecha mínima posible (2000/01/01 00:00)
+any.peep.moment-after-actualMoment = Momento debe ser presente o pasado respecto a la fecha actual

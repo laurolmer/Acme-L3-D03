@@ -59,7 +59,10 @@ public class AnyPeepListService extends AbstractService<Any, Peep> {
 	public void unbind(final Peep object) {
 		assert object != null;
 		Tuple tuple;
+		String payload;
 		tuple = super.unbind(object, "moment", "title", "nick", "message", "link", "email");
+		payload = String.format("%s; %s; %s", object.getTitle(), object.getNick(), object.getMessage());
+		tuple.put("payload", payload);
 		super.getResponse().setData(tuple);
 	}
 }
