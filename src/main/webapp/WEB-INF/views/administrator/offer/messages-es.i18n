@@ -8,8 +8,8 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-administrator.offer.form.label.instantationMoment = Momento de instancia
-administrator.offer.form.label.headding = Encabezado
+administrator.offer.form.label.instantiationMoment = Momento de instancia
+administrator.offer.form.label.heading = Titulo
 administrator.offer.form.label.summary = Resumen
 administrator.offer.form.label.price = Precio
 administrator.offer.form.label.availabilityPeriodStart = Periodo inicial

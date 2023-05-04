@@ -17,7 +17,7 @@
 
 <acme:form >
 	<acme:input-moment readonly="${true}" code="administrator.offer.form.label.instantationMoment" path="instantationMoment"/>
-	<acme:input-textbox code="administrator.offer.form.label.headding" path="heading"/>
+	<acme:input-textbox code="administrator.offer.form.label.heading" path="heading"/>
 	<acme:input-textarea code="administrator.offer.form.label.summary" path="summary"/>
 	<acme:input-money code="administrator.offer.form.label.price" path="price"/>
 	<acme:input-moment code="administrator.offer.form.label.availabilityPeriodStart" path="availabilityPeriodStart"/>
