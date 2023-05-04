@@ -55,7 +55,7 @@ public class AdministratorOfferUpdateService extends AbstractService<Administrat
 		Date minStartPeriod;
 		final Date maxValue = new Date("2100/12/31 23:59");
 		final Date minValue = new Date("2000/01/01 00:00");
-		// StartPeriod -> At least one day after the offer is instantiated.
+		// StartPeriod -> At least 1 day after the offer is instantiated.
 		if (!super.getBuffer().getErrors().hasErrors("availabilityPeriodStart")) {
 			minStartPeriod = MomentHelper.deltaFromCurrentMoment(1, ChronoUnit.DAYS);
 			super.state(MomentHelper.isAfter(object.getAvailabilityPeriodStart(), minStartPeriod), "availabilityPeriodStart", "administrator.offer.start-close-to-instantiation");
@@ -93,8 +93,9 @@ public class AdministratorOfferUpdateService extends AbstractService<Administrat
 	public void unbind(final Offer object) {
 		assert object != null;
 		Tuple tuple;
+		final Date instantiationMoment = MomentHelper.getCurrentMoment();
 		tuple = super.unbind(object, "instantiationMoment", "heading", "summary", "price", "availabilityPeriodStart", "availabilityPeriodEnd", "link");
+		tuple.put("isInDisplay", MomentHelper.isBeforeOrEqual(instantiationMoment, object.getAvailabilityPeriodEnd()));
 		super.getResponse().setData(tuple);
 	}
-
 }

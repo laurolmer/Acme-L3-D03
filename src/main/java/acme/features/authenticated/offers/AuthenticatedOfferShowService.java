@@ -1,26 +1,21 @@
 
-package acme.features.administrator.offer;
-
-import java.util.Date;
+package acme.features.authenticated.offers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.offer.Offer;
-import acme.framework.components.accounts.Administrator;
+import acme.framework.components.accounts.Authenticated;
 import acme.framework.components.models.Tuple;
-import acme.framework.helpers.MomentHelper;
 import acme.framework.services.AbstractService;
 
 @Service
-public class AdministratorOfferShowService extends AbstractService<Administrator, Offer> {
+public class AuthenticatedOfferShowService extends AbstractService<Authenticated, Offer> {
 
-	// Internal state ---------------------------------------------------------
 	@Autowired
-	protected AdministratorOfferRepository repository;
+	protected AuthenticatedOfferRepository repository;
 
 
-	// AbstractService interface ----------------------------------------------
 	@Override
 	public void check() {
 		boolean status;
@@ -35,20 +30,22 @@ public class AdministratorOfferShowService extends AbstractService<Administrator
 
 	@Override
 	public void load() {
-		Offer object;
-		int id;
-		id = super.getRequest().getData("id", int.class);
-		object = this.repository.findAnOfferById(id);
-		super.getBuffer().setData(object);
+		int OfferId;
+		Offer Offer;
+
+		OfferId = super.getRequest().getData("id", int.class);
+		Offer = this.repository.findOneOfferById(OfferId);
+		super.getBuffer().setData(Offer);
 	}
 
 	@Override
 	public void unbind(final Offer object) {
 		assert object != null;
+
 		Tuple tuple;
-		final Date instantiationMoment = MomentHelper.getCurrentMoment();
+
 		tuple = super.unbind(object, "instantiationMoment", "heading", "summary", "price", "availabilityPeriodStart", "availabilityPeriodEnd", "link");
-		tuple.put("isInDisplay", MomentHelper.isBeforeOrEqual(instantiationMoment, object.getAvailabilityPeriodEnd()));
+
 		super.getResponse().setData(tuple);
 	}
 }
