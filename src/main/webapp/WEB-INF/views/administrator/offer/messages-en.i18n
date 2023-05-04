@@ -8,8 +8,9 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-administrator.offer.form.label.instantationMoment = Instantiation Moment
-administrator.offer.form.label.headding = Heading
+
+administrator.offer.form.label.instantiationMoment= Instantiation Moment
+administrator.offer.form.label.heading = Heading
 administrator.offer.form.label.summary = Summary
 administrator.offer.form.label.price = Price
 administrator.offer.form.label.availabilityPeriodStart = Start Period
