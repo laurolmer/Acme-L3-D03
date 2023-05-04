@@ -87,6 +87,7 @@ master.menu.lecturer.course.list.all = List courses
 master.menu.lecturer.course.list.mine = List my courses
 master.menu.lecturer.lecture.list.all = List my lectures
 master.menu.lecturer.lecture.create = Create lecture
+master.menu.lecturer.lecture.dashboard = Dashboard
 
 # master.menu.company ###################################################
 
