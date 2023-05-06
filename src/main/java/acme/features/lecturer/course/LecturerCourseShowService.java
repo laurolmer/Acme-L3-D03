@@ -75,6 +75,8 @@ public class LecturerCourseShowService extends AbstractService<Lecturer, Course>
 		tuple.put("courseType", courseType);
 		tuple.put("estimatedTotalTime", estimatedTotalTime);
 		tuple.put("published", !object.isDraftMode());
+		tuple.put("lectures", lectures.isEmpty());
+		tuple.put("draftMode", object.isDraftMode());
 		super.getResponse().setData(tuple);
 	}
 

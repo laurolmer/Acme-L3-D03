@@ -92,6 +92,7 @@ public class LecturerLectureListService extends AbstractService<Lecturer, Lectur
 		int courseId;
 		final Course course;
 		final boolean showAddToCourse;
+		final boolean showDeleteOfCourse;
 		final Principal principal;
 		final int userAccountId;
 
@@ -101,9 +102,11 @@ public class LecturerLectureListService extends AbstractService<Lecturer, Lectur
 		courseId = super.getRequest().getData("courseId", int.class);
 		course = this.repository.findOneCourseById(courseId);
 		showAddToCourse = course.isDraftMode() && course.getLecturer().getUserAccount().getId() == userAccountId;
+		showDeleteOfCourse = course.isDraftMode() && course.getLecturer().getUserAccount().getId() == userAccountId && this.repository.hasACourseAnyLecture(courseId);
 
 		super.getResponse().setGlobal("courseId", courseId);
 		super.getResponse().setGlobal("showAddToCourse", showAddToCourse);
+		super.getResponse().setGlobal("showDeleteOfCourse", showDeleteOfCourse);
 	}
 
 }

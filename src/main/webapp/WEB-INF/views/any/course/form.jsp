@@ -6,19 +6,14 @@
 <acme:form>
 
 	<acme:hidden-data path="id"/>
-
+	<acme:input-checkbox code="lecturer.course.label.draftMode" path="published" readonly="true"/>
 	<acme:input-textbox code="lecturer.course.label.code" path="code"/>
 	<acme:input-textbox code="lecturer.course.label.title" path="title"/>
-	<acme:input-textbox code="lecturer.course.label.abstraction" path="abstraction"/>	
+	<acme:input-textarea code="lecturer.course.label.courseAbstract" path="courseAbstract"/>	
 	<acme:input-double code="lecturer.course.label.retailPrice" path="retailPrice"/>
 	<acme:input-url code="lecturer.course.label.link" path="link"/>
-	
-	<acme:submit test="${_command == 'create'}" code="lecturer.course.button.create" action="/lecturer/course/create"/>		
-	
-	<jstl:if test="${_command != 'create' && draftMode == true }">	
-		<acme:submit code="lecturer.course.button.update" action="/lecturer/course/update"/>
-		<acme:submit code="lecturer.course.button.delete" action="/lecturer/course/delete"/>		
-		<acme:submit code="lecturer.course.button.publish" action="/lecturer/course/publish"/>		
+	<jstl:if test="${courseType != null && estimatedTotalTime > 0.0}">
+		<acme:input-double code="lecturer.course.label.courseType" path="courseType" readonly="true"/>
+		<acme:input-textbox code="lecturer.course.label.estimatedTotalTime" path="estimatedTotalTime" readonly="true"/>
 	</jstl:if>
-	
 </acme:form>

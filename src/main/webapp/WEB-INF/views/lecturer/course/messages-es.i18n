@@ -1,3 +1,5 @@
+# FORM - COURSE ####################################################
+
 lecturer.course.label.code = Código
 lecturer.course.label.title = Título
 lecturer.course.label.courseAbstract = Resumen
@@ -9,9 +11,7 @@ lecturer.course.label.draftMode = Publicado
 lecturer.course.label.courseType = Tipo de curso
 lecturer.course.label.estimatedTotalTime = Tiempo total estimado
 
-lecturer.course.lectures = Lecciones
-
-lecturer.course.create = Crear
+# BUTTONS - COURSE #################################################
 
 lecturer.course.button.create = Crear
 lecturer.course.button.update = Actualizar
@@ -19,5 +19,16 @@ lecturer.course.button.delete = Borrar
 lecturer.course.button.publish = Publicar
 lecturer.course.button.lectureList = Lista de lecciones
 
-lecturer.course.form.error.nolecture = No se puede publicar un curso sin lecciones
-lecturer.course.form.error.nohandson = No se puede publicar un curso sin lecciones prácticas
+# ERRORS - COURSE ####################################################################
+
+## CREATE ----------------------------------------------------------------------------
+
+lecturer.course.error.draftMode.published = No se puede crear un curso ya publicado
+lecturer.course.error.code.duplicated = El código de curso ya está en uso
+lecturer.course.error.retailPrice.negative = El precio debe ser mayor de cero
+ 
+## PUBLISH ----------------------------------------------------------------------------
+
+lecturer.course.form.error.noLecture = No se puede publicar un curso sin lecciones
+lecturer.course.form.error.noHandsOn = No se puede publicar un curso sin lecciones prácticas
+lecturer.course.form.error.lectureNotPublished = No se puede publicar un curso con lecciones sin publicar

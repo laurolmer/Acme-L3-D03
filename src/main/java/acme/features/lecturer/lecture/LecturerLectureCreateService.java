@@ -1,7 +1,6 @@
 
 package acme.features.lecturer.lecture;
 
-import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +31,7 @@ public class LecturerLectureCreateService extends AbstractService<Lecturer, Lect
 	@Override
 	public void authorise() {
 		boolean status;
-
 		status = super.getRequest().getPrincipal().hasRole(Lecturer.class);
-
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -50,41 +47,44 @@ public class LecturerLectureCreateService extends AbstractService<Lecturer, Lect
 		object = new Lecture();
 		object.setLecturer(lecturer);
 		object.setStartPeriod(MomentHelper.getCurrentMoment());
+		object.setDraftMode(true);
 		super.getBuffer().setData(object);
 	}
 
 	@Override
 	public void bind(final Lecture object) {
 		assert object != null;
+
+		double estimatedLearningTime;
+		Date endPeriod;
 		int activeRoleId;
 		Lecturer lecturer;
-		long estimatedLearningTime;
-		Date startPeriod;
-		Date endPeriod;
 
 		activeRoleId = super.getRequest().getPrincipal().getActiveRoleId();
 		lecturer = this.repository.findOneLecturerById(activeRoleId);
 
-		estimatedLearningTime = super.getRequest().getData("estimatedLearningTime", long.class);
-		startPeriod = object.getStartPeriod();
-		endPeriod = MomentHelper.deltaFromMoment(startPeriod, estimatedLearningTime, ChronoUnit.MINUTES);
+		estimatedLearningTime = super.getRequest().getData("endPeriod", Double.class);
+		endPeriod = object.deltaFromStartMoment(estimatedLearningTime);
 
 		super.bind(object, "title", "lectureAbstract", "body", "lectureType", "link");
 		object.setEndPeriod(endPeriod);
-		object.setLecturer(lecturer);
 		object.setDraftMode(true);
+		object.setLecturer(lecturer);
 	}
 
 	@Override
 	public void validate(final Lecture object) {
-		if (!super.getBuffer().getErrors().hasErrors("estimatedLearningTime"))
-			super.state(object.computeEstimatedLearningTime() >= 0.01, "estimatedLearningTime", "lecturer.lecture.form.error.estimatedLearningTIme");
+		assert object != null;
+
+		if (!super.getBuffer().getErrors().hasErrors("endPeriod")) {
+			final boolean eval = object.computeEstimatedLearningTime() > 0.0;
+			super.state(eval, "endPeriod", "lecturer.lecture.error.estimatedLearningTime");
+		}
 	}
 
 	@Override
 	public void perform(final Lecture object) {
 		assert object != null;
-
 		this.repository.save(object);
 	}
 
@@ -93,8 +93,13 @@ public class LecturerLectureCreateService extends AbstractService<Lecturer, Lect
 		assert object != null;
 		Tuple tuple;
 		final SelectChoices choices;
+		Double estimatedLearningTime;
 
 		tuple = super.unbind(object, "title", "lectureAbstract", "body", "lectureType", "link");
+
+		estimatedLearningTime = object.computeEstimatedLearningTime();
+		if (estimatedLearningTime != null)
+			tuple.put("endPeriod", estimatedLearningTime);
 
 		choices = SelectChoices.from(LectureType.class, object.getLectureType());
 		tuple.put("lectureType", choices.getSelected().getKey());
