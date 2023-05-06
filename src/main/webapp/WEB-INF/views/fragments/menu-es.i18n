@@ -45,6 +45,14 @@ master.menu.bulletin = Boletines
 master.menu.bulletin.list = Listar todos los boletines
 master.menu.administrator.bulletin.form = Crear un Bulletin
 
+master.menu.offer.list = Listar todas las ofertas
+
+# master.menu.assistant ###################################################
+
+master.menu.assistant = Asistente
+master.menu.assistant.tutorial.list-mine = Listar mis tutoriales
+master.menu.assistant.tutorial.list-all = Listar todos los tutoriales
+
 # master.menu.administrator.offer ###################################################
 
 master.menu.administrator.offer = Ofertas Administrador
@@ -93,6 +101,11 @@ master.menu.company.practicum.list-all = Todas las prácticas
 master.menu.student = Estudiante
 master.menu.student.studentCourseList = Listado de Cursos
 master.menu.student.studentEnrolmentList = Lista de Matriculas
+
+
+# master.menu.any #############################################################
+
+master.menu.any.peep= Lista de Peeps
 
 
 # master.menu.user-account ####################################################

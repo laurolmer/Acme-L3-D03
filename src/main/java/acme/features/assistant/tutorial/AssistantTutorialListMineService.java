@@ -43,8 +43,11 @@ public class AssistantTutorialListMineService extends AbstractService<Assistant,
 	@Override
 	public void unbind(final Tutorial object) {
 		assert object != null;
+		String payload;
 		Tuple tuple;
-		tuple = super.unbind(object, "code", "title", "abstractTutorial", "goals");
+		tuple = super.unbind(object, "code", "title");
+		payload = String.format("%s; %s; %s; %s", object.getCode(), object.getTitle(), object.getAssistant().getIdentity().getFullName(), object.getAssistant().getSupervisor());
+		tuple.put("payload", payload);
 		super.getResponse().setData(tuple);
 	}
 }

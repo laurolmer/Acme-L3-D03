@@ -1,5 +1,5 @@
 
-package acme.features.administrator.offer;
+package acme.features.authenticated.offers;
 
 import java.util.Date;
 
@@ -7,25 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.offer.Offer;
-import acme.framework.components.accounts.Administrator;
+import acme.framework.components.accounts.Authenticated;
 import acme.framework.components.models.Tuple;
+import acme.framework.controllers.HttpMethod;
 import acme.framework.helpers.MomentHelper;
+import acme.framework.helpers.PrincipalHelper;
 import acme.framework.services.AbstractService;
 
 @Service
-public class AdministratorOfferDeleteService extends AbstractService<Administrator, Offer> {
+public class AuthenticatedOfferCreateService extends AbstractService<Authenticated, Offer> {
 
-	// Internal state ---------------------------------------------------------
 	@Autowired
-	protected AdministratorOfferRepository repository;
+	protected AuthenticatedOfferRepository repository;
 
 
-	// AbstractService interface ----------------------------------------------
 	@Override
 	public void check() {
-		boolean status;
-		status = super.getRequest().hasData("id", int.class);
-		super.getResponse().setChecked(status);
+		super.getResponse().setChecked(true);
 	}
 
 	@Override
@@ -36,36 +34,51 @@ public class AdministratorOfferDeleteService extends AbstractService<Administrat
 	@Override
 	public void load() {
 		Offer object;
-		int id;
-		id = super.getRequest().getData("id", int.class);
-		object = this.repository.findAnOfferById(id);
+		Date moment;
+		moment = MomentHelper.getCurrentMoment();
+		object = new Offer();
+
 		super.getBuffer().setData(object);
 	}
 
 	@Override
 	public void bind(final Offer object) {
 		assert object != null;
-		super.bind(object, "heading", "summary", "price", "availabilityPeriodStart", "availabilityPeriodEnd", "link");
+
+		super.bind(object, "instantiationMoment", "heading", "summary", "price", "availabilityPeriodStart", "availabilityPeriodEnd", "link");
 	}
 
 	@Override
 	public void validate(final Offer object) {
 		assert object != null;
+
+		boolean confirmation;
+
+		confirmation = super.getRequest().getData("confirmation", boolean.class);
+		super.state(confirmation, "confirmation", "javax.validation.constraints.AssertTrue.message");
 	}
 
 	@Override
 	public void perform(final Offer object) {
 		assert object != null;
-		this.repository.delete(object);
+		Date moment;
+		moment = MomentHelper.getCurrentMoment();
+
+		this.repository.save(object);
 	}
 
 	@Override
 	public void unbind(final Offer object) {
 		assert object != null;
 		Tuple tuple;
-		final Date instantiationMoment = MomentHelper.getCurrentMoment();
 		tuple = super.unbind(object, "instantiationMoment", "heading", "summary", "price", "availabilityPeriodStart", "availabilityPeriodEnd", "link");
-		tuple.put("isInDisplay", MomentHelper.isBeforeOrEqual(instantiationMoment, object.getAvailabilityPeriodEnd()));
+		tuple.put("confirmation", false);
 		super.getResponse().setData(tuple);
+	}
+
+	@Override
+	public void onSuccess() {
+		if (super.getRequest().getMethod().equals(HttpMethod.POST))
+			PrincipalHelper.handleUpdate();
 	}
 }

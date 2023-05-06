@@ -40,11 +40,10 @@
 		
 		<acme:menu-option code="master.menu.authenticated" access="isAuthenticated()">
 			<acme:menu-suboption code="master.menu.authenticated.note.list" action="/authenticated/note/list"/>
+			<acme:menu-suboption code="master.menu.offer.list" action="/authenticated/offer/list"/>
+			<acme:menu-suboption code="master.menu.bulletin.list" action="/authenticated/bulletin/list"/>
 		</acme:menu-option>
 
-		<acme:menu-option code="master.menu.bulletin" access="isAuthenticated()">
-			<acme:menu-suboption code="master.menu.bulletin.list" action="/authenticated/bulletin/list"/>
-			</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.auditor" access="hasRole('Auditor')">
 			<acme:menu-suboption code="master.menu.auditor.audit.list" action="/auditor/audit/list"/>
@@ -77,15 +76,23 @@
 			<acme:menu-suboption code="master.menu.student.studentCourseList" action="/student/course/list"/>
 			<acme:menu-suboption code="master.menu.student.studentEnrolmentList" action="/student/enrolment/list"/>		
 		</acme:menu-option>
-		
+
+		<acme:menu-option code="master.menu.assistant" access="hasRole('Assistant')">
+            <acme:menu-suboption code="master.menu.assistant.tutorial.list-mine" action="/assistant/tutorial/list-mine"/>
+            <acme:menu-suboption code="master.menu.assistant.tutorial.list-all" action="/assistant/tutorial/list-all"/>        
+        </acme:menu-option>
+        
 		<acme:menu-option code="master.menu.administrator.offer" access="hasRole('Administrator')">
 			<acme:menu-suboption code="master.menu.administrator.offer.list" action="/administrator/offer/list"/>		
+
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.company" access="hasRole('Company')">
 			<acme:menu-suboption code="master.menu.company.practicum.list-mine" action="/company/practicum/list-mine"/>
 			<acme:menu-suboption code="master.menu.company.practicum.list-all" action="/company/practicum/list-all"/>		
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.any.peep" action="/any/peep/list"/>
 		
 	</acme:menu-left>
 

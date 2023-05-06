@@ -68,9 +68,12 @@ public class AssistantTutorialSessionUpdateService extends AbstractService<Assis
 
 	@Override
 	public void validate(final TutorialSession tutorialSession) {
+		assert tutorialSession != null;
 		Date minStartPeriod;
 		boolean condition1;
 		boolean condition2;
+		final Date maxValue = new Date("2100/12/31 23:59");
+		final Date minValue = new Date("2000/01/01 00:00");
 		// El periodo de inicio de la sesión de tutoría debe ser mínimo un día después a la fecha actual.
 		if (!super.getBuffer().getErrors().hasErrors("startPeriod")) {
 			minStartPeriod = MomentHelper.deltaFromCurrentMoment(1, ChronoUnit.DAYS);
@@ -79,7 +82,6 @@ public class AssistantTutorialSessionUpdateService extends AbstractService<Assis
 		// El periodo de finalización debe ser posterior al periodo de inicio.
 		if (!super.getBuffer().getErrors().hasErrors("finishPeriod"))
 			super.state(MomentHelper.isAfter(tutorialSession.getFinishPeriod(), tutorialSession.getStartPeriod()), "finishPeriod", "assistant.session.finishPeriod-before-startPeriod");
-		// El periodo de finalización respecto al de inicio debe de aproximarse entre 1 y 5 horas.
 		if (!super.getBuffer().getErrors().hasErrors("finishPeriod")) {
 			// El periodo de finalización debe ser 1 hora posterior como mínimo respecto al periodo de inicio.
 			condition1 = MomentHelper.isLongEnough(tutorialSession.getStartPeriod(), tutorialSession.getFinishPeriod(), 1, ChronoUnit.HOURS);
@@ -87,6 +89,12 @@ public class AssistantTutorialSessionUpdateService extends AbstractService<Assis
 			condition2 = MomentHelper.computeDuration(tutorialSession.getStartPeriod(), tutorialSession.getFinishPeriod()).getSeconds() <= Duration.ofHours(5).getSeconds();
 			super.state(condition1 && condition2, "finishPeriod", "assistant.session.bad-finishPeriod-time");
 		}
+		// EndPeriod must be before 2100/12/31 23:59
+		if (!super.getBuffer().getErrors().hasErrors("availabilityPeriodEnd"))
+			super.state(!MomentHelper.isAfter(tutorialSession.getFinishPeriod(), maxValue), "availabilityPeriodEnd", "assistant.session.end-reached-max-value");
+		// StartPeriod must be after 2000/01/01 00:00
+		if (!super.getBuffer().getErrors().hasErrors("availabilityPeriodStart"))
+			super.state(MomentHelper.isAfter(tutorialSession.getStartPeriod(), minValue), "getAvailabilityPeriodStart", "assistant.session.start-didnot-reach-min-value");
 	}
 
 	@Override

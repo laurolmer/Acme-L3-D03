@@ -18,8 +18,7 @@
 <acme:list>
 	<acme:list-column code="assistant.tutorial-session.list.label.title" path="title"/>
 	<acme:list-column code="assistant.tutorial-session.list.label.abstractSession" path="abstractSession"/>
-	<acme:list-column code="assistant.tutorial-session.list.label.startPeriod" path="startPeriod"/>
-	<acme:list-column code="assistant.tutorial-session.list.label.finishPeriod" path="finishPeriod"/>
+	<acme:list-payload path="payload"/>
 </acme:list>
 
 <jstl:if test="${showCreate}">
