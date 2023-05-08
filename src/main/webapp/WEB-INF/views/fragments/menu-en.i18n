@@ -101,6 +101,7 @@ master.menu.company.practicum.list-all = List all practicum
 master.menu.student = Student
 master.menu.student.studentCourseList = Course List
 master.menu.student.studentEnrolmentList = Enrolment List
+master.menu.student.dashboard = Student Dashboard
 
 
 # master.menu.any #############################################################
