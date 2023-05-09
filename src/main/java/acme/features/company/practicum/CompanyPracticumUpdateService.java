@@ -17,7 +17,7 @@ import acme.roles.Company;
 @Service
 public class CompanyPracticumUpdateService extends AbstractService<Company, Practicum> {
 
-	// Internal state ---------------------------------------------------------
+	// Internal state --------------------------------------------------------
 	@Autowired
 	protected CompanyPracticumRepository		repository;
 
@@ -25,7 +25,7 @@ public class CompanyPracticumUpdateService extends AbstractService<Company, Prac
 	protected AuthenticatedCompanyRepository	repositoryCompany;
 
 
-	// AbstractService interface ----------------------------------------------
+	// AbstractService interface ---------------------------------------------
 	@Override
 	public void check() {
 		boolean status;
@@ -69,7 +69,7 @@ public class CompanyPracticumUpdateService extends AbstractService<Company, Prac
 		Company = this.repository.findCompanyById(CompanyId);
 		courseId = super.getRequest().getData("course", int.class);
 		course = this.repository.findCourseById(courseId);
-		super.bind(object, "code", "title", "abstractPracticum", "goals");
+		super.bind(object, "code", "title", "abstractPracticum", "goals", "draftMode");
 		object.setCompany(Company);
 		object.setCourse(course);
 	}
@@ -105,10 +105,11 @@ public class CompanyPracticumUpdateService extends AbstractService<Company, Prac
 		Tuple tuple;
 		courses = this.repository.findNotInDraftCourses();
 		choices = SelectChoices.from(courses, "title", object.getCourse());
-		tuple = super.unbind(object, "code", "title", "abstractPracticum", "goals");
+		tuple = super.unbind(object, "code", "title", "abstractPracticum", "goals", "draftMode");
 		tuple.put("course", choices.getSelected().getKey());
 		tuple.put("courses", choices);
 		tuple.put("draftMode", object.getDraftMode());
 		super.getResponse().setData(tuple);
+
 	}
 }

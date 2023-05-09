@@ -20,13 +20,13 @@ offer-18,2022/01/01 00:00,heading-offer,Hallå,EUR 10.0,2022/01/02 00:00,2022/01
 offer-19,2022/01/01 00:00,heading-offer,வணக்கம்,EUR 10.0,2022/01/02 00:00,2022/01/09 00:00,null
 offer-20,2022/01/01 00:00,heading-offer,summary-offer,EUR 0.0,2022/01/02 00:00,2022/01/09 00:00,null
 offer-21,2022/01/01 00:00,heading-offer,summary-offer,EUR 1.0,2022/01/02 00:00,2022/01/09 00:00,null
-offer-22,2022/01/01 00:00,heading-offer,summary-offer,EUR 10.0,2022/01/02 00:00,2022/01/09 00:00,null
+offer-22,2022/01/01 00:00,heading-offer,summary-offer,EUR 1000000.0,2022/01/02 00:00,2022/01/09 00:00,null
 offer-23,2022/01/01 00:00,heading-offer,summary-offer,USD 0.0,2022/01/02 00:00,2022/01/09 00:00,null
 offer-24,2022/01/01 00:00,heading-offer,summary-offer,USD 1.0,2022/01/02 00:00,2022/01/09 00:00,null
-offer-25,2022/01/01 00:00,heading-offer,summary-offer,USD 10.0,2022/01/02 00:00,2022/01/09 00:00,null
+offer-25,2022/01/01 00:00,heading-offer,summary-offer,USD 1000000.0,2022/01/02 00:00,2022/01/09 00:00,null
 offer-26,2022/01/01 00:00,heading-offer,summary-offer,GBP 0.0,2022/01/02 00:00,2022/01/09 00:00,null
 offer-27,2022/01/01 00:00,heading-offer,summary-offer,GBP 1.0,2022/01/02 00:00,2022/01/09 00:00,null
-offer-28,2022/01/01 00:00,heading-offer,summary-offer,GBP 10.0,2022/01/02 00:00,2022/01/09 00:00,null
+offer-28,2022/01/01 00:00,heading-offer,summary-offer,GBP 1000000.0,2022/01/02 00:00,2022/01/09 00:00,null
 offer-29,2022/01/01 00:00,heading-offer,summary-offer,EUR 10.0,2022/01/02 00:00,2022/01/09 00:00,null
 offer-30,2022/01/01 00:00,heading-offer,summary-offer,EUR 10.0,2022/01/03 00:00,2022/01/10 00:00,null
 offer-31,2022/01/01 00:00,heading-offer,summary-offer,EUR 10.0,2022/01/04 00:00,2022/01/11 00:00,null
@@ -34,5 +34,5 @@ offer-32,2022/01/01 00:00,heading-offer,summary-offer,EUR 10.0,2022/01/02 00:00,
 offer-33,2022/01/01 00:00,heading-offer,summary-offer,EUR 10.0,2022/01/02 00:00,2022/01/10 00:00,null
 offer-34,2022/01/01 00:00,heading-offer,summary-offer,EUR 10.0,2022/01/02 00:00,2022/01/11 00:00,null
 offer-35,2022/01/01 00:00,heading-offer,summary-offer,EUR 10.0,2022/01/02 00:00,2022/01/09 00:00,https:\\www.example.offer.com
-offer-36,2022/01/01 00:00,heading-offer,summary-offer,EUR 10.0,2022/01/02 00:00,2022/01/09 00:00,http:\\www.example.offer.com
-offer-37,2022/01/01 00:00,heading-offer,summary-offer,EUR 10.0,2022/01/02 00:00,2022/01/09 00:00,https:\\www.example.offer.es
+offer-36,2022/01/01 00:00,heading-offer,summary-offer,EUR 10.0,2000/01/01 00:00,2022/01/07 00:00,http:\\www.example.offer.com
+offer-37,2022/01/01 00:00,heading-offer,summary-offer,EUR 10.0,2100/12/24 00:00,2100/12/31 23:59,https:\\www.example.offer.es

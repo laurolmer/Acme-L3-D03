@@ -1,5 +1,5 @@
 key,code,title,abstract-tutorial,goals,draftMode,key:assistant,key:course
-tutorial-01,TUT001,How to publish a course.,Example abstract.,"goal-1, goal-2, goal-3",false,assistant-01,course-01
+tutorial-01,TUT001,How to publish a course.,Example abstract.,"goal-1, goal-2, goal-3",true,assistant-01,course-01
 tutorial-02,TU002,How to publish a course.,Example abstract.,"goal-1, goal-2, goal-3",false,assistant-01,course-01
 tutorial-03,T003,How to publish a course.,Example abstract.,"goal-1, goal-2, goal-3",false,assistant-01,course-01
 tutorial-04,T004,This title is going to reach exactly 75chr so the restriction can be proved,Example abstract.,"goal-1, goal-2, goal-3",false,assistant-01,course-02
