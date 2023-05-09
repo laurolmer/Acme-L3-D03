@@ -13,7 +13,8 @@ company.practicum.form.label.title = Título
 company.practicum.form.label.abstractPracticum = Abstracto
 company.practicum.form.label.goals = Objetivos
 company.practicum.form.label.course = Curso
-company.practicum.form.label.draftMode = Publicado
+company.practicum.form.label.draftMode= Borrador 
+
 
 company.practicum.form.button.create = Crear
 company.practicum.form.button.update = Actualizar
@@ -27,5 +28,6 @@ company.practicum.list.label.goals = Objetivos
 
 company.practicum.list.button.create = Crear
 company.practicum.list.button.publish = Publicar
+company.practicum.form.button.practicumSession= Sesiones
 
-company.practicum.form.error.code-uniqueness = El código está repetido y debe ser único
+company.practicum.form.error.code-uniqueness = El código está repetido y debe ser único.
