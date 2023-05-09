@@ -15,6 +15,7 @@ company.practicum.form.label.goals = Goals
 company.practicum.form.label.course = Course
 company.practicum.form.label.draftMode= DraftMode 
 
+
 company.practicum.form.button.create = Create
 company.practicum.form.button.update = Update
 company.practicum.form.button.delete = Delete

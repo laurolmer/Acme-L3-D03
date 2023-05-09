@@ -12,7 +12,7 @@
 authenticated.practicum.form.label.code = Código
 authenticated.practicum.form.label.title = Título
 authenticated.practicum.form.label.abstractPracticum = Resumen práctica
-authenticated.practicum.form.label.nameComapny = Nombre de la compañía
+authenticated.practicum.form.label.nameCompany = Nombre de la compañía
 
 # Messages for label in list
 authenticated.practicum.list.label.code = Código

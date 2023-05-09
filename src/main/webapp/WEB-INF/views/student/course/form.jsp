@@ -22,4 +22,7 @@
 	<acme:input-textbox code="student.course.form.label.courseType" path="courseType"/>
 	<acme:input-textbox code="student.course.form.label.retailPrice" path="retailPrice"/>
 	<acme:input-textbox code="student.course.form.label.link" path="link"/>
+	<acme:input-textbox code="student.course.form.label.lecturer" path="lecturer"/>
+	
+	<acme:button code="student.course.form.button.lecture" action="/student/lecture/list?courseId=${id}"/>
 </acme:form>

@@ -17,7 +17,6 @@
 <%@taglib prefix="acme" uri="http://www.the-acme-framework.org/"%>
 
 <acme:form>
-
 	<acme:input-textbox code="company.practicum.form.label.code" path="code" />
 	<acme:input-textbox code="company.practicum.form.label.title" path="title" />
 	<acme:input-textarea code="company.practicum.form.label.abstractPracticum" path="abstractPracticum" />

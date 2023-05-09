@@ -65,6 +65,7 @@ public class CompanyPracticumShowService extends AbstractService<Company, Practi
 		tuple = super.unbind(object, "code", "title", "abstractPracticum", "goals", "draftMode");
 		tuple.put("course", choices.getSelected().getKey());
 		tuple.put("courses", choices);
+		tuple.put("published", !object.getDraftMode());
 		super.getResponse().setData(tuple);
 	}
 }

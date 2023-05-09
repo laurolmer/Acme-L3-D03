@@ -15,6 +15,10 @@ master.menu.sign-up = Sign up
 master.menu.sign-in = Sign in
 master.menu.sign-out = Sign out
 
+# master.menu.any #############################################################
+
+master.menu.any.course = Courses
+
 # master.menu.anonymous #######################################################
 
 master.menu.anonymous = Anonymous
@@ -39,6 +43,12 @@ master.menu.administrator.configuration = Show system configuration
 master.menu.authenticated = Authenticated
 master.menu.authenticated.note.list = List all notes
 
+master.menu.bulletin.list = List all bulletins
+master.menu.administrator.bulletin.form = Create a Bulletin
+
+master.menu.offer.list= List all offers
+
+
 # master.menu.assistant ###################################################
 
 master.menu.assistant = Assistant
@@ -50,16 +60,35 @@ master.menu.assistant.tutorial.list-all = List all tutorials
 master.menu.administrator.offer = Offers Administrator
 master.menu.administrator.offer.list = Offers list
 
+# master.menu.auditor ########################################################
+
+master.menu.auditor = Auditor
+master.menu.auditor.audit.list = My audits
+
 # master.menu.provider ########################################################
 
 master.menu.provider = Provider
 master.menu.provider.favourite-link = Favourite Link
+
+# master.menu.assistant ########################################################
+master.menu.assistant = Assistant
+master.menu.assistant.tutorial.list-mine = List My Tutorials
+master.menu.assistant.tutorial.list-all = List All Tutorials
 
 # master.menu.consumer ##########################################################
 
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 
+# master.menu.lecturer ##########################################################
+
+master.menu.lecturer = Lecturer
+master.menu.lecturer.course.create = Create course
+master.menu.lecturer.course.list.all = List courses
+master.menu.lecturer.course.list.mine = List my courses
+master.menu.lecturer.lecture.list.all = List my lectures
+master.menu.lecturer.lecture.create = Create lecture
+master.menu.lecturer.lecture.dashboard = Dashboard
 
 # master.menu.company ###################################################
 
@@ -71,6 +100,12 @@ master.menu.company.practicum.list-all = List all practicum
 
 master.menu.student = Student
 master.menu.student.studentCourseList = Course List
+master.menu.student.studentEnrolmentList = Enrolment List
+
+
+# master.menu.any #############################################################
+
+master.menu.any.peep= Peep List
 
 # master.menu.user-account ####################################################
 
@@ -86,4 +121,5 @@ master.menu.user-account.assistant = Assistant data
 master.menu.user-account.become-assistant = Become an assistant
 master.menu.user-account.student = Student data
 master.menu.user-account.become-student = Become a student
-
+master.menu.user-account.lecturer = Lecturer data
+master.menu.user-account.become-lecturer = Become a lecturer
