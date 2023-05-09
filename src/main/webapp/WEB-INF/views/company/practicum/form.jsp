@@ -16,12 +16,14 @@
 <%@taglib prefix="acme" uri="http://www.the-acme-framework.org/"%>
 
 <acme:form>
+
 	<acme:input-textbox code="company.practicum.form.label.code" path="code" />
 	<acme:input-textbox code="company.practicum.form.label.title" path="title" />
 	<acme:input-textarea code="company.practicum.form.label.abstractPracticum" path="abstractPracticum" />
 	<acme:input-textarea code="company.practicum.form.label.goals" path="goals" />
 	<acme:input-select code="company.practicum.form.label.course" path="course" choices="${courses}" />
-
+	<acme:input-checkbox code="company.practicum.form.label.draftMode" path="draftMode" readonly="true"/>
+	
 	<jstl:choose>
 		<jstl:when test="${_command == 'show' && draftMode == false}">
             <acme:button code="company.practicum.form.button.practicumSession" action="/company/practicum-session/list?masterId=${id}"/>

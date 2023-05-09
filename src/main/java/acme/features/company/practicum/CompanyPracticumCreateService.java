@@ -63,7 +63,7 @@ public class CompanyPracticumCreateService extends AbstractService<Company, Prac
 		company = this.repository.findCompanyById(companyId);
 		courseId = super.getRequest().getData("course", int.class);
 		course = this.repository.findCourseById(courseId);
-		super.bind(object, "code", "title", "abstractPracticum", "goals");
+		super.bind(object, "code", "title", "abstractPracticum", "goals", "draftMode");
 		object.setCompany(company);
 		object.setCourse(course);
 	}
@@ -93,7 +93,7 @@ public class CompanyPracticumCreateService extends AbstractService<Company, Prac
 		Tuple tuple;
 		courses = this.repository.findNotInDraftCourses();
 		choices = SelectChoices.from(courses, "title", object.getCourse());
-		tuple = super.unbind(object, "code", "title", "abstractPracticum", "goals", "course");
+		tuple = super.unbind(object, "code", "title", "abstractPracticum", "goals", "course", "draftMode");
 		tuple.put("course", choices.getSelected().getKey());
 		tuple.put("courses", choices);
 		super.getResponse().setData(tuple);
