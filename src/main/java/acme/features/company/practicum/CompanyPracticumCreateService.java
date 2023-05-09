@@ -16,12 +16,12 @@ import acme.roles.Company;
 @Service
 public class CompanyPracticumCreateService extends AbstractService<Company, Practicum> {
 
-	// Internal state ---------------------------------------------------------
+	// Internal state --------------------------------------------------------
 
 	@Autowired
 	protected CompanyPracticumRepository repository;
 
-	// AbstractService interface ----------------------------------------------
+	// AbstractService interface ---------------------------------------------
 
 
 	@Override

@@ -8,6 +8,7 @@
 - this software. It has been tested carefully, but it is not guaranteed for any particular
 - purposes.  The copyright owner does not offer any warranties or representations, nor do
 - they accept any liabilities with respect to them.
+
 --%>
 
 <%@page language="java"%>
@@ -22,7 +23,7 @@
 	<acme:input-textarea code="company.practicum.form.label.abstractPracticum" path="abstractPracticum" />
 	<acme:input-textarea code="company.practicum.form.label.goals" path="goals" />
 	<acme:input-select code="company.practicum.form.label.course" path="course" choices="${courses}" />
-	<acme:input-checkbox code="company.practicum.form.label.draftMode" path="draftMode" readonly="true"/>
+	<acme:input-checkbox code="company.practicum.form.label.draftMode" path="draftMode" readonly="true"/> 
 	
 	<jstl:choose>
 		<jstl:when test="${_command == 'show' && draftMode == false}">

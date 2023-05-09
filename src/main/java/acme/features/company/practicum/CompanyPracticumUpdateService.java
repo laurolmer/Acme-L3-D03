@@ -17,7 +17,7 @@ import acme.roles.Company;
 @Service
 public class CompanyPracticumUpdateService extends AbstractService<Company, Practicum> {
 
-	// Internal state ---------------------------------------------------------
+	// Internal state --------------------------------------------------------
 	@Autowired
 	protected CompanyPracticumRepository		repository;
 
@@ -25,7 +25,7 @@ public class CompanyPracticumUpdateService extends AbstractService<Company, Prac
 	protected AuthenticatedCompanyRepository	repositoryCompany;
 
 
-	// AbstractService interface ----------------------------------------------
+	// AbstractService interface ---------------------------------------------
 	@Override
 	public void check() {
 		boolean status;
@@ -110,5 +110,6 @@ public class CompanyPracticumUpdateService extends AbstractService<Company, Prac
 		tuple.put("courses", choices);
 		tuple.put("draftMode", object.getDraftMode());
 		super.getResponse().setData(tuple);
+
 	}
 }
