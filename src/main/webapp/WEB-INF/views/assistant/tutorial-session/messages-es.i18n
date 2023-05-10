@@ -12,8 +12,9 @@ assistant.tutorial-session.form.label.title = Título
 assistant.tutorial-session.form.label.abstractSession = Abstracto
 assistant.tutorial-session.form.label.sessionType = Tipo de sesión
 assistant.tutorial-session.form.label.startPeriod = Periodo inicio
-assistant.tutorial-session.form.label.finishPeriod = Periodo final
+assistant.tutorial-session.form.label.finishPeriod = Periodo total
 assistant.tutorial-session.form.label.link = Enlace
+assistant.tutorial-session.label.estimatedTotalTime = Tiempo de estimación total 
 
 assistant.tutorial-session.form.button.create = Crear
 assistant.tutorial-session.form.button.update = Actualizar
@@ -34,3 +35,4 @@ assistant.session.finishPeriod-before-startPeriod = El periodo final debe ser de
 assistant.session.bad-finishPeriod-time = El periodo final debe durar entre 1 a 5 horas respecto al periodo inicial
 assistant.session.end-reached-max-value = El periodo final no debe ser posterior a la fecha "2100/12/31" a las "23:59"
 assistant.session.start-didnot-reach-min-value = El periodo inicial debe ser posterior a la fecha "2000/01/01" a las "00:00"
+assistant.session.estimatedTotalTime = El tiempo de estimación total debe ser mayor que 0.0

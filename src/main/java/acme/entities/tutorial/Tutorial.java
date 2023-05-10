@@ -54,7 +54,7 @@ public class Tutorial extends AbstractEntity {
 	public Double computeEstimatedTotalTime(final Collection<TutorialSession> sessions) {
 		double estimatedTotalTime = 0.;
 		Optional<Double> optEstimatedTotalTime;
-		optEstimatedTotalTime = sessions.stream().map(TutorialSession::computeEstimatedLearningTime).reduce(Double::sum);
+		optEstimatedTotalTime = sessions.stream().map(TutorialSession::computeEstimatedTotalTime).reduce(Double::sum);
 		if (optEstimatedTotalTime.isPresent())
 			estimatedTotalTime = optEstimatedTotalTime.get();
 		return estimatedTotalTime;

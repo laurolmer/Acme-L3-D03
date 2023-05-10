@@ -22,18 +22,20 @@
 	<acme:input-textarea code="assistant.tutorial.form.label.abstractTutorial" path="abstractTutorial"/>
 	<acme:input-textarea code="assistant.tutorial.form.label.goals" path="goals"/>
 	<acme:input-select code="assistant.tutorial.form.label.course" path="course" choices="${courses}"/>
-	<jstl:choose>	
-		<jstl:when test="${_command == 'show' && draftMode == false}">
+		<jstl:if test="${ _command != 'create' && draftMode != true && estimatedTotalTime > 0.0 }">
+		<acme:input-textbox code="assistant.tutorial-session.label.estimatedTotalTime" path="estimatedTotalTime" readonly="true"/>
+		</jstl:if>
+		<jstl:if test="${_command == 'show' && draftMode == false}">
             <acme:button code="assistant.tutorial-session.form.button.list" action="/assistant/tutorial-session/list?masterId=${id}"/>
-        </jstl:when> 
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
+        </jstl:if> 
+		<jstl:if test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
 			<acme:button code="assistant.tutorial-session.form.button.list" action="/assistant/tutorial-session/list?masterId=${id}"/>
 			<acme:submit code="assistant.tutorial.form.button.update" action="/assistant/tutorial/update"/>
 			<acme:submit code="assistant.tutorial.form.button.delete" action="/assistant/tutorial/delete"/>
 			<acme:submit code="assistant.tutorial.form.button.publish" action="/assistant/tutorial/publish"/>
-		</jstl:when>
-		<jstl:when test="${_command == 'create'}">
+		</jstl:if>
+		<jstl:if test="${_command == 'create'}">
 			<acme:submit code="assistant.tutorial.form.button.create" action="/assistant/tutorial/create"/>
-		</jstl:when>		
-	</jstl:choose>
+		</jstl:if>		
+
 </acme:form>

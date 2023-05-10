@@ -43,10 +43,6 @@ public class AssistantTutorialCreateService extends AbstractService<Assistant, T
 		assistant = this.repository.findAssistantById(super.getRequest().getPrincipal().getActiveRoleId());
 		object = new Tutorial();
 		object.setAssistant(assistant);
-		object.setCode("");
-		object.setTitle("");
-		object.setAbstractTutorial("");
-		object.setGoals("");
 		object.setDraftMode(true);
 		super.getBuffer().setData(object);
 	}
@@ -75,6 +71,10 @@ public class AssistantTutorialCreateService extends AbstractService<Assistant, T
 			Tutorial isCodeUnique;
 			isCodeUnique = this.repository.findATutorialByCode(object.getCode());
 			super.state(isCodeUnique == null, "code", "assistant.tutorial.form.error.code-uniqueness");
+		}
+		if (!super.getBuffer().getErrors().hasErrors("draftMode")) {
+			final boolean draftMode = object.isDraftMode();
+			super.state(draftMode, "draftMode", "assistant.tutorial.form.error.draftMode-published");
 		}
 	}
 

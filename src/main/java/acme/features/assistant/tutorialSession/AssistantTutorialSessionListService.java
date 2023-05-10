@@ -59,6 +59,7 @@ public class AssistantTutorialSessionListService extends AbstractService<Assista
 		tuple = super.unbind(tutorialSession, "title", "abstractSession");
 		payload = String.format("%s; %s", tutorialSession.getTitle(), tutorialSession.getAbstractSession());
 		tuple.put("payload", payload);
+		tuple.put("estimatedTotalTime", tutorialSession.computeEstimatedTotalTime());
 		super.getResponse().setData(tuple);
 	}
 

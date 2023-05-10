@@ -25,16 +25,16 @@ public interface AssistantDashboardRepository extends AbstractRepository {
 	@Query("select a from Assistant a where a.userAccount.id = :userAccountId")
 	Assistant findAssistantByUserAccountId(int userAccountId);
 
-	@Query("select avg(time_to_sec(timediff(ts.finishPeriod, ts.startPeriod)))/3600.0 from TutorialSession ts where ts.tutorial.assistant.id = :assistantId")
+	@Query("select avg(time_to_sec(timediff(ts.finishPeriod,ts.startPeriod)))/3600.0 from TutorialSession ts where ts.tutorial.assistant.id = :assistantId")
 	Double findAverageTutorialSessionLength(int assistantId);
 
-	@Query("select stddev(time_to_sec(timediff(ts.finishPeriod, ts.startPeriod)))/3600.0 from TutorialSession ts where ts.tutorial.assistant.id = :assistantId")
+	@Query("select stddev(time_to_sec(timediff(ts.finishPeriod,ts.startPeriod)))/3600.0 from TutorialSession ts where ts.tutorial.assistant.id = :assistantId")
 	Double findDeviationTutorialSessionLength(int assistantId);
 
-	@Query("select min(time_to_sec(timediff(ts.finishPeriod, ts.startPeriod)))/3600.0 from TutorialSession ts where ts.tutorial.assistant.id = :assistantId")
+	@Query("select min(time_to_sec(timediff(ts.finishPeriod,ts.startPeriod)))/3600.0 from TutorialSession ts where ts.tutorial.assistant.id = :assistantId")
 	Double findMinimumTutorialSessionLength(int assistantId);
 
-	@Query("select max(time_to_sec(timediff(ts.finishPeriod, ts.startPeriod)))/3600.0 from TutorialSession ts where ts.tutorial.assistant.id = :assistantId")
+	@Query("select max(time_to_sec(timediff(ts.finishPeriod,ts.startPeriod)))/3600.0 from TutorialSession ts where ts.tutorial.assistant.id = :assistantId")
 	Double findMaximumTutorialSessionLength(int assistantId);
 
 	@Query("select count(ts) from TutorialSession ts where ts.tutorial.assistant.id = :assistantId")
@@ -50,7 +50,7 @@ public interface AssistantDashboardRepository extends AbstractRepository {
 	@Query("select min(time_to_sec(timediff(ts.finishPeriod,ts.startPeriod)))/3600.0 from TutorialSession ts where ts.tutorial.id in (select t.id from Tutorial t where t.assistant.id = :assistantId)")
 	Double findMinTutorialLength(int assistantId);
 
-	@Query("select max(time_to_sec(timediff(ts.finishPeriod,ts.startPeriod))/3600.0 from TutorialSession ts where ts.tutorial.id in (select t.id from Tutorial t where t.assistant.id = :assistantId)")
+	@Query("select max(time_to_sec(timediff(ts.finishPeriod,ts.startPeriod)))/3600.0 from TutorialSession ts where ts.tutorial.id in (select t.id from Tutorial t where t.assistant.id = :assistantId)")
 	Double findMaxTutorialLength(int assistantId);
 
 	//AUXILIARY QUERIES

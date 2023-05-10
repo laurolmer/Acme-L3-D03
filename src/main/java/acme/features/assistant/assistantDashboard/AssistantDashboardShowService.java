@@ -1,9 +1,14 @@
 
 package acme.features.assistant.assistantDashboard;
 
+import java.util.Collection;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.course.Course;
+import acme.entities.course.CourseType;
 import acme.form.AssistantDashboard;
 import acme.form.Statistic;
 import acme.framework.components.accounts.Principal;
@@ -82,13 +87,13 @@ public class AssistantDashboardShowService extends AbstractService<Assistant, As
 		countTutorial = this.repository.findCountTutorial(assistantId);
 		tutorialLength = new Statistic(countTutorial, averageTutorialLength, maximumTutorialLength, minimumTutorialLength, deviationTutorialLength);
 
-		//final Map<CourseType, Collection<Course>> courseType = this.repository.coursesRegardingCourseType();
-		//totalNumberOfTheoryTutorial = this.repository.findCountTutorialRegardingCourse(courseType.get(CourseType.THEORY_COURSE));
-		//totalNumOfHandsOnTutorials = this.repository.findCountTutorialRegardingCourse(courseType.get(CourseType.HANDS_ON));
+		final Map<CourseType, Collection<Course>> courseType = this.repository.coursesRegardingCourseType();
+		totalNumberOfTheoryTutorial = this.repository.findCountTutorialRegardingCourse(courseType.get(CourseType.THEORY_COURSE));
+		totalNumOfHandsOnTutorials = this.repository.findCountTutorialRegardingCourse(courseType.get(CourseType.HANDS_ON));
 
 		assistantDashboard = new AssistantDashboard();
-		//assistantDashboard.setTotalNumTheoryTutorials(totalNumberOfTheoryTutorial);
-		//assistantDashboard.setTotalNumHandsOnTutorials(totalNumOfHandsOnTutorials);
+		assistantDashboard.setTotalNumTheoryTutorials(totalNumberOfTheoryTutorial);
+		assistantDashboard.setTotalNumHandsOnTutorials(totalNumOfHandsOnTutorials);
 		assistantDashboard.setSessionTime(sessionLength);
 		assistantDashboard.setTutorialTime(tutorialLength);
 		super.getBuffer().setData(assistantDashboard);

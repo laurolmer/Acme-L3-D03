@@ -55,6 +55,7 @@ public class AssistantTutorialSessionCreateService extends AbstractService<Assis
 		tutorialId = super.getRequest().getData("masterId", int.class);
 		tutorial = this.repository.findTutorialById(tutorialId);
 		tutorialSession = new TutorialSession();
+		tutorialSession.setStartPeriod(MomentHelper.getCurrentMoment());
 		tutorialSession.setDraftMode(true);
 		tutorialSession.setTutorial(tutorial);
 		super.getBuffer().setData(tutorialSession);
@@ -63,7 +64,12 @@ public class AssistantTutorialSessionCreateService extends AbstractService<Assis
 	@Override
 	public void bind(final TutorialSession tutorialSession) {
 		assert tutorialSession != null;
+		Date finishPeriod;
+		double estimatedTotalTime;
+		estimatedTotalTime = super.getRequest().getData("finishPeriod", Double.class);
+		finishPeriod = tutorialSession.deltaFromStartMoment(estimatedTotalTime);
 		super.bind(tutorialSession, "title", "abstractSession", "sessionType", "startPeriod", "finishPeriod", "link");
+		tutorialSession.setFinishPeriod(finishPeriod);
 	}
 
 	@Override
@@ -90,11 +96,15 @@ public class AssistantTutorialSessionCreateService extends AbstractService<Assis
 			super.state(condition1 && condition2, "finishPeriod", "assistant.session.bad-finishPeriod-time");
 		}
 		// EndPeriod must be before 2100/12/31 23:59
-		if (!super.getBuffer().getErrors().hasErrors("availabilityPeriodEnd"))
-			super.state(!MomentHelper.isAfter(tutorialSession.getFinishPeriod(), maxValue), "availabilityPeriodEnd", "assistant.session.end-reached-max-value");
+		if (!super.getBuffer().getErrors().hasErrors("finishPeriod"))
+			super.state(!MomentHelper.isAfter(tutorialSession.getFinishPeriod(), maxValue), "finishPeriod", "assistant.session.end-reached-max-value");
 		// StartPeriod must be after 2000/01/01 00:00
-		if (!super.getBuffer().getErrors().hasErrors("availabilityPeriodStart"))
-			super.state(MomentHelper.isAfter(tutorialSession.getStartPeriod(), minValue), "getAvailabilityPeriodStart", "assistant.session.start-didnot-reach-min-value");
+		if (!super.getBuffer().getErrors().hasErrors("startPeriod"))
+			super.state(MomentHelper.isAfter(tutorialSession.getStartPeriod(), minValue), "startPeriod", "assistant.session.start-didnot-reach-min-value");
+		if (!super.getBuffer().getErrors().hasErrors("finishPeriod")) {
+			final boolean eval = tutorialSession.computeEstimatedTotalTime() > 0.0;
+			super.state(eval, "finishPeriod", "assistant.session.estimatedTotalTime");
+		}
 	}
 
 	@Override
@@ -108,8 +118,12 @@ public class AssistantTutorialSessionCreateService extends AbstractService<Assis
 		assert tutorialSession != null;
 		Tuple tuple;
 		SelectChoices choices;
+		Double estimatedTotalTime;
 		choices = SelectChoices.from(SessionType.class, tutorialSession.getSessionType());
 		tuple = super.unbind(tutorialSession, "title", "abstractSession", "sessionType", "startPeriod", "finishPeriod", "link", "draftMode");
+		estimatedTotalTime = tutorialSession.computeEstimatedTotalTime();
+		if (estimatedTotalTime != null)
+			tuple.put("finishPeriod", estimatedTotalTime);
 		tuple.put("masterId", super.getRequest().getData("masterId", int.class));
 		tuple.put("sessionType", choices);
 		tuple.put("draftMode", tutorialSession.getTutorial().isDraftMode() && tutorialSession.isDraftMode());
