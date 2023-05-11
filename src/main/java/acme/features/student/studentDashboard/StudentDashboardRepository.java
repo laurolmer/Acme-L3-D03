@@ -66,23 +66,23 @@ public interface StudentDashboardRepository extends AbstractRepository {
 	}
 
 	default Double averageTimeCoursesByStudentId(final int studentId) {
-		final Map<Course, Double> totalTimePerCourse = this.totalTimeCoursesByStudent(studentId);
-		return totalTimePerCourse.entrySet().stream().collect(Collectors.summingDouble(x -> x.getValue())) / totalTimePerCourse.keySet().size();
+		final Map<Course, Double> totalTimeCourse = this.totalTimeCoursesByStudent(studentId);
+		return totalTimeCourse.entrySet().stream().collect(Collectors.summingDouble(x -> x.getValue())) / totalTimeCourse.keySet().size();
 	}
 
 	default Double desviationTimeCoursesByStudentId(final int studentId, final Double averageValue) {
-		final Map<Course, Double> totalTimePerCourse = this.totalTimeCoursesByStudent(studentId);
-		return Math.sqrt(totalTimePerCourse.entrySet().stream().collect(Collectors.summingDouble(x -> Math.pow(x.getValue() - averageValue, 2.))) / totalTimePerCourse.keySet().size());
+		final Map<Course, Double> totalTimeCourse = this.totalTimeCoursesByStudent(studentId);
+		return Math.sqrt(totalTimeCourse.entrySet().stream().collect(Collectors.summingDouble(x -> Math.pow(x.getValue() - averageValue, 2.))) / totalTimeCourse.keySet().size());
 	}
 
 	default Double minimumTimeCoursesOfStudentId(final int studentId) {
-		final Map<Course, Double> totalTimePerCourse = this.totalTimeCoursesByStudent(studentId);
-		return totalTimePerCourse.values().stream().min(Comparator.naturalOrder()).get();
+		final Map<Course, Double> totalTimeCourse = this.totalTimeCoursesByStudent(studentId);
+		return totalTimeCourse.values().stream().min(Comparator.naturalOrder()).get();
 	}
 
 	default Double maximumTimeCoursesOfStudentId(final int studentId) {
-		final Map<Course, Double> totalTimePerCourse = this.totalTimeCoursesByStudent(studentId);
-		return totalTimePerCourse.values().stream().max(Comparator.naturalOrder()).get();
+		final Map<Course, Double> totalTimeCourse = this.totalTimeCoursesByStudent(studentId);
+		return totalTimeCourse.values().stream().max(Comparator.naturalOrder()).get();
 	}
 
 	//AUXILIARY QUERIES
