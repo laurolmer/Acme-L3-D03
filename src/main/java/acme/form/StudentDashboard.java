@@ -15,12 +15,12 @@ public class StudentDashboard extends AbstractForm {
 
 	// Attributes -------------------------------------------------------------
 
-	protected Integer			totalNumTheoryEnrolment;
+	protected Integer			totalNumTheoryActivities;
 
-	protected Integer			totalNumHandsOnEnrolment;
+	protected Integer			totalNumHandsOnActivities;
+
+	protected Statistic			courseTime;
 
 	protected Statistic			activityTime;
-
-	protected Statistic			enrolmentTime;
 
 }

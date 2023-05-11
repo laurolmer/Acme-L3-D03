@@ -19,39 +19,39 @@
 	<acme:message code="student.dashboard.form.title.general-metrics"/>
 </h2>
 <h3>
-	<acme:message code="student.dashboard.form.title.enrolment-time"/>
+	<acme:message code="student.dashboard.form.title.course-time"/>
 </h3>
 <table class="table table-sm">
 	<tr>
 	<th scope="row">
-			<acme:message code="student.dashboard.form.label.enrolment-time.average"/>
+			<acme:message code="student.dashboard.form.label.course-time.total"/>
 		</th>
 		<td>
-			<acme:print value="${enrolmentTime.count}"/>
+			<acme:print value="${courseTime.count}"/>
 		</td>
 		<th scope="row">
-			<acme:message code="student.dashboard.form.label.enrolment-time.average"/>
+			<acme:message code="student.dashboard.form.label.course-time.average"/>
 		</th>
 		<td>
-			<acme:print value="${enrolmentTime.average}"/>
+			<acme:print value="${courseTime.average}"/>
 		</td>
 		<th scope="row">
-			<acme:message code="student.dashboard.form.label.enrolment-time.minimum"/>
+			<acme:message code="student.dashboard.form.label.course-time.minimum"/>
 		</th>
 		<td>
-			<acme:print value="${enrolmentTime.minimum}"/>
+			<acme:print value="${courseTime.minimum}"/>
 		</td>
 		<th scope="row">
-			<acme:message code="student.dashboard.form.label.enrolment-time.maximum"/>
+			<acme:message code="student.dashboard.form.label.course-time.maximum"/>
 		</th>
 		<td>
-			<acme:print value="${enrolmentTime.maximum}"/>
+			<acme:print value="${courseTime.maximum}"/>
 		</td>
 		<th scope="row">
-			<acme:message code="student.dashboard.form.label.enrolment-time.deviation"/>
+			<acme:message code="student.dashboard.form.label.course-time.deviation"/>
 		</th>
 		<td>
-			<acme:print value="${enrolmentTime.deviation}"/>
+			<acme:print value="${courseTime.deviation}"/>
 		</td>
 	</tr>
 </table>
@@ -63,7 +63,7 @@
 <table class="table table-sm">
 	<tr>
 		<th scope="row">
-			<acme:message code="student.dashboard.form.label.activity-time.average"/>
+			<acme:message code="student.dashboard.form.label.activity-time.total"/>
 		</th>
 		<td>
 			<acme:print value="${activityTime.count}"/>
@@ -95,13 +95,19 @@
 	</tr>
 </table>
 
-	<h2>
-		<acme:message code="student.dashboard.form.label.theory-enrolment"/>
-		<acme:print value="${totalNumTheoryEnrolment}"/>
-	</h2>
-	<h2>
-		<acme:message code="student.dashboard.form.label.handson-enrolment"/>
-		<acme:print value="${totalNumHandsOnEnrolment}"/>
-	</h2>
-
-<acme:return/>
+<table class="table table-sm">
+	<tr>
+		<th scope="row">
+			<acme:message code="student.dashboard.form.label.theory-activity"/>
+		</th>
+		<td>
+			<acme:print value="${totalNumTheoryActivities}"/>
+		</td>
+		<th scope="row">
+			<acme:message code="student.dashboard.form.label.hands-on-activity"/>
+		</th>
+		<td>
+			<acme:print value="${totalNumHandsOnActivities}"/>
+		</td>
+	</tr>
+</table>

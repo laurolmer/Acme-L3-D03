@@ -10,17 +10,19 @@
 
 student.dashboard.form.title.general-metrics = Indicadores generales
 
-student.dashboard.form.title.enrolment-time = Longitud Matrícula 
-student.dashboard.form.label.enrolment-time.average  = Media
-student.dashboard.form.label.enrolment-time.minimum = Mínimo
-student.dashboard.form.label.enrolment-time.maximum = Máximo
-student.dashboard.form.label.enrolment-time.deviation = Desviación
+student.dashboard.form.title.course-time = Metricas Cursos 
+student.dashboard.form.label.course-time.total = Total
+student.dashboard.form.label.course-time.average  = Media
+student.dashboard.form.label.course-time.minimum = Mínimo
+student.dashboard.form.label.course-time.maximum = Máximo
+student.dashboard.form.label.course-time.deviation = Desviación
 
-student.dashboard.form.title.activity-time = Longitud Actividad 
+student.dashboard.form.title.activity-time = Metricas Actividad 
+student.dashboard.form.label.activity-time.total = Total
 student.dashboard.form.label.activity-time.average = Media
 student.dashboard.form.label.activity-time.minimum = Mínimo
 student.dashboard.form.label.activity-time.maximum = Máximo
 student.dashboard.form.label.activity-time.deviation = Desviación
 
-student.dashboard.form.label.theory-enrolment = Número de matrículas de teoría
-student.dashboard.form.label.handson-enrolment = Número de matrículas de práctica
+student.dashboard.form.label.theory-activity = Número de actividades de teoría
+student.dashboard.form.label.hands-on-activity = Número de actividades de práctica
