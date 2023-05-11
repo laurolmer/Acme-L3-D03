@@ -38,6 +38,8 @@ master.menu.administrator.populate-sample = Poblar BD (ejemplos)
 master.menu.administrator.shut-down = Parar el sistema
 master.menu.administrator.configuration = Mostrar configuración del sistema
 
+master.menu.administrator.banner= Lista de Banners
+
 # master.menu.authenticated #######################################################
 
 master.menu.authenticated = Autenticado
@@ -106,6 +108,7 @@ master.menu.company.practicum.list-all = Todas las prácticas
 master.menu.student = Estudiante
 master.menu.student.studentCourseList = Listado de Cursos
 master.menu.student.studentEnrolmentList = Lista de Matriculas
+master.menu.student.dashboard = Dashboard del Estudiante
 
 
 # master.menu.any #############################################################
