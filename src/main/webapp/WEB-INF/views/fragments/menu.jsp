@@ -70,7 +70,7 @@
 			<acme:menu-suboption code="master.menu.lecturer.lecture.create" action="/lecturer/lecture/create"/>
 			<acme:menu-suboption code="master.menu.lecturer.lecture.list.all" action="/lecturer/lecture/list-all"/>
 			<acme:menu-separator/>
-			<acme:menu-suboption code="master.menu.lecturer.lecture.dashboard" action="/lecturer/dashboard/show"/>
+			<acme:menu-suboption code="master.menu.lecturer.lecture.dashboard" action="/lecturer/lecturer-dashboard/show"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.student" access="hasRole('Student')">

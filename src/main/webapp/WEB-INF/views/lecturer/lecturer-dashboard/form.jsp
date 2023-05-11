@@ -3,88 +3,95 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="http://www.the-acme-framework.org/"%>
 
-<h2>
-	<acme:message code="administrator.dashboard.form.title.general-indicators"/>
-</h2>
-
+<h2><acme:message code="lecturer.dashboard.lecture.num"/></h2>
 <table class="table table-sm">
 	<tr>
 		<th scope="row">
-			<acme:message code="administrator.dashboard.form.label.average-number-jobs-employer"/>
+			<acme:message code="lecturer.dashboard.lecture.numTheory"/>
 		</th>
 		<td>
-			<acme:print value="${averageNumberOfJobsPerEmployer}"/>
+			<acme:print value="${totalNumTheoryLectures}"/>
+		</td>
+		<th scope="row">
+			<acme:message code="lecturer.dashboard.lecture.numHandsOn"/>
+		</th>
+		<td>
+			<acme:print value="${totalNumHandsOnLectures}"/>
 		</td>
 	</tr>
-	<tr>
-		<th scope="row">
-			<acme:message code="administrator.dashboard.form.label.average-number-applications-worker"/>
-		</th>
-		<td>
-			<acme:print value="${averageNumberOfApplicationsPerWorker}"/>
-		</td>
-	</tr>
-	<tr>
-		<th scope="row">
-			<acme:message code="administrator.dashboard.form.label.average-number-applications-employer"/>
-		</th>
-		<td>
-			<acme:print value="${avegageNumberOfApplicationsPerEmployer}"/>
-		</td>
-	</tr>	
 </table>
 
-<h2>
-	<acme:message code="administrator.dashboard.form.title.application-statuses"/>
-</h2>
+<h2><acme:message code="lecturer.dashboard.lecture.data"/></h2>
+<table class="table table-sm">
+	<tr>
+		<th scope="row">
+			<acme:message code="lecturer.dashboard.lecture.count"/>
+		</th>
+		<td>
+			<acme:print value="${countLectures}"/>
+		</td>
+		<th scope="row">
+			<acme:message code="lecturer.dashboard.lecture.avg"/>
+		</th>
+		<td>
+			<acme:print value="${avgLectureTime}"/>
+		</td>
+		<th scope="row">
+			<acme:message code="lecturer.dashboard.lecture.max"/>
+		</th>
+		<td>
+			<acme:print value="${maxLectureTime}"/>
+		</td>
+		<th scope="row">
+			<acme:message code="lecturer.dashboard.lecture.min"/>
+		</th>
+		<td>
+			<acme:print value="${minLectureTime}"/>
+		</td>
+		<th scope="row">
+			<acme:message code="lecturer.dashboard.lecture.dev"/>
+		</th>
+		<td>
+			<acme:print value="${devLectureTime}"/>
+		</td>
+	</tr>
+</table>
 
-<div>
-	<canvas id="canvas"></canvas>
-</div>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		var data = {
-			labels : [
-					"PENDING", "ACCEPTED", "REJECTED"
-			],
-			datasets : [
-				{
-					data : [
-						<jstl:out value="${ratioOfPendingApplications}"/>, 
-						<jstl:out value="${ratioOfAcceptedApplications}"/>, 
-						<jstl:out value="${ratioOfRejectedApplications}"/>
-					]
-				}
-			]
-		};
-		var options = {
-			scales : {
-				yAxes : [
-					{
-						ticks : {
-							suggestedMin : 0.0,
-							suggestedMax : 1.0
-						}
-					}
-				]
-			},
-			legend : {
-				display : false
-			}
-		};
-	
-		var canvas, context;
-	
-		canvas = document.getElementById("canvas");
-		context = canvas.getContext("2d");
-		new Chart(context, {
-			type : "bar",
-			data : data,
-			options : options
-		});
-	});
-</script>
+<h2><acme:message code="lecturer.dashboard.course.data"/></h2>
+<table class="table table-sm">
+	<tr>
+		<th scope="row">
+			<acme:message code="lecturer.dashboard.course.count"/>
+		</th>
+		<td>
+			<acme:print value="${countCourses}"/>
+		</td>
+		<th scope="row">
+			<acme:message code="lecturer.dashboard.course.avg"/>
+		</th>
+		<td>
+			<acme:print value="${avgCourseTime}"/>
+		</td>
+		<th scope="row">
+			<acme:message code="lecturer.dashboard.course.max"/>
+		</th>
+		<td>
+			<acme:print value="${maxCourseTime}"/>
+		</td>
+		<th scope="row">
+			<acme:message code="lecturer.dashboard.course.min"/>
+		</th>
+		<td>
+			<acme:print value="${minCourseTime}"/>
+		</td>
+		<th scope="row">
+			<acme:message code="lecturer.dashboard.course.dev"/>
+		</th>
+		<td>
+			<acme:print value="${devCourseTime}"/>
+		</td>
+	</tr>
+</table>
 
 <acme:return/>
 

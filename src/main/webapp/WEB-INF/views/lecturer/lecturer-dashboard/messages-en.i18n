@@ -1,17 +1,28 @@
-# messages-en.i18n
-#
-# Copyright (C) 2012-2023 Rafael Corchuelo.
-#
-# In keeping with the traditional purpose of furthering education and research, it is
-# the policy of the copyright owner to permit non-commercial use and redistribution of
-# this software. It has been tested carefully, but it is not guaranteed for any particular
-# purposes.  The copyright owner does not offer any warranties or representations, nor do
-# they accept any liabilities with respect to them.
+# TITLES ##########################################################################
 
-administrator.dashboard.form.title.general-indicators = General indicators
-administrator.dashboard.form.title.application-statuses = Application statuses  
+lecturer.dashboard.lecture.num = Number of Lectures
+lecturer.dashboard.lecture.data = Lectures Information
+lecturer.dashboard.course.data = Course Information
 
-administrator.dashboard.form.label.average-number-jobs-employer =  Average number of jobs per employer
-administrator.dashboard.form.label.average-number-applications-worker =  Average number of applications per worker
-administrator.dashboard.form.label.average-number-applications-employer = Average number of applications per employer
+# TABLE ###########################################################################
 
+# NUM -----------------------------------------------------------------------------
+
+lecturer.dashboard.lecture.numTheory = Theory lectures
+lecturer.dashboard.lecture.numHandsOn = Hands on lectures
+
+# LECTURE -------------------------------------------------------------------------
+
+lecturer.dashboard.lecture.count = Total lectures
+lecturer.dashboard.lecture.avg = Average time
+lecturer.dashboard.lecture.max = Max time
+lecturer.dashboard.lecture.min = Min time
+lecturer.dashboard.lecture.dev = Deviation time
+
+# COURSE --------------------------------------------------------------------------
+
+lecturer.dashboard.course.count = Total courses
+lecturer.dashboard.course.avg = Average time
+lecturer.dashboard.course.max = Max time
+lecturer.dashboard.course.min = Min time
+lecturer.dashboard.course.dev = Deviation time
