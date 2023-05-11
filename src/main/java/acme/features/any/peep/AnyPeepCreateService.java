@@ -51,7 +51,7 @@ public class AnyPeepCreateService extends AbstractService<Any, Peep> {
 			Name = userAccount.getIdentity().getFullName();
 		}
 		object.setNick(Name);
-		//	object.setPublish(false);
+		object.setPublish(false);
 		super.getBuffer().setData(object);
 
 	}

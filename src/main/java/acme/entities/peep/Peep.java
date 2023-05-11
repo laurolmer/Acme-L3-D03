@@ -50,7 +50,7 @@ public class Peep extends AbstractEntity {
 	@Email
 	protected String			email;
 
-	//@NotNull
-	//protected Boolean			publish;
+	@NotNull
+	protected Boolean			publish;
 
 }
