@@ -63,7 +63,7 @@ public interface AssistantDashboardRepository extends AbstractRepository {
 	@Query("select ts from TutorialSession ts where ts.tutorial.id = :id")
 	Collection<TutorialSession> findSessionsByTutorialId(int id);
 
-	@Query("select c from Course c where c.draftMode = false")
+	@Query("select t.course from Tutorial t")
 	Collection<Course> findAllCourses();
 
 	@Query("select l from Lecture l inner join CourseLecture cl on l = cl.lecture inner join Course c on cl.course = c where c.id = :id")
