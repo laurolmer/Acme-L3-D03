@@ -16,10 +16,12 @@ student.enrolment.form.label.goals = Goals:
 student.enrolment.form.label.course = Course:
 student.enrolment.form.label.student = Student:
 student.enrolment.form.label.expiryDate = Expiry Date:
-student.enrolment.form.label.cvc = CVC
+student.enrolment.form.label.cvc = CVC:
 student.enrolment.form.label.creditCard = Credit Card:
 student.enrolment.form.label.holderName = Holder Name:
 student.enrolment.form.label.lowerNibble = Lower Nibble:
+student.enrolment.form.title.enrolment = Data of enrollment
+student.enrolment.form.title.finalize = Data for enrollment finalization
 student.enrolment.form.button.finalize = Finalize:
 
 student.enrolment.form.button.create = Create:
