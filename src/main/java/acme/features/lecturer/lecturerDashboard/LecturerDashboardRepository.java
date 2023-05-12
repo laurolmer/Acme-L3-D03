@@ -1,5 +1,5 @@
 
-package acme.features.lecturer.dashboard;
+package acme.features.lecturer.lecturerDashboard;
 
 import java.util.Collection;
 

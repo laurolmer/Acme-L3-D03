@@ -16,10 +16,12 @@
 <%@taglib prefix="acme" uri="http://www.the-acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="any.peep.list.title" path="title" width="60%"/>
-	<acme:list-column code="any.peep.list.nick" path="nick" width="20%"/>
-	<acme:list-column code="any.peep.list.moment" path="moment" width="20%"/>
-	<acme:list-payload path="payload"/>
+
+	<acme:list-column code="administrator.banner.form.label.upgrade" path="upgrade" width="20%"/>	
+	<acme:list-column code="administrator.banner.form.label.startDisplay" path="startDisplay" width="20%"/>
+	<acme:list-column code="administrator.banner.form.label.endDisplay" path="endDisplay" width="20%"/>	
+	<acme:list-column code="administrator.banner.form.label.imgLink" path="imgLink" width="10%"/>
+	
 </acme:list>
 
-<acme:button code="any.peep.form.button.create" action="/any/peep/create"/>	
+<acme:button code="administrator.banner.form.button.create" action="/administrator/banner/create"/>

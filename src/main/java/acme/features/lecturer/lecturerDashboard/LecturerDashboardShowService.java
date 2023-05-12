@@ -1,5 +1,5 @@
 
-package acme.features.lecturer.dashboard;
+package acme.features.lecturer.lecturerDashboard;
 
 import java.util.Collection;
 
@@ -92,6 +92,8 @@ public class LecturerDashboardShowService extends AbstractService<Lecturer, Lect
 		dashboard.setTotalNumTheoryLectures(totalNumTheoryLectures);
 		dashboard.setLectureTime(lectureTime);
 		dashboard.setCourseTime(courseTime);
+
+		super.getBuffer().setData(dashboard);
 	}
 
 	@Override

@@ -36,6 +36,9 @@
 			<acme:menu-suboption code="master.menu.administrator.shut-down" action="/administrator/shut-down"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.configuration" action="/administrator/configuration/show"/>
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.administrator.banner" action="/administrator/banner/list"/>
+	
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.authenticated" access="isAuthenticated()">
@@ -70,7 +73,7 @@
 			<acme:menu-suboption code="master.menu.lecturer.lecture.create" action="/lecturer/lecture/create"/>
 			<acme:menu-suboption code="master.menu.lecturer.lecture.list.all" action="/lecturer/lecture/list-all"/>
 			<acme:menu-separator/>
-			<acme:menu-suboption code="master.menu.lecturer.lecture.dashboard" action="/lecturer/dashboard/show"/>
+			<acme:menu-suboption code="master.menu.lecturer.lecture.dashboard" action="/lecturer/lecturer-dashboard/show"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.student" access="hasRole('Student')">
@@ -91,7 +94,9 @@
 
 		<acme:menu-option code="master.menu.company" access="hasRole('Company')">
 			<acme:menu-suboption code="master.menu.company.practicum.list-mine" action="/company/practicum/list-mine"/>
-			<acme:menu-suboption code="master.menu.company.practicum.list-all" action="/company/practicum/list-all"/>		
+			<acme:menu-suboption code="master.menu.company.practicum.list-all" action="/company/practicum/list-all"/>	
+		
+				
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.any.peep" action="/any/peep/list"/>

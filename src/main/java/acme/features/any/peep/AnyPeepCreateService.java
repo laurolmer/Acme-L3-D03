@@ -1,6 +1,8 @@
 
 package acme.features.any.peep;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import acme.framework.components.accounts.Authenticated;
 import acme.framework.components.accounts.Principal;
 import acme.framework.components.accounts.UserAccount;
 import acme.framework.components.models.Tuple;
+import acme.framework.helpers.MomentHelper;
 import acme.framework.services.AbstractService;
 
 @Service
@@ -65,7 +68,19 @@ public class AnyPeepCreateService extends AbstractService<Any, Peep> {
 	@Override
 	public void validate(final Peep object) {
 		assert object != null;
-
+		Date actualMoment;
+		final Date maxValue = new Date("2100/12/31 23:59");
+		final Date minValue = new Date("2000/01/01 00:00");
+		if (!super.getBuffer().getErrors().hasErrors("moment")) {
+			actualMoment = MomentHelper.getCurrentMoment();
+			super.state(MomentHelper.isBeforeOrEqual(object.getMoment(), actualMoment), "moment", "any.peep.moment-after-actualMoment");
+		}
+		// EndPeriod must be before 2100/12/31 23:59
+		if (!super.getBuffer().getErrors().hasErrors("moment"))
+			super.state(MomentHelper.isBefore(object.getMoment(), maxValue), "moment", "any.peep.moment-reached-max-value");
+		// StartPeriod must be after 2000/01/01 00:00
+		if (!super.getBuffer().getErrors().hasErrors("moment"))
+			super.state(MomentHelper.isAfter(object.getMoment(), minValue), "moment", "any.peep.moment-didnot-reach-min-value");
 	}
 
 	@Override
