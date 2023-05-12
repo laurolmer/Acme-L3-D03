@@ -77,14 +77,14 @@ public class StudentDashboardShowService extends AbstractService<Student, Studen
 		minimumActivityLength = this.repository.findMinimumActivityLength(studentId);
 		maximumActivityLength = this.repository.findMaximumActivityLength(studentId);
 		countActivity = this.repository.findCountActivity(studentId);
-		activityLength = new Statistic(countActivity, averageActivityLength, maximumActivityLength, minimumActivityLength, deviationActivityLength);
+		activityLength = new Statistic(countActivity, averageActivityLength, minimumActivityLength, maximumActivityLength, deviationActivityLength);
 
 		averageCourseLength = this.repository.averageTimeCoursesByStudentId(studentId);
 		deviationCourseLength = this.repository.deviationTimeCoursesByStudentId(studentId, averageCourseLength);
 		minimumCourseLength = this.repository.minimumTimeCoursesOfStudentId(studentId);
 		maximumCourseLength = this.repository.maximumTimeCoursesOfStudentId(studentId);
 		countCourse = this.repository.findCountEnrolment(studentId);
-		courseLength = new Statistic(countCourse, averageCourseLength, maximumCourseLength, minimumCourseLength, deviationCourseLength);
+		courseLength = new Statistic(countCourse, averageCourseLength, minimumCourseLength, maximumCourseLength, deviationCourseLength);
 
 		countByActivityType = this.repository.numberOfActivitiesByActivityType(studentId);
 		countHandsOnActivities = countByActivityType.getOrDefault(ActivityType.HANDS_ON, 0);
