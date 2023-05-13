@@ -101,13 +101,13 @@
 			<acme:message code="student.dashboard.form.label.theory-activity"/>
 		</th>
 		<td>
-			<acme:print value="${totalNumTheoryActivities}"/>
+			<acme:print value="${totalActivitiesByActivityType.getOrDefault('THEORY',0)}"/>
 		</td>
 		<th scope="row">
 			<acme:message code="student.dashboard.form.label.hands-on-activity"/>
 		</th>
 		<td>
-			<acme:print value="${totalNumHandsOnActivities}"/>
+			<acme:print value="${totalActivitiesByActivityType.getOrDefault('HANDS_ON',0)}"/>
 		</td>
 	</tr>
 </table>
