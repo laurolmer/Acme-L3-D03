@@ -40,7 +40,7 @@
 	
 	
 	<jstl:choose>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|update') && draftMode}">	
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|finalize') && draftMode}">	
             <acme:submit code="student.enrolment.form.button.update" action="/student/enrolment/update"/>
 			<acme:submit code="student.enrolment.form.button.delete" action="/student/enrolment/delete"/>
 			<acme:submit code="student.enrolment.form.button.finalize" action="/student/enrolment/finalize"/>
