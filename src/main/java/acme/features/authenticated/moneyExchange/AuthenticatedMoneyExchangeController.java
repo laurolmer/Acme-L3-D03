@@ -1,5 +1,5 @@
 /*
- * AdministratorDashboardController.java
+ * AuthenticatedMoneyExchangeController.java
  *
  * Copyright (C) 2012-2023 Rafael Corchuelo.
  *
