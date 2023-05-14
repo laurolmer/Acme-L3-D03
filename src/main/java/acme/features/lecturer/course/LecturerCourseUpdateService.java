@@ -68,11 +68,20 @@ public class LecturerCourseUpdateService extends AbstractService<Lecturer, Cours
 	@Override
 	public void validate(final Course object) {
 		assert object != null;
+
+		if (!super.getBuffer().getErrors().hasErrors("draftMode")) {
+			final boolean draftMode = object.isDraftMode();
+			super.state(draftMode, "draftMode", "lecturer.course.error.draftMode.published");
+		}
 		if (!super.getBuffer().getErrors().hasErrors("code")) {
 			Course instance;
 			final String code = object.getCode();
+			boolean eval;
+
 			instance = this.repository.findOneCourseByCode(code);
-			super.state(instance == null, "code", "lecturer.course.error.code.duplicated");
+			eval = instance == null || object.getId() == instance.getId();
+
+			super.state(eval, "code", "lecturer.course.error.code.duplicated");
 		}
 		if (!super.getBuffer().getErrors().hasErrors("retailPrice")) {
 			final double retailPrice = object.getRetailPrice().getAmount();
@@ -93,7 +102,7 @@ public class LecturerCourseUpdateService extends AbstractService<Lecturer, Cours
 
 		Tuple tuple;
 
-		tuple = super.unbind(object, "code", "title", "courseAbstract", "courseType", "retailPrice", "link");
+		tuple = super.unbind(object, "code", "title", "courseAbstract", "retailPrice", "link");
 
 		super.getResponse().setData(tuple);
 	}

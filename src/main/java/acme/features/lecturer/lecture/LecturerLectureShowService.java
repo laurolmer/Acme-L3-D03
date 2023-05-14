@@ -63,15 +63,21 @@ public class LecturerLectureShowService extends AbstractService<Lecturer, Lectur
 		assert object != null;
 		Tuple tuple;
 		final SelectChoices choices;
+		Double estimatedLearningTime;
 
 		choices = SelectChoices.from(LectureType.class, object.getLectureType());
 
 		tuple = super.unbind(object, "id", "title", "lectureAbstract", "body", "lectureType");
-		tuple.put("estimatedLearningTime", object.computeEstimatedLearningTime());
+
+		estimatedLearningTime = object.computeEstimatedLearningTime();
+		if (estimatedLearningTime != null)
+			tuple.put("endPeriod", estimatedLearningTime);
+
+		tuple.put("endPeriod", object.computeEstimatedLearningTime());
 		tuple.put("lectureType", choices.getSelected().getKey());
 		tuple.put("lectureTypes", choices);
 		tuple.put("draftMode", object.isDraftMode());
-		tuple.put("publised", !object.isDraftMode());
+		tuple.put("published", !object.isDraftMode());
 		super.getResponse().setData(tuple);
 	}
 

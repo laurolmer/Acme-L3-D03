@@ -62,15 +62,18 @@ public class LecturerCourseCreateService extends AbstractService<Lecturer, Cours
 	@Override
 	public void validate(final Course object) {
 		assert object != null;
+
+		if (!super.getBuffer().getErrors().hasErrors("draftMode")) {
+			final boolean draftMode = object.isDraftMode();
+			super.state(draftMode, "draftMode", "lecturer.course.error.draftMode.published");
+		}
 		if (!super.getBuffer().getErrors().hasErrors("code")) {
-			Course instance;
-			final String code = object.getCode();
-			instance = this.repository.findOneCourseByCode(code);
+			final Course instance = this.repository.findOneCourseByCode(object.getCode());
 			super.state(instance == null, "code", "lecturer.course.error.code.duplicated");
 		}
 		if (!super.getBuffer().getErrors().hasErrors("retailPrice")) {
 			final double retailPrice = object.getRetailPrice().getAmount();
-			super.state(retailPrice >= 0, "retailPrice", "lecturer.course.error.retailPrice.negative");
+			super.state(retailPrice > 0, "retailPrice", "lecturer.course.error.retailPrice.negative");
 		}
 	}
 
