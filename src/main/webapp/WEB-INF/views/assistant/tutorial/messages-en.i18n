@@ -20,6 +20,7 @@ assistant.tutorial.form.button.update = Update
 assistant.tutorial.form.button.delete = Delete
 assistant.tutorial.form.button.publish = Publish
 assistant.tutorial.form.button.list-all = List all
+assistant.tutorial-session.form.button.list = List sessions
 
 assistant.tutorial.list.label.code = Code
 assistant.tutorial.list.label.title = Title
@@ -29,4 +30,5 @@ assistant.tutorial.list.label.goals = Goals
 assistant.tutorial.list.button.create = Create
 assistant.tutorial.list.button.publish = Publish
 
+assistant.tutorial.form.error.draftMode-published = This tutorial is already published
 assistant.tutorial.form.error.code-uniqueness = The code is repeated and it must be unique

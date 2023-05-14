@@ -12,8 +12,9 @@ assistant.tutorial-session.form.label.title = Title
 assistant.tutorial-session.form.label.abstractSession = Abstract
 assistant.tutorial-session.form.label.sessionType = Session Type
 assistant.tutorial-session.form.label.startPeriod = Start Period
-assistant.tutorial-session.form.label.finishPeriod = Finish Period
+assistant.tutorial-session.form.label.finishPeriod = Total Period
 assistant.tutorial-session.form.label.link = Link
+assistant.tutorial-session.label.estimatedTotalTime = Estimated total time
 
 assistant.tutorial-session.form.button.create = Create
 assistant.tutorial-session.form.button.update = Update
@@ -33,4 +34,4 @@ assistant.session.finishPeriod-before-startPeriod = Finish period must be after 
 assistant.session.bad-finishPeriod-time = Finish period must be between 1 to 5 hours regarding start period
 assistant.session.end-reached-max-value = End period can't be after the date "2100/12/31 at 23:59"
 assistant.session.start-didnot-reach-min-value = Start period must be after the date "2000/01/01 at 00:00"
-
+assistant.session.estimatedTotalTime = Estimated total time must be higher than 0.0

@@ -87,8 +87,8 @@ public class Course extends AbstractEntity {
 		Long theoreticalLectures;
 
 		modeLectureType = lectures.stream().map(Lecture::getLectureType).collect(Collectors.groupingBy(type -> type, Collectors.counting()));
-		handsOnLectures = modeLectureType.get(LectureType.HANDS_ON);
-		theoreticalLectures = modeLectureType.get(LectureType.THEORETICAL);
+		handsOnLectures = modeLectureType.get(LectureType.HANDS_ON) == null ? 0 : modeLectureType.get(LectureType.HANDS_ON);
+		theoreticalLectures = modeLectureType.get(LectureType.THEORETICAL) == null ? 0 : modeLectureType.get(LectureType.THEORETICAL);
 
 		if (modeLectureType.isEmpty() || modeLectureType == null || handsOnLectures == null || theoreticalLectures == null)
 			return null;

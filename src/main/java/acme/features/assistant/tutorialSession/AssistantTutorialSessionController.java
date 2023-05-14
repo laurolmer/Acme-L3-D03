@@ -14,22 +14,22 @@ import acme.roles.Assistant;
 public class AssistantTutorialSessionController extends AbstractController<Assistant, TutorialSession> {
 
 	@Autowired
-	protected AssistantTutorialSessionShowService	showService;
+	protected AssistantTutorialSessionShowService		showService;
 
 	@Autowired
-	protected AssistantTutorialSessionCreateService	createService;
+	protected AssistantTutorialSessionCreateService		createService;
 
 	@Autowired
-	protected AssistantTutorialSessionUpdateService	updateService;
+	protected AssistantTutorialSessionUpdateService		updateService;
 
 	@Autowired
-	protected AssistantTutorialSessionDeleteService	deleteService;
+	protected AssistantTutorialSessionDeleteService		deleteService;
 
 	@Autowired
-	private AssistantTutorialSessionListService		listService;
+	protected AssistantTutorialSessionListService		listService;
 
 	@Autowired
-	private AssistantTutorialSessionPublishService	publishService;
+	protected AssistantTutorialSessionPublishService	publishService;
 
 
 	@PostConstruct
