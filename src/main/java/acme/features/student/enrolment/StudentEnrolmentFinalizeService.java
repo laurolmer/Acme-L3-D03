@@ -62,79 +62,73 @@ public class StudentEnrolmentFinalizeService extends AbstractService<Student, En
 	@Override
 	public void bind(final Enrolment object) {
 		assert object != null;
-		int studentId;
-		Student student;
-		int courseId;
-		Course course;
-		studentId = super.getRequest().getPrincipal().getActiveRoleId();
-		student = this.repository.findStudentById(studentId);
-		courseId = super.getRequest().getData("course", int.class);
-		course = this.repository.findCourseById(courseId);
 		super.bind(object, "holderName", "lowerNibble");
-		object.setStudent(student);
-		object.setCourse(course);
+
 	}
 
 	@Override
 	public void validate(final Enrolment object) {
 		assert object != null;
 
-		final String card = super.getRequest().getData("creditCard", String.class);
-		if (!card.matches("^\\d{4}\\/\\d{4}\\/\\d{4}\\/\\d{4}$"))
-			throw new IllegalArgumentException("student.enrolment.form.error.card");
+		final String creditCard;
+		final String cvc;
+		final String expiryDate;
 
-		final String holderName = super.getRequest().getData("holderName", String.class);
-		if (holderName.isEmpty())
-			throw new IllegalArgumentException("student.enrolment.form.error.holder");
+		creditCard = super.getRequest().getData("creditCard", String.class);
+		if (!creditCard.matches("^\\d{4}\\/\\d{4}\\/\\d{4}\\/\\d{4}$"))
+			super.state(false, "creditCard", "student.enrolment.form.error.card");
 
-		final String cvc = super.getRequest().getData("cvc", String.class);
+		if (!super.getBuffer().getErrors().hasErrors("holderName"))
+			super.state(!object.getHolderName().isEmpty(), "holderName", "student.enrolment.form.error.holder");
+
+		cvc = super.getRequest().getData("cvc", String.class);
 		if (!cvc.matches("^\\d{3}$"))
-			throw new IllegalArgumentException("student.enrolment.form.error.cvc");
+			super.state(false, "cvc", "student.enrolment.form.error.cvc");
 
-		final String expiryDate = super.getRequest().getData("expiryDate", String.class);
+		expiryDate = super.getRequest().getData("expiryDate", String.class);
 		final DateFormat format = new SimpleDateFormat("MM/yy");
 		try {
 			final Date date = format.parse(expiryDate);
+			final int month = Integer.parseInt(expiryDate.split("/")[0]);
+			if (month < 1 || month > 12)
+				super.state(false, "expiryDate", "student.enrolment.form.error.expiryDate.month");
 			if (MomentHelper.isBefore(date, MomentHelper.getCurrentMoment()))
-				throw new IllegalArgumentException("student.enrolment.form.error.expiryDate");
+				super.state(false, "expiryDate", "student.enrolment.form.error.expiryDate.before");
 		} catch (final ParseException e) {
-			throw new IllegalArgumentException("student.enrolment.form.error.expiryDate");
+			super.state(false, "expiryDate", "student.enrolment.form.error.expiryDate.pattern");
 		}
 	}
 
 	@Override
 	public void perform(final Enrolment object) {
 		assert object != null;
-
+		String creditCard;
 		object.setDraftMode(false);
-
-		final String card = super.getRequest().getData("creditCard", String.class);
-
-		object.setLowerNibble(card.substring(card.length() - 4));
-
-		object.setHolderName(super.getRequest().getData("holderName", String.class));
+		creditCard = super.getRequest().getData("creditCard", String.class);
+		object.setLowerNibble(creditCard.substring(creditCard.length() - 4));
 
 		this.repository.save(object);
+
 	}
 
 	@Override
 	public void unbind(final Enrolment object) {
 		assert object != null;
-		SelectChoices choices;
 		final String creditCard = "";
 		final String cvc = "";
 		final String expiryDate = "";
+		SelectChoices choices;
 		Collection<Course> courses;
 		Tuple tuple;
 		courses = this.repository.findNotInDraftCourses();
 		choices = SelectChoices.from(courses, "code", object.getCourse());
-		tuple = super.unbind(object, "nameHolder");
-		tuple.put("course", choices.getSelected().getKey());
-		tuple.put("courses", choices);
+		tuple = super.unbind(object, "code", "motivation", "goals", "course", "holderName");
+		tuple.put("draftMode", object.isDraftMode());
 		tuple.put("creditCard", creditCard);
 		tuple.put("cvc", cvc);
 		tuple.put("expiryDate", expiryDate);
+		tuple.put("course", choices.getSelected().getKey());
+		tuple.put("courses", choices);
 		super.getResponse().setData(tuple);
-		super.unbind(object);
 	}
 }

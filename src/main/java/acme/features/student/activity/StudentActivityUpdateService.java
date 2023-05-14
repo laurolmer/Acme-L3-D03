@@ -13,6 +13,8 @@
 
 package acme.features.student.activity;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -78,10 +80,17 @@ public class StudentActivityUpdateService extends AbstractService<Student, Activ
 	@Override
 	public void validate(final Activity object) {
 		assert object != null;
+		final Date maxValue = new Date("2100/12/31 23:59");
+		final Date minValue = new Date("2000/01/01 00:00");
 		if (!super.getBuffer().getErrors().hasErrors("startPeriod") && !super.getBuffer().getErrors().hasErrors("endPeriod")) {
 			final boolean validPeriod = MomentHelper.isAfter(object.getEndPeriod(), object.getStartPeriod());
-			super.state(validPeriod, "endPeriod", "student.workbook.form.error.validPeriod");
+			super.state(validPeriod, "endPeriod", "student.activity.form.error.validPeriod");
 		}
+		if (!super.getBuffer().getErrors().hasErrors("endPeriod"))
+			super.state(!MomentHelper.isAfter(object.getEndPeriod(), maxValue), "endPeriod", "student.activity.error.end-reached-max-value");
+
+		if (!super.getBuffer().getErrors().hasErrors("startPeriod"))
+			super.state(MomentHelper.isAfter(object.getStartPeriod(), minValue), "startPeriod", "student.activity.error.start-didnot-reach-min-value");
 	}
 
 	@Override

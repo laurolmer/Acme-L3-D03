@@ -1,14 +1,22 @@
+/*
+ * StudentDashboardShowService.java
+ *
+ * Copyright (C) 2012-2023 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
 
 package acme.features.student.studentDashboard;
 
-import java.util.Collection;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.course.Course;
-import acme.entities.course.CourseType;
 import acme.form.Statistic;
 import acme.form.StudentDashboard;
 import acme.framework.components.accounts.Principal;
@@ -58,15 +66,14 @@ public class StudentDashboardShowService extends AbstractService<Student, Studen
 		final double maximumActivityLength;
 		int countActivity;
 
-		final Statistic enrolmentLength;
-		final double averageEnrolmentLength;
-		final double deviationEnrolmentLength;
-		final double minimumEnrolmentLength;
-		final double maximumEnrolmentLength;
-		int countEnrolment;
+		final Statistic courseLength;
+		final double averageCourseLength;
+		final double deviationCourseLength;
+		final double minimumCourseLength;
+		final double maximumCourseLength;
+		int countCourse;
 
-		final Integer totalNumberOfTheoryEnrolment;
-		final Integer totalNumOfHandsOnEnrolment;
+		final Map<String, Integer> activitiesByActivityType;
 
 		principal = super.getRequest().getPrincipal();
 		userAccountId = principal.getAccountId();
@@ -78,33 +85,28 @@ public class StudentDashboardShowService extends AbstractService<Student, Studen
 		minimumActivityLength = this.repository.findMinimumActivityLength(studentId);
 		maximumActivityLength = this.repository.findMaximumActivityLength(studentId);
 		countActivity = this.repository.findCountActivity(studentId);
-		activityLength = new Statistic(countActivity, averageActivityLength, maximumActivityLength, minimumActivityLength, deviationActivityLength);
+		activityLength = new Statistic(countActivity, averageActivityLength, minimumActivityLength, maximumActivityLength, deviationActivityLength);
 
-		averageEnrolmentLength = this.repository.findAvgEnrolmentLength(studentId);
-		deviationEnrolmentLength = this.repository.findDevEnrolmentLength(studentId);
-		minimumEnrolmentLength = this.repository.findMinEnrolmentLength(studentId);
-		maximumEnrolmentLength = this.repository.findMaxEnrolmentLength(studentId);
-		countEnrolment = this.repository.findCountEnrolment(studentId);
-		enrolmentLength = new Statistic(countEnrolment, averageEnrolmentLength, maximumEnrolmentLength, minimumEnrolmentLength, deviationEnrolmentLength);
+		averageCourseLength = this.repository.averageTimeCoursesByStudentId(studentId);
+		deviationCourseLength = this.repository.deviationTimeCoursesByStudentId(studentId, averageCourseLength);
+		minimumCourseLength = this.repository.minimumTimeCoursesOfStudentId(studentId);
+		maximumCourseLength = this.repository.maximumTimeCoursesOfStudentId(studentId);
+		countCourse = this.repository.findCountEnrolment(studentId);
+		courseLength = new Statistic(countCourse, averageCourseLength, minimumCourseLength, maximumCourseLength, deviationCourseLength);
 
-		final Map<CourseType, Collection<Course>> courseType = this.repository.coursesRegardingCourseType();
-		totalNumberOfTheoryEnrolment = this.repository.findCountEnrolmentRegardingCourse(courseType.get(CourseType.THEORY_COURSE));
-		totalNumOfHandsOnEnrolment = this.repository.findCountEnrolmentRegardingCourse(courseType.get(CourseType.HANDS_ON));
+		activitiesByActivityType = this.repository.numberOfActivitiesByActivityType(studentId);
 
 		studentDashboard = new StudentDashboard();
-		//assistantDashboard.setTotalNumTheoryTutorials(totalNumberOfTheoryTutorial);
-		//assistantDashboard.setTotalNumHandsOnTutorials(totalNumOfHandsOnTutorials);
-		studentDashboard.setTotalNumTheoryEnrolment(totalNumberOfTheoryEnrolment);
-		studentDashboard.setTotalNumHandsOnEnrolment(totalNumOfHandsOnEnrolment);
+		studentDashboard.setTotalActivitiesByActivityType(activitiesByActivityType);
 		studentDashboard.setActivityTime(activityLength);
-		studentDashboard.setEnrolmentTime(enrolmentLength);
+		studentDashboard.setCourseTime(courseLength);
 		super.getBuffer().setData(studentDashboard);
 	}
 
 	@Override
 	public void unbind(final StudentDashboard studentDashboard) {
 		Tuple tuple;
-		tuple = super.unbind(studentDashboard, "totalNumTheoryEnrolment", "totalNumHandsOnEnrolment", "activityTime", "enrolmentTime");
+		tuple = super.unbind(studentDashboard, "totalActivitiesByActivityType", "courseTime", "activityTime");
 		super.getResponse().setData(tuple);
 	}
 }
