@@ -88,11 +88,15 @@ public class AssistantTutorialSessionPublishService extends AbstractService<Assi
 			super.state(condition1 && condition2, "finishPeriod", "assistant.session.bad-finishPeriod-time");
 		}
 		// EndPeriod must be before 2100/12/31 23:59
-		if (!super.getBuffer().getErrors().hasErrors("availabilityPeriodEnd"))
-			super.state(!MomentHelper.isAfter(tutorialSession.getFinishPeriod(), maxValue), "availabilityPeriodEnd", "assistant.session.end-reached-max-value");
+		if (!super.getBuffer().getErrors().hasErrors("finishPeriod"))
+			super.state(!MomentHelper.isAfter(tutorialSession.getFinishPeriod(), maxValue), "finishPeriod", "assistant.session.end-reached-max-value");
 		// StartPeriod must be after 2000/01/01 00:00
-		if (!super.getBuffer().getErrors().hasErrors("availabilityPeriodStart"))
-			super.state(MomentHelper.isAfter(tutorialSession.getStartPeriod(), minValue), "getAvailabilityPeriodStart", "assistant.session.start-didnot-reach-min-value");
+		if (!super.getBuffer().getErrors().hasErrors("startPeriod"))
+			super.state(MomentHelper.isAfter(tutorialSession.getStartPeriod(), minValue), "startPeriod", "assistant.session.start-didnot-reach-min-value");
+		if (!super.getBuffer().getErrors().hasErrors("finishPeriod")) {
+			final boolean eval = tutorialSession.computeEstimatedTotalTime() > 0.0;
+			super.state(eval, "finishPeriod", "assistant.session.estimatedTotalTime");
+		}
 	}
 
 	@Override

@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AdministratorsDashboard extends AbstractForm {
+public class AdministratorDashboard extends AbstractForm {
 	// Serialisation identifier -----------------------------------------------
 
 	protected static final long		serialVersionUID	= 1L;

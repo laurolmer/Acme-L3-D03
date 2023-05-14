@@ -45,11 +45,16 @@ master.menu.administrator.banner= Lista de Banners
 master.menu.authenticated = Autenticado
 master.menu.authenticated.note.list = Listar todas las notas
 
+# master.menu.bulletin ###################################################
+
+master.menu.bulletin = Boletines
 master.menu.bulletin.list = Listar todos los boletines
 master.menu.administrator.bulletin.form = Crear un Bulletin
 
+
 master.menu.offer.list= Listar todas las ofertas
 master.menu.authenticated.exchange-money.perform = Cambio de Moneda
+master.menu.offer.list = Listar todas las ofertas
 
 
 # master.menu.assistant ###################################################
@@ -78,11 +83,13 @@ master.menu.provider.favourite-link = Enlace favorito
 master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
 
+
 # master.menu.assistant ########################################################
 
 master.menu.assistant = Asistente
 master.menu.assistant.tutorial.list-mine = Listar Mis Tutoriales
 master.menu.assistant.tutorial.list-all = Listar Todos Los Tutoriales
+master.menu.assistant.dashboard = Dashboard del Asistente
 
 # master.menu.lecturer ##########################################################
 

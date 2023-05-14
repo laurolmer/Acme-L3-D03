@@ -26,13 +26,13 @@ public class AssistantTutorialController extends AbstractController<Assistant, T
 	protected AssistantTutorialDeleteService	deleteService;
 
 	@Autowired
-	private AssistantTutorialListAllService		listAllService;
+	protected AssistantTutorialListAllService	listAllService;
 
 	@Autowired
-	private AssistantTutorialListMineService	listMineService;
+	protected AssistantTutorialListMineService	listMineService;
 
 	@Autowired
-	private AssistantTutorialPublishService		publishService;
+	protected AssistantTutorialPublishService	publishService;
 
 
 	@PostConstruct

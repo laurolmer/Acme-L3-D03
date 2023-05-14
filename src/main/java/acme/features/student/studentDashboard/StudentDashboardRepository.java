@@ -1,18 +1,30 @@
+/*
+ * StudentDashboardRepository.java
+ *
+ * Copyright (C) 2012-2023 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
 
 package acme.features.student.studentDashboard;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.entities.activity.Activity;
+import acme.entities.activity.ActivityType;
 import acme.entities.course.Course;
-import acme.entities.course.CourseType;
 import acme.entities.enrolment.Enrolment;
 import acme.entities.lecture.Lecture;
 import acme.framework.repositories.AbstractRepository;
@@ -40,27 +52,71 @@ public interface StudentDashboardRepository extends AbstractRepository {
 	@Query("select count(a) from Activity a where a.enrolment.student.id = :studentId")
 	int findCountActivity(int studentId);
 
-	// ENROLMENT TIME
-	@Query("select avg(time_to_sec(timediff(a.endPeriod,a.startPeriod)))/3600.0 from Activity a where a.enrolment.id in (select t.id from Enrolment t where t.student.id = :studentId)")
-	Double findAvgEnrolmentLength(int studentId);
+	// ACTIVITY TYPE
 
-	@Query("select stddev(time_to_sec(timediff(a.endPeriod,a.startPeriod)))/3600.0 from Activity a where a.enrolment.id in (select e.id from Enrolment e where e.student.id = :studentId)")
-	Double findDevEnrolmentLength(int studentId);
+	default Map<String, Integer> numberOfActivitiesByActivityType(final int studentId) {
+		final Collection<Activity> activities = this.findActivitiesByEnrolmentId(studentId);
+		final Map<ActivityType, Integer> activityCount = new HashMap<>();
+		final Map<String, Integer> activityCountToString = new HashMap<>();
+		for (final Activity activity : activities) {
+			final ActivityType activityType = activity.getActivityType();
+			activityCount.merge(activityType, 1, Integer::sum);
+		}
+		for (final Map.Entry<ActivityType, Integer> entry : activityCount.entrySet())
+			activityCountToString.put(entry.getKey().toString(), entry.getValue());
+		return activityCountToString;
+	}
 
-	@Query("select min(time_to_sec(timediff(a.endPeriod,a.startPeriod)))/3600.0 from Activity a where a.enrolment.id in (select e.id from Enrolment e where e.student.id = :studentId)")
-	Double findMinEnrolmentLength(int studentId);
+	// COURSE TIME BY ENROLMENT
 
-	@Query("select max(time_to_sec(timediff(a.endPeriod,a.startPeriod)))/3600.0 from Activity a where a.enrolment.id in (select e.id from Enrolment e where e.student.id = :studentId)")
-	Double findMaxEnrolmentLength(int studentId);
+	default Map<Course, Double> totalTimeCoursesByStudent(final int studentId) {
+		final Map<Course, Double> totalTimePerCourse = new HashMap<>();
+		for (final Enrolment enrolment : this.findEnrolmentsByStudentId(studentId)) {
+			final Course course = enrolment.getCourse();
+			final Double totalTime = this.totalLearningTimeByCourseId(course.getId()) != null ? this.totalLearningTimeByCourseId(course.getId()) : 0.;
+			totalTimePerCourse.put(course, totalTime);
+		}
+		return totalTimePerCourse;
+	}
+
+	default Double averageTimeCoursesByStudentId(final int studentId) {
+		final Map<Course, Double> totalTimeCourse = this.totalTimeCoursesByStudent(studentId);
+		return totalTimeCourse.entrySet().stream().collect(Collectors.summingDouble(x -> x.getValue())) / totalTimeCourse.keySet().size();
+	}
+
+	default Double deviationTimeCoursesByStudentId(final int studentId, final Double averageValue) {
+		final Map<Course, Double> totalTimeCourse = this.totalTimeCoursesByStudent(studentId);
+		return Math.sqrt(totalTimeCourse.entrySet().stream().collect(Collectors.summingDouble(x -> Math.pow(x.getValue() - averageValue, 2.))) / totalTimeCourse.keySet().size());
+	}
+
+	default Double minimumTimeCoursesOfStudentId(final int studentId) {
+		final Map<Course, Double> totalTimeCourse = this.totalTimeCoursesByStudent(studentId);
+		return totalTimeCourse.values().stream().min(Comparator.naturalOrder()).get();
+	}
+
+	default Double maximumTimeCoursesOfStudentId(final int studentId) {
+		final Map<Course, Double> totalTimeCourse = this.totalTimeCoursesByStudent(studentId);
+		return totalTimeCourse.values().stream().max(Comparator.naturalOrder()).get();
+	}
 
 	//AUXILIARY QUERIES
+
+	@Query("select count(DISTINCT enrolment.course) from Enrolment enrolment where enrolment.student.id = :studentId and enrolment.draftMode is false")
+	int countCoursesOfStudent(int studentId);
+
+	@Query("select enrolment.course from Enrolment enrolment where enrolment.student.id =:studentId and enrolment.draftMode is false")
+	List<Course> findAllDistintCoursesByStudentId(int studentId);
+
+	@Query("select sum(abs(time_to_sec(timediff(cl.lecture.endPeriod,cl.lecture.startPeriod))/3600.0)) from CourseLecture cl where cl.course.id = :courseId")
+	Double totalLearningTimeByCourseId(int courseId);
+
 	@Query("select count(e) from Enrolment e where e.student.id = :studentId")
 	int findCountEnrolment(int studentId);
 
 	@Query("select count(e) from Enrolment e where e.student.id = :studentId")
 	Long findTotalNumberOfEnrolment(int studentId);
 
-	@Query("select a from Activity a where a.enrolment.id = :id")
+	@Query("select a from Activity a where a.enrolment.student.id = :id")
 	Collection<Activity> findActivitiesByEnrolmentId(int id);
 
 	@Query("select c from Course c where c.draftMode = false")
@@ -75,54 +131,10 @@ public interface StudentDashboardRepository extends AbstractRepository {
 	@Query("select e from Enrolment e where e.student.id = :id")
 	Collection<Enrolment> findEnrolmentsByStudentId(int id);
 
+	@Query("select act.activityType from Activity act where act.enrolment.student.id =:studentId")
+	List<ActivityType> findAllActivityTypesInActivitiesOfStudent(int studentId);
+
 	// AUXILIARY METHODS
-	//	default Map<CourseType, Collection<Course>> coursesRegardingCourseType() {
-	//		final Map<CourseType, Collection<Course>> coursesByType = new HashMap<>();
-	//		final Collection<Course> allCourses = this.findAllCourses();
-	//		for (final Course c : allCourses) {
-	//			final CourseType ct = c.computeCourseType(this.findLecturesByCourseId(c.getId()));
-	//			Collection<Course> coursesListByType = new ArrayList<>();
-	//			if (coursesByType.containsKey(ct)) {
-	//				coursesListByType = coursesByType.get(ct);
-	//				coursesListByType.add(c);
-	//			} else
-	//				coursesListByType.add(c);
-	//			coursesByType.put(ct, coursesListByType);
-	//		}
-	//		return coursesByType;
-	//	}
-	default Map<CourseType, Collection<Course>> coursesRegardingCourseType() {
-		final Map<CourseType, Collection<Course>> coursesByType = new HashMap<>();
-		final Collection<Course> allCourses = this.findAllCourses();
-		for (final Course c : allCourses) {
-			final CourseType ct = c.computeCourseType(this.findLecturesByCourseId(c.getId()));
-			if (coursesByType.containsKey(ct))
-				coursesByType.get(ct).add(c);
-			else {
-				final Collection<Course> coursesListByType = new ArrayList<>();
-				coursesListByType.add(c);
-				coursesByType.put(ct, coursesListByType);
-			}
-		}
-		return coursesByType;
-	}
-
-	default Integer findCountEnrolmentRegardingCourse(final Collection<Course> courses) {
-		int totalNumberEnrolmentsByCoursesCollection = 0;
-		if (courses != null) {
-			for (final Course c : courses) {
-				final Collection<Enrolment> enrolmentByCourse = this.findEnrolmentsByCourse(c.getId());
-				totalNumberEnrolmentsByCoursesCollection += enrolmentByCourse.size();
-			}
-			return totalNumberEnrolmentsByCoursesCollection;
-		} else
-			return 0;
-
-	}
-
-	//	default int findCountEnrolmentRegardingCourse(final Collection<Course> courses) {
-	//		return courses.stream().mapToInt(c -> this.findEnrolmentsByCourse(c.getId()).size()).sum();
-	//	}
 
 	@Query("select s from Student s where s.userAccount.id = :accountId")
 	Student findAssistantByAccountId(int accountId);

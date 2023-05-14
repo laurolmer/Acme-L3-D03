@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class AssistantsDashboard extends AbstractForm {
+public class AssistantDashboard extends AbstractForm {
 
 	// Serialisation identifier -----------------------------------------------
 
@@ -16,12 +16,14 @@ public class AssistantsDashboard extends AbstractForm {
 	// Attributes -------------------------------------------------------------
 
 	// Total number of tutorials regarding theory or hands-on courses.
-	private Integer				totalNumTheoryTutorials;
+	protected Integer			totalNumTheoryTutorials;
+
+	protected Integer			totalNumHandsOnTutorials;
 
 	// Average, deviation, minimum, and maximum time of his or her sessions.
-	private Statistic			sessionTime;
+	protected Statistic			sessionTime;
 
 	// Average, deviation, minimum, and maximum time of his or her tutorials.
-	private Statistic			tutorialTime;
+	protected Statistic			tutorialTime;
 
 }

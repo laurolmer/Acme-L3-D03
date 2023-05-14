@@ -20,6 +20,7 @@ assistant.tutorial.form.button.update = Actualizar
 assistant.tutorial.form.button.delete = Borrar
 assistant.tutorial.form.button.publish = Publicar
 assistant.tutorial.form.button.list-all = Listar todos
+assistant.tutorial-session.form.button.list = Listar sesiones
 
 assistant.tutorial.list.label.code = Código
 assistant.tutorial.list.label.title = Título
@@ -29,4 +30,5 @@ assistant.tutorial.list.label.goals = Objetivos
 assistant.tutorial.list.button.create = Crear
 assistant.tutorial.list.button.publish = Publicar
 
+assistant.tutorial.form.error.draftMode-published = El tutorial ya ha sido publicado
 assistant.tutorial.form.error.code-uniqueness = El código está repetido y debe ser único
