@@ -3,6 +3,7 @@ package acme.entities.practicumSession;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -10,6 +11,7 @@ import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
@@ -29,6 +31,11 @@ public class PracticumSession extends AbstractEntity {
 
 	// Attributes -------------------------------------------------------------
 	@NotBlank
+	@Column(unique = true)
+	@Pattern(regexp = "^[A-Z]{1,3}[0-9]{3}$")
+	protected String			code;
+
+	@NotBlank
 	@Length(max = 75)
 	protected String			title;
 
@@ -38,21 +45,33 @@ public class PracticumSession extends AbstractEntity {
 
 	@NotNull
 	@Temporal(TemporalType.DATE)
-	protected Date				startDate;
+	protected Date				start;
 
 	@NotNull								//(at least one week ahead, at least one week long)
 	@Temporal(TemporalType.DATE)
-	protected Date				finishDate;
+	protected Date				end;
 
 	@URL
 	protected String			link;
 
+	protected boolean			additional;
+
+	protected boolean			confirmed;
+
 	// Derived attributes -----------------------------------------------------
+
+	//	public double computeEstimatedTotalTime() {
+	//		double estimatedTotalTime;
+	//		Duration timeBetween;
+	//		timeBetween = MomentHelper.computeDuration(this.start, this.end);
+	//		estimatedTotalTime = timeBetween.toHours();
+	//		return estimatedTotalTime;
+	//	}
 
 	// Relationships ----------------------------------------------------------
 
 	@Valid
 	@NotNull
 	@ManyToOne(optional = false)
-	private Practicum			practicum;
+	protected Practicum			practicum;
 }

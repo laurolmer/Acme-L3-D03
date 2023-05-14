@@ -1,6 +1,8 @@
 
 package acme.entities.tutorialSession;
 
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -16,6 +18,7 @@ import org.hibernate.validator.constraints.URL;
 
 import acme.entities.tutorial.Tutorial;
 import acme.framework.data.AbstractEntity;
+import acme.framework.helpers.MomentHelper;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -43,8 +46,6 @@ public class TutorialSession extends AbstractEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	protected Date				startPeriod;
 
-	//@CustomConstraint finishperiod - startperiod >= 1 horas && <= 5 horas
-
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	protected Date				finishPeriod;
@@ -52,20 +53,37 @@ public class TutorialSession extends AbstractEntity {
 	@URL
 	protected String			link;
 
-	// Derived attributes -----------------------------------------------------
-	// El tiempo total de un tutorial se calcula con la suma de todos las sesiones pertenecientes a ese tutorial.
-	//	protected int totalTutorialTime(final List<TutorialSession> sessions, final Tutorial tuto) {
-	//		int tutorialTime = 0;
-	//		for (final TutorialSession session : sessions)
-	//			if (session.getTutorial().equals(tuto))
-	//				tutorialTime += session.getFinishPeriod().getHours() - session.getStartPeriod().getHours();
-	//		return tutorialTime;
-	//	}
+	protected boolean			draftMode;
+
+
+	// Métodos derivados -----------------------------------------------------
+	public Date deltaFromStartMoment(final double amount) {
+		assert this.startPeriod != null;
+		Date result;
+		long hour, minutes;
+		long delta, millis;
+		hour = (long) Math.floor(amount);
+		minutes = (long) ((amount - hour) * ChronoUnit.HOURS.getDuration().toMinutes());
+		delta = hour * ChronoUnit.HOURS.getDuration().toMillis() + minutes * ChronoUnit.MINUTES.getDuration().toMillis();
+		millis = this.startPeriod.getTime() + delta;
+		result = new Date(millis);
+		return result;
+	}
+
+	public double computeEstimatedTotalTime() {
+		Duration timeBetween;
+		if (this.finishPeriod != null) {
+			timeBetween = MomentHelper.computeDuration(this.startPeriod, this.finishPeriod);
+			return (double) timeBetween.toMinutes() / ChronoUnit.HOURS.getDuration().toMinutes();
+		}
+		return 0.0;
+	}
+
 
 	// Relationships ----------------------------------------------------------
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
-	protected Tutorial			tutorial;
+	protected Tutorial tutorial;
 
 }

@@ -43,10 +43,21 @@ public class Practicum extends AbstractEntity {
 	@Length(max = 100)
 	protected String			goals;
 
+	@NotNull
+	protected Boolean			draftMode;
+
 	// Derived attributes -----------------------------------------------------
 
-	//Falta la función derivada
-	//estimedTotalTimeInHours; // computed from sessions plus/minus 10%
+	// computed from sessions plus/minus 10%
+	// Métodos derivados ------------------------------------------------------
+	//	public Double computeEstimatedTotalTime(final Collection<PracticumSession> sessions) {
+	//		double estimatedTotalTime = 0.;
+	//		Optional<Double> optEstimatedTotalTime;
+	//		optEstimatedTotalTime = sessions.stream().map(PracticumSession::computeEstimatedTotalTime).reduce(Double::sum);
+	//		if (optEstimatedTotalTime.isPresent())
+	//			estimatedTotalTime = optEstimatedTotalTime.get();
+	//		return estimatedTotalTime;
+	//	}
 
 	// Relationships ----------------------------------------------------------
 

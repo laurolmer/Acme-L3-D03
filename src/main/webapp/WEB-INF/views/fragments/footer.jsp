@@ -39,4 +39,3 @@
 	</acme:footer-logo>		
 
 </acme:footer-panel>
-
